@@ -13,6 +13,7 @@ namespace QuickLayout.Touch.Views
     public class FormGridView : MvxViewController
     {
         private UILabel _debugLabel;
+        private UIView _forceTheWidthView;
 
         public override void ViewDidLoad()
         {
@@ -25,6 +26,9 @@ namespace QuickLayout.Touch.Views
             View = scrollView;
             scrollView.TranslatesAutoresizingMaskIntoConstraints = true;
             base.ViewDidLoad();
+
+            var _forceTheWidthView = new UIView() {BackgroundColor = UIColor.Clear};
+            Add(_forceTheWidthView);
 
             var fNameLabel = new UILabel { Text = "First" };
             Add(fNameLabel);
@@ -75,7 +79,7 @@ namespace QuickLayout.Touch.Views
             set.Bind(_debugLabel).To("FirstName  + ' ' + LastName + ', '  + Number + ' ' + Street + ' ' + Town + ' ' + Zip");
             set.Apply();
 
-            FluentLayoutExtensions.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints(View);
+            View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
             var rowSet = new RowSetTemplate()
                 {
@@ -105,7 +109,8 @@ namespace QuickLayout.Touch.Views
             townAndZipRowTemplate.ColumWidth(1, 120f);
 
             View.AddConstraints(
-                rowSet.Generate(View, 
+                rowSet.Generate(View,
+                    new Row(equalWeightRowTemplate, _forceTheWidthView),
                     new Row(equalWeightRowTemplate, fNameLabel, sNameLabel),
                     new Row(equalWeightRowTemplate, fNameField, sNameField),
                     new Row(addressRowTemplate, numberLabel, streetLabel),
@@ -114,13 +119,15 @@ namespace QuickLayout.Touch.Views
                     new Row(townAndZipRowTemplate, townField, zipField),
                     new Row(equalWeightRowTemplate, _debugLabel)
                 ));
+            View.AddConstraints(_forceTheWidthView.Width().EqualTo().WidthOf(View).Minus(30f));
         }
 
         public override void ViewWillLayoutSubviews()
         {
             // to get word wrap we also have to add this preferred width on the width of the debug field
             // see https://developer.apple.com/library/ios/DOCUMENTATION/UIKit/Reference/UILabel_Class/Reference/UILabel.html#//apple_ref/occ/instp/UILabel/preferredMaxLayoutWidth
-            _debugLabel.PreferredMaxLayoutWidth = View.Frame.Width - 24f;
+            _debugLabel.PreferredMaxLayoutWidth = View.Frame.Width - 30f;
+
             base.ViewWillLayoutSubviews();
         }
     }
