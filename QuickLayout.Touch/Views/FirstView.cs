@@ -20,6 +20,10 @@ namespace QuickLayout.Touch.Views
             buttonF.SetTitle("Form", UIControlState.Normal);
             Add(buttonF);
 
+            var buttonFG = new UIButton(UIButtonType.RoundedRect);
+            buttonFG.SetTitle("FormGrid", UIControlState.Normal);
+            Add(buttonFG);
+
             var buttonD = new UIButton(UIButtonType.RoundedRect);
             buttonD.SetTitle("Details", UIControlState.Normal);
             Add(buttonD);
@@ -36,6 +40,7 @@ namespace QuickLayout.Touch.Views
 
             var set = this.CreateBindingSet<FirstView, FirstViewModel>();
             set.Bind(buttonF).To("GoForm");
+            set.Bind(buttonFG).To("GoFormGrid");
             set.Bind(buttonD).To("GoDetails");
             set.Bind(buttonS).To("GoSearch");
             set.Bind(buttonT).To("GoTip");
