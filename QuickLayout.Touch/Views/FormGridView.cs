@@ -1,3 +1,4 @@
+using System.Drawing;
 using Cirrious.FluentLayouts.Touch;
 using Cirrious.FluentLayouts.Touch.RowSet;
 using Cirrious.MvvmCross.Binding.BindingContext;
@@ -8,18 +9,11 @@ using QuickLayout.Core.ViewModels;
 
 namespace QuickLayout.Touch.Views
 {
-    public class ResizingUILabel : UILabel
-    {
-        public string AutoText
-        {
-            get { return base.Text; }
-            set { base.Text = value; SizeToFit(); LayoutIfNeeded(); }
-        }
-    }
-
     [Register("FormGridView")]
     public class FormGridView : MvxViewController
     {
+        private UILabel _debugLabel;
+
         public override void ViewDidLoad()
         {
             var scrollView = new UIScrollView()
@@ -68,8 +62,8 @@ namespace QuickLayout.Touch.Views
             var zipField = new UITextField() { BackgroundColor = UIColor.LightGray, BorderStyle = UITextBorderStyle.RoundedRect };
             Add(zipField);
 
-            var debug = new ResizingUILabel() { BackgroundColor = UIColor.White, Lines = 0, LineBreakMode = UILineBreakMode.WordWrap };
-            Add(debug);
+            _debugLabel = new UILabel() { BackgroundColor = UIColor.White, Lines = 0, LineBreakMode = UILineBreakMode.WordWrap };
+            Add(_debugLabel);
 
             var set = this.CreateBindingSet<FormGridView, FormGridViewModel>();
             set.Bind(fNameField).To(vm => vm.FirstName);
@@ -78,7 +72,7 @@ namespace QuickLayout.Touch.Views
             set.Bind(streetField).To(vm => vm.Street);
             set.Bind(townField).To(vm => vm.Town);
             set.Bind(zipField).To(vm => vm.Zip);
-            set.Bind(debug).For(l => l.AutoText).To("FirstName  + ' ' + LastName + ', '  + Number + ' ' + Street + ' ' + Town + ' ' + Zip");
+            set.Bind(_debugLabel).To("FirstName  + ' ' + LastName + ', '  + Number + ' ' + Street + ' ' + Town + ' ' + Zip");
             set.Apply();
 
             FluentLayoutExtensions.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints(View);
@@ -118,11 +112,16 @@ namespace QuickLayout.Touch.Views
                     new Row(addressRowTemplate, numberField, streetField),
                     new Row(townAndZipRowTemplate, townLabel, zipLabel),
                     new Row(townAndZipRowTemplate, townField, zipField),
-                    new Row(equalWeightRowTemplate, debug)
+                    new Row(equalWeightRowTemplate, _debugLabel)
                 ));
+        }
 
-            // to get word wrap we also have to add this constraint on the width of the debug field
-            View.AddConstraints(debug.Width().LessThanOrEqualTo().WidthOf(View).Minus(24f));
+        public override void ViewWillLayoutSubviews()
+        {
+            // to get word wrap we also have to add this preferred width on the width of the debug field
+            // see https://developer.apple.com/library/ios/DOCUMENTATION/UIKit/Reference/UILabel_Class/Reference/UILabel.html#//apple_ref/occ/instp/UILabel/preferredMaxLayoutWidth
+            _debugLabel.PreferredMaxLayoutWidth = View.Frame.Width - 24f;
+            base.ViewWillLayoutSubviews();
         }
     }
 }
