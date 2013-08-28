@@ -99,12 +99,12 @@ namespace Cirrious.FluentLayouts.Touch.RowSet
 
         private readonly Dictionary<int, Column> _columnDefinitions = new Dictionary<int, Column>();
 
-        public void ColumWidth(int position, float width)
+        public void ColumnWidth(int position, float width)
         {
             _columnDefinitions[position] = new FixedWidthColumn(width);
         }
 
-        public void ColumWeight(int position, float weight)
+        public void ColumnWeight(int position, float weight)
         {
             _columnDefinitions[position] = new WeightedWidthColumn(weight);
         }

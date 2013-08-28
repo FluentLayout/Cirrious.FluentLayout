@@ -99,14 +99,14 @@ namespace QuickLayout.Touch.Views
                     LeftMargin = 6f,
                     RightMargin = 24f
                 };
-            addressRowTemplate.ColumWeight(0, 0.3f);
+            addressRowTemplate.ColumnWeight(0, 0.3f);
             var townAndZipRowTemplate = new RowTemplate()
             {
                 HInterspacing = 12f,
                 LeftMargin = 6f,
                 RightMargin = 24f
             };
-            townAndZipRowTemplate.ColumWidth(1, 120f);
+            townAndZipRowTemplate.ColumnWidth(1, 120f);
 
             View.AddConstraints(
                 rowSet.Generate(View,
