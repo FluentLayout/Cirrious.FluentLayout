@@ -1,5 +1,25 @@
 QuickLayout provides a fluent API for constraint-based layout in Xamarin.iOS
 
+
+**How Fresh Is This?**
+
+This fork was from the slodge account repo with an initial commit in August 2013 which appeared AFTER the July commits on the Mvx Tutorials repo.
+Assuming this repo was the most recent and reviewed the minor changes the Tutorials repo had in October 2013 to make sure nothing major had changed.
+
+This fork already had these changes:
+[https://github.com/MvvmCross/MvvmCross-Tutorials/commit/4e1a98e8594e5ea8e740418236f494dfd574655f#diff-b4ff7cfefc185ef4544f98fc26bc4f55](https://github.com/MvvmCross/MvvmCross-Tutorials/commit/4e1a98e8594e5ea8e740418236f494dfd574655f#diff-b4ff7cfefc185ef4544f98fc26bc4f55)
+
+TODO: Do we still have to remove dots from Touch Assembly names like this change did?
+and these changes:
+
+[https://github.com/MvvmCross/MvvmCross-Tutorials/commit/e560241efe964997de9fa4691a810f6bd00a4fbe](https://github.com/MvvmCross/MvvmCross-Tutorials/commit/e560241efe964997de9fa4691a810f6bd00a4fbe)
+
+seemed mainly related to updating Mvx which this forks has already done in Nov 2013.
+ 
+
+
+
+
 For original information, see http://slodge.blogspot.co.uk/2013/07/playing-with-constraints.html
 
 -----
