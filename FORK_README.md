@@ -1,4 +1,13 @@
-QuickLayout provides a fluent API for constraint-based layout in Xamarin.iOS
+# kstreet fork notes:
+*Last Updated January 15, 2014*
+
+## QuickLayout provides a fluent API for constraint-based layout in Xamarin.iOS ##
+
+**What Is This Fork In Here For?**
+
+This fork is in the kstreet GitHub account because the fork is the copy that is referenced and currently used with:
+
+- Not currently referenced by my other projects but will likely be used in upcoming iOS projects
 
 
 **How Fresh Is This?**
@@ -20,11 +29,11 @@ seemed mainly related to updating Mvx which this forks has already done in Nov 2
 
 
 
-For original information, see http://slodge.blogspot.co.uk/2013/07/playing-with-constraints.html
+For original information, see [http://slodge.blogspot.co.uk/2013/07/playing-with-constraints.html](http://slodge.blogspot.co.uk/2013/07/playing-with-constraints.html)
 
 -----
 
-If you've watched any of the N+1 series - http://mvvmcross.wordpress.com/ - then you'll no doubt have seen me writing a lot of repetitive, error-prone layout code like:
+If you've watched any of the N+1 series - [http://mvvmcross.blogspot.com/](http://mvvmcross.blogspot.com/) - then you'll no doubt have seen me writing a lot of repetitive, error-prone layout code like:
 
        var textView = new UITextField(new RectangleF(10, 100, 300, 30));
        Add(textView);
