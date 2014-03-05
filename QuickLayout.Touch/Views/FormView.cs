@@ -3,7 +3,9 @@ using Cirrious.FluentLayouts.Touch;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Touch.Views;
 using MonoTouch.Foundation;
+using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
+
 using QuickLayout.Core.ViewModels;
 
 namespace QuickLayout.Touch.Views
@@ -15,6 +17,10 @@ namespace QuickLayout.Touch.Views
         {
             View.BackgroundColor = UIColor.White;
             base.ViewDidLoad();
+
+            // ios7 layout
+            if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
+                EdgesForExtendedLayout = UIRectEdge.None;
 
             var fNameLabel = new UILabel {Text = "First"};
             Add(fNameLabel);

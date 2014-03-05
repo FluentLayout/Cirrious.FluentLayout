@@ -5,6 +5,7 @@ using Cirrious.MvvmCross.Touch.Views;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using QuickLayout.Core.ViewModels;
+using MonoTouch.ObjCRuntime;
 using Cirrious.FluentLayouts;
 
 namespace QuickLayout.Touch.Views
@@ -23,6 +24,10 @@ namespace QuickLayout.Touch.Views
             View = scrollView;
             scrollView.TranslatesAutoresizingMaskIntoConstraints = true;
             base.ViewDidLoad();
+
+            // ios7 layout
+            if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
+                EdgesForExtendedLayout = UIRectEdge.None;
 
             var set = this.CreateBindingSet<DetailsView, DetailsViewModel>();
 

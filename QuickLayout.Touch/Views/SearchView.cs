@@ -4,6 +4,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Touch.Views;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MonoTouch.ObjCRuntime;
 using QuickLayout.Core.ViewModels;
 
 namespace QuickLayout.Touch.Views
@@ -15,6 +16,10 @@ namespace QuickLayout.Touch.Views
         {
             View.BackgroundColor = UIColor.White;
             base.ViewDidLoad();
+
+            // ios7 layout
+            if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
+                EdgesForExtendedLayout = UIRectEdge.None;
 
             var button = new UIButton(UIButtonType.RoundedRect);
             button.SetTitle("Search", UIControlState.Normal);
