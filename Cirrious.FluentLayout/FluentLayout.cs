@@ -151,7 +151,7 @@ namespace Cirrious.FluentLayouts.Touch
 
         public IEnumerable<NSLayoutConstraint> ToLayoutConstraints()
         {
-            yield return NSLayoutConstraint.Create(
+            var constraint = NSLayoutConstraint.Create(
                 View,
                 Attribute,
                 Relation,
@@ -159,6 +159,11 @@ namespace Cirrious.FluentLayouts.Touch
                 SecondAttribute,
                 Multiplier,
                 Constant);
+            
+            if (Priority != default(float))
+                constraint.Priority = Priority;
+                
+            yield return constraint;
         }
     }
 }
