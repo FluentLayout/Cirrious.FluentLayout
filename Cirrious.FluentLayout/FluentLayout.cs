@@ -27,6 +27,7 @@ namespace Cirrious.FluentLayouts.Touch
             SecondItem = secondItem;
             SecondAttribute = secondAttribute;
             Multiplier = 1f;
+            Priority = (float) UILayoutPriority.Required;
         }
 
         public FluentLayout(UIView view,
@@ -39,6 +40,7 @@ namespace Cirrious.FluentLayouts.Touch
             Relation = relation;
             Multiplier = 1f;
             Constant = constant;
+            Priority = (float) UILayoutPriority.Required;
         }
 
         public UIView View { get; private set; }
@@ -151,7 +153,7 @@ namespace Cirrious.FluentLayouts.Touch
 
         public IEnumerable<NSLayoutConstraint> ToLayoutConstraints()
         {
-            yield return NSLayoutConstraint.Create(
+            var constraint = NSLayoutConstraint.Create(
                 View,
                 Attribute,
                 Relation,
@@ -159,6 +161,9 @@ namespace Cirrious.FluentLayouts.Touch
                 SecondAttribute,
                 Multiplier,
                 Constant);
+            constraint.Priority = Priority;
+
+            yield return constraint;
         }
     }
 }
