@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5739EE87-45C0-496A-8388-A09CDB906501}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
@@ -93,8 +91,8 @@
   <ItemGroup>
     <Compile Include="MyViewController.cs" />
     <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default@2x.png" />
-    <BundleResource Include="Resources\Default-568h@2x.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore">
@@ -128,11 +126,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cirrious.FluentLayout\Cirrious.FluentLayouts.Touch.csproj">
-      <Project>{75d2da9d-dfd4-49a1-98fb-fe0f0677ef0f}</Project>
+      <Project>{75D2DA9D-DFD4-49A1-98FB-FE0F0677EF0F}</Project>
       <Name>Cirrious.FluentLayouts.Touch</Name>
     </ProjectReference>
     <ProjectReference Include="..\QuickLayout.Core\QuickLayout.Core.csproj">
-      <Project>{849afb57-994a-42d9-a786-ef34fc951cde}</Project>
+      <Project>{849AFB57-994A-42D9-A786-EF34FC951CDE}</Project>
       <Name>QuickLayout.Core</Name>
     </ProjectReference>
   </ItemGroup>
