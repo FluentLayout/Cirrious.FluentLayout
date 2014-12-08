@@ -2,10 +2,10 @@ using System.Reflection;
 using Cirrious.FluentLayouts.Touch;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Touch.Views;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using QuickLayout.Core.ViewModels;
-using MonoTouch.ObjCRuntime;
+using ObjCRuntime;
 using Cirrious.FluentLayouts;
 
 namespace QuickLayout.Touch.Views

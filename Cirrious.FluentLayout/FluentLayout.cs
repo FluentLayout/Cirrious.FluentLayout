@@ -7,8 +7,8 @@
 
 using System;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using UIKit;
+using Foundation;
 
 namespace Cirrious.FluentLayouts.Touch
 {
