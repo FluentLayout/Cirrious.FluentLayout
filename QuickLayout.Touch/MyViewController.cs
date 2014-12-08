@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 
 namespace QuickLayout.Touch
 {
@@ -25,7 +25,7 @@ namespace QuickLayout.Touch
 
             button = UIButton.FromType(UIButtonType.RoundedRect);
 
-            button.Frame = new RectangleF(
+            button.Frame = new CGRect(
                 View.Frame.Width / 2 - buttonWidth / 2,
                 View.Frame.Height / 2 - buttonHeight / 2,
                 buttonWidth,
