@@ -5,6 +5,7 @@
 // 
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
+using System;
 using System.Collections.Generic;
 using UIKit;
 
@@ -12,34 +13,37 @@ namespace Cirrious.FluentLayouts.Touch
 {
     public static class AdvancedFluentLayoutExtensions
     {
-        public static FluentLayout AtTopOf(this UIView view, UIView parentView, float margin = 0f)
+		const float DefaultMargin = 0;
+		const float DefaultScale = 1;
+
+        public static FluentLayout AtTopOf(this UIView view, UIView parentView, nfloat? margin = null)
         {
-            return view.Top().EqualTo().TopOf(parentView).Plus(margin);
+			return view.Top().EqualTo().TopOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
         }
 
-        public static FluentLayout AtLeftOf(this UIView view, UIView parentView, float margin = 0f)
+        public static FluentLayout AtLeftOf(this UIView view, UIView parentView, nfloat? margin = null)
         {
-            return view.Left().EqualTo().LeftOf(parentView).Plus(margin);
+			return view.Left().EqualTo().LeftOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
         }
 
-        public static FluentLayout AtRightOf(this UIView view, UIView parentView, float margin = 0f)
+        public static FluentLayout AtRightOf(this UIView view, UIView parentView, nfloat? margin = null)
         {
-            return view.Right().EqualTo().RightOf(parentView).Minus(margin);
+			return view.Right().EqualTo().RightOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
         }
 
-        public static FluentLayout AtBottomOf(this UIView view, UIView parentView, float margin = 0f)
+        public static FluentLayout AtBottomOf(this UIView view, UIView parentView, nfloat? margin = null)
         {
-            return view.Bottom().EqualTo().BottomOf(parentView).Minus(margin);
+			return view.Bottom().EqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
         }
 
-        public static FluentLayout Below(this UIView view, UIView previous, float margin = 0f)
+        public static FluentLayout Below(this UIView view, UIView previous, nfloat? margin = null)
         {
-            return view.Top().EqualTo().BottomOf(previous).Plus(margin);
+			return view.Top().EqualTo().BottomOf(previous).Plus(margin.GetValueOrDefault(DefaultMargin));
         }
 
-        public static FluentLayout Above(this UIView view, UIView previous, float margin = 0f)
+        public static FluentLayout Above(this UIView view, UIView previous, nfloat? margin = null)
         {
-            return view.Bottom().EqualTo().TopOf(previous).Minus(margin);
+			return view.Bottom().EqualTo().TopOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
         }
 
         public static FluentLayout WithSameLeft(this UIView view, UIView previous)
@@ -77,9 +81,9 @@ namespace Cirrious.FluentLayouts.Touch
             return view.Bottom().EqualTo().BottomOf(previous);
         }
 
-        public static FluentLayout WithRelativeWidth(this UIView view, UIView previous, float scale = 1.0f)
+        public static FluentLayout WithRelativeWidth(this UIView view, UIView previous, nfloat? scale = null)
         {
-            return view.Width().EqualTo().WidthOf(previous).WithMultiplier(scale);
+			return view.Width().EqualTo().WidthOf(previous).WithMultiplier(scale.GetValueOrDefault(DefaultScale));
         }
 
         public static FluentLayout WithSameHeight(this UIView view, UIView previous)
@@ -87,31 +91,33 @@ namespace Cirrious.FluentLayouts.Touch
             return view.Height().EqualTo().HeightOf(previous);
         }
 
-        public static FluentLayout WithRelativeHeight(this UIView view, UIView previous, float scale = 1.0f)
+        public static FluentLayout WithRelativeHeight(this UIView view, UIView previous, nfloat? scale = null)
         {
-            return view.Height().EqualTo().HeightOf(previous).WithMultiplier(scale);
+			return view.Height().EqualTo().HeightOf(previous).WithMultiplier(scale.GetValueOrDefault(DefaultScale));
         }
 
-        public static FluentLayout ToRightOf(this UIView view, UIView previous, float margin = 0f)
+        public static FluentLayout ToRightOf(this UIView view, UIView previous, nfloat? margin = null)
         {
-            return view.Left().EqualTo().RightOf(previous).Plus(margin);
+			return view.Left().EqualTo().RightOf(previous).Plus(margin.GetValueOrDefault(DefaultMargin));
         }
 
-        public static FluentLayout ToLeftOf(this UIView view, UIView previous, float margin = 0f)
+        public static FluentLayout ToLeftOf(this UIView view, UIView previous, nfloat? margin = null)
         {
-            return view.Right().EqualTo().LeftOf(previous).Minus(margin);
+			return view.Right().EqualTo().LeftOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
         }
 
-        public static IEnumerable<FluentLayout> FullWidthOf(this UIView view, UIView parent, float margin = 0f)
+        public static IEnumerable<FluentLayout> FullWidthOf(this UIView view, UIView parent, nfloat? margin = null)
         {
-            yield return view.Left().EqualTo().LeftOf(parent).Plus(margin);
-            yield return view.Right().EqualTo().RightOf(parent).Minus(margin);
+			var marginValue = margin.GetValueOrDefault(DefaultMargin);
+			yield return view.Left().EqualTo().LeftOf(parent).Plus(marginValue);
+			yield return view.Right().EqualTo().RightOf(parent).Minus(marginValue);
         }
 
-        public static IEnumerable<FluentLayout> FullHeightOf(this UIView view, UIView parent, float margin = 0f)
+        public static IEnumerable<FluentLayout> FullHeightOf(this UIView view, UIView parent, nfloat? margin = null)
         {
-            yield return view.Top().EqualTo().TopOf(parent).Plus(margin);
-            yield return view.Bottom().EqualTo().BottomOf(parent).Minus(margin);
+			var marginValue = margin.GetValueOrDefault(DefaultMargin);
+			yield return view.Top().EqualTo().TopOf(parent).Plus(marginValue);
+			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue);
         }
 
         public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins,
