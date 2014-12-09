@@ -48,23 +48,23 @@ namespace Cirrious.FluentLayouts.Touch
         public NSLayoutRelation Relation { get; private set; }
         public NSObject SecondItem { get; private set; }
         public NSLayoutAttribute SecondAttribute { get; private set; }
-        public float Multiplier { get; private set; }
-        public float Constant { get; private set; }
+        public nfloat Multiplier { get; private set; }
+        public nfloat Constant { get; private set; }
         public float Priority { get; private set; }
 
-        public FluentLayout Plus(float constant)
+        public FluentLayout Plus(nfloat constant)
         {
             Constant += constant;
             return this;
         }
 
-        public FluentLayout Minus(float constant)
+        public FluentLayout Minus(nfloat constant)
         {
             Constant -= constant;
             return this;
         }
 
-        public FluentLayout WithMultiplier(float multiplier)
+        public FluentLayout WithMultiplier(nfloat multiplier)
         {
             Multiplier = multiplier;
             return this;
