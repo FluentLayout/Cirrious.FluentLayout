@@ -33,7 +33,7 @@ namespace Cirrious.FluentLayouts.Touch
         public FluentLayout(UIView view,
                             NSLayoutAttribute attribute,
                             NSLayoutRelation relation,
-                            float constant = 0f)
+                            nfloat constant)
         {
             View = view;
             Attribute = attribute;
