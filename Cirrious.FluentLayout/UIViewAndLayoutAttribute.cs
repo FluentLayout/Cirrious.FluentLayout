@@ -21,32 +21,17 @@ namespace Cirrious.FluentLayouts.Touch
         public UIView View { get; private set; }
         public NSLayoutAttribute Attribute { get; private set; }
 
-		public FluentLayout EqualTo()
-		{
-			return EqualTo(0);
-		}
-
-        public FluentLayout EqualTo(nfloat constant)
+		public FluentLayout EqualTo(nfloat constant = default(nfloat))
         {
             return new FluentLayout(View, Attribute, NSLayoutRelation.Equal, constant);
         }
 
-		public FluentLayout GreaterThanOrEqualTo()
-		{
-			return GreaterThanOrEqualTo(0);
-		}
-
-        public FluentLayout GreaterThanOrEqualTo(nfloat constant)
+		public FluentLayout GreaterThanOrEqualTo(nfloat constant = default(nfloat))
         {
             return new FluentLayout(View, Attribute, NSLayoutRelation.GreaterThanOrEqual, constant);
         }
 
-		public FluentLayout LessThanOrEqualTo()
-		{
-			return LessThanOrEqualTo(0);
-		}
-
-        public FluentLayout LessThanOrEqualTo(nfloat constant)
+		public FluentLayout LessThanOrEqualTo(nfloat constant = default(nfloat))
         {
             return new FluentLayout(View, Attribute, NSLayoutRelation.LessThanOrEqual, constant);
         }
