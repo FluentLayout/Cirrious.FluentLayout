@@ -1,19 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <metadata>
+	<metadata>
+        <version>2.0.1</version>
         <id>Cirrious.FluentLayout</id>
-        <version>2.0.0</version>
-        <authors>slodge</authors>
+        <title>SQLite.Net PCL - Win32 Platform</title>
+        <authors>slodge,softlion</authors>
         <owners>gshackles,slodge</owners>
         <licenseUrl>https://github.com/slodge/Cirrious.FluentLayout/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/slodge/Cirrious.FluentLayout</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Easy API for using AutoLayout in iOS</description>
-        <releaseNotes>Unified API support</releaseNotes>
-        <copyright>Copyright 2015</copyright>
         <tags>iOS AutoLayout</tags>
-    </metadata>
-    <files>
-        <file src="../Cirrious.FluentLayout/bin/iPhoneSimulator/Release/Cirrious.FluentLayouts.Touch.dll" target="lib/Xamarin.iOS10/Cirrious.FluentLayouts.Touch.dll" /> 
-    </files>
+        <releaseNotes>New extensions</releaseNotes>
+        <copyright>Copyright 2015</copyright>
+	</metadata>
+	<files>		
+		<!-- touch -->
+                <file src="..\Cirrious.FluentLayout\bin\iPhoneSimulator\Release\Cirrious.FluentLayouts.Touch.dll" target="lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll" />
+		
+	</files>
 </package>
