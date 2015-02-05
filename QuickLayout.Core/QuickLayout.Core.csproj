@@ -59,13 +59,13 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0-alpha2\lib\portable-win+net45+wp8+win8+wpa81+Xamarin.iOS10+MonoAndroid\Cirrious.CrossCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Localization">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0-alpha2\lib\portable-win+net45+wp8+win8+wpa81+Xamarin.iOS10+MonoAndroid\Cirrious.MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.CrossCore.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross">
-      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.5.0-alpha2\lib\portable-win+net45+wp8+win8+wpa81+Xamarin.iOS10+MonoAndroid\Cirrious.MvvmCross.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.5.0\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Localization">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.MvvmCross.Localization.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

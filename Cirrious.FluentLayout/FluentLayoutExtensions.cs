@@ -4,6 +4,9 @@
 // Contributions and inspirations noted in readme.md and license.txt
 // 
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
+//
+//Softlion: SubviewsDoNotTranslateAutoresizingMaskIntoConstraints can now  go through all levels recursively
+//Softlion: AddConstraints method can take both FluentLayout and IEnumerable<FluentLayout>
 
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +16,13 @@ namespace Cirrious.FluentLayouts.Touch
 {
     public static class FluentLayoutExtensions
     {
-        public static void SubviewsDoNotTranslateAutoresizingMaskIntoConstraints(this UIView view)
+        public static void SubviewsDoNotTranslateAutoresizingMaskIntoConstraints(this UIView view, bool recursive = false)
         {
             foreach (var subview in view.Subviews)
             {
                 subview.TranslatesAutoresizingMaskIntoConstraints = false;
+                if (recursive && subview.Subviews.Length != 0)
+                    subview.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints(true);
             }
         }
 
@@ -95,6 +100,35 @@ namespace Cirrious.FluentLayouts.Touch
                                     .Where(fluent => fluent != null)
                                     .SelectMany(fluent => fluent.ToLayoutConstraints())
                                     .ToArray());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="fluentLayouts">Either FluentLayout or IEnumerable&lt;FluentLayout&gt;</param>
+        public static void AddConstraints(this UIView view, params object[] fluentLayouts)
+        {
+            view.AddConstraints((fluentLayouts
+                                    .Where(fluent => fluent != null)
+                                    .OfType<FluentLayout>()
+                                    .SelectMany(fluent => fluent.ToLayoutConstraints())
+                                ).Concat(fluentLayouts
+                                    .OfType<IEnumerable<FluentLayout>>()
+                                    .SelectMany(fluent => fluent.SelectMany(fluent2 => fluent2.ToLayoutConstraints()))
+                                ).ToArray());
+        }
+
+        /// <summary>
+        /// Create and add constraints to the constraints list
+        /// </summary>
+        /// <param name="constraints"></param>
+        /// <param name="fluentLayouts"></param>
+        public static void AddConstraints(this List<NSLayoutConstraint> constraints, params FluentLayout[] fluentLayouts)
+        {
+            constraints.AddRange(fluentLayouts
+                    .Where(fluent => fluent != null)
+                    .SelectMany(fluent => fluent.ToLayoutConstraints()));
         }
     }
 }
