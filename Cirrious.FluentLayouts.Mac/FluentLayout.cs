@@ -7,185 +7,213 @@
 
 using System;
 using System.Collections.Generic;
-using Foundation;
 using AppKit;
+using Foundation;
+using System.Linq;
 
 namespace Cirrious.FluentLayouts.Mac
 {
-	public class FluentLayout
+	public class FluentLayout : IDisposable
 	{
-		//
-		// Properties
-		//
-		public NSLayoutAttribute Attribute {
-			get;
-			private set;
-		}
+		NSLayoutConstraint _nativeLayoutConstraint;
 
-		public float Constant {
-			get;
-			private set;
-		}
-
-		public float Multiplier {
-			get;
-			private set;
-		}
-
-		public float Priority {
-			get;
-			private set;
-		}
-
-		public NSLayoutRelation Relation {
-			get;
-			private set;
-		}
-
-		public NSLayoutAttribute SecondAttribute {
-			get;
-			private set;
-		}
-
-		public NSObject SecondItem {
-			get;
-			private set;
-		}
-
-		public NSView View {
-			get;
-			private set;
-		}
-
-		//
-		// Constructors
-		//
-		public FluentLayout (NSView view, NSLayoutAttribute attribute, NSLayoutRelation relation, float constant = 0)
+		public FluentLayout(
+			NSView view,
+			NSLayoutAttribute attribute,
+			NSLayoutRelation relation,
+			NSObject secondItem,
+			NSLayoutAttribute secondAttribute)
 		{
-			this.View = view;
-			this.Attribute = attribute;
-			this.Relation = relation;
-			this.Multiplier = 1;
-			this.Constant = constant;
+			View = view;
+			Attribute = attribute;
+			Relation = relation;
+			SecondItem = secondItem;
+			SecondAttribute = secondAttribute;
+			Multiplier = 1f;
+			Priority = (float) NSLayoutPriority.Required;
 		}
 
-		public FluentLayout (NSView view, NSLayoutAttribute attribute, NSLayoutRelation relation, NSObject secondItem, NSLayoutAttribute secondAttribute)
+		public FluentLayout(NSView view,
+			NSLayoutAttribute attribute,
+			NSLayoutRelation relation,
+			nfloat constant = default(nfloat))
 		{
-			this.View = view;
-			this.Attribute = attribute;
-			this.Relation = relation;
-			this.SecondItem = secondItem;
-			this.SecondAttribute = secondAttribute;
-			this.Multiplier = 1;
+			View = view;
+			Attribute = attribute;
+			Relation = relation;
+			Multiplier = 1f;
+			Constant = constant;
+			Priority = (float) NSLayoutPriority.Required;
 		}
 
-		//
-		// Methods
-		//
-		public FluentLayout BaselineOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.Baseline);
-		}
+		public NSView View { get; private set; }
+		public NSLayoutAttribute Attribute { get; private set; }
+		public NSLayoutRelation Relation { get; private set; }
+		public NSObject SecondItem { get; private set; }
+		public NSLayoutAttribute SecondAttribute { get; private set; }
+		public nfloat Multiplier { get; private set; }
 
-		public FluentLayout BottomOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.Bottom);
-		}
+		nfloat _constant;
+		public nfloat Constant {
+			get {
+				return _constant;
+			}
+			set {
+				_constant = value;
 
-		public FluentLayout CenterXOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.CenterX);
-		}
-
-		public FluentLayout CenterYOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.CenterY);
-		}
-
-		public FluentLayout HeightOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.Height);
-		}
-
-		public FluentLayout LeadingOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.Leading);
-		}
-
-		public FluentLayout LeftOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.Left);
-		}
-
-		public FluentLayout Minus (float constant)
-		{
-			this.Constant -= constant;
-			return this;
-		}
-
-		public FluentLayout Plus (float constant)
-		{
-			this.Constant += constant;
-			return this;
-		}
-
-		public FluentLayout RightOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.Right);
-		}
-
-		//		public FluentLayout SetPriority (float priority)
-		//		{
-		//			this.Priority = (float)priority;
-		//			return this;
-		//		}
-
-		public FluentLayout SetPriority (float priority)
-		{
-			this.Priority = priority;
-			return this;
-		}
-
-		private FluentLayout SetSecondItem (NSObject view2, NSLayoutAttribute attribute2)
-		{
-			this.ThrowIfSecondItemAlreadySet ();
-			this.SecondAttribute = attribute2;
-			this.SecondItem = view2;
-			return this;
-		}
-
-		private void ThrowIfSecondItemAlreadySet ()
-		{
-			if (this.SecondItem != null) {
-				throw new Exception ("You cannot set the second item in a layout relation more than once");
+				if (_nativeLayoutConstraint != null)
+					_nativeLayoutConstraint.Constant = value;
 			}
 		}
 
-		public IEnumerable<NSLayoutConstraint> ToLayoutConstraints ()
-		{
-			yield return NSLayoutConstraint.Create (this.View, this.Attribute, this.Relation, this.SecondItem, this.SecondAttribute, this.Multiplier, this.Constant);
-			yield break;
+		float _priority;
+		public float Priority {
+			get {
+				return _priority;
+			}
+			set {
+				_priority = value;
+
+				if (_nativeLayoutConstraint != null)
+					_nativeLayoutConstraint.Priority = value;
+			}
 		}
 
-		public FluentLayout TopOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.Top);
+		public NSLayoutConstraint NativeConstraint {
+			get{ 
+				return _nativeLayoutConstraint ?? this.ToLayoutConstraints ().FirstOrDefault ();
+			}
 		}
 
-		public FluentLayout TrailingOf (NSObject view2)
+		public FluentLayout Plus(nfloat constant)
 		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.Trailing);
-		}
-
-		public FluentLayout WidthOf (NSObject view2)
-		{
-			return this.SetSecondItem (view2, NSLayoutAttribute.Width);
-		}
-
-		public FluentLayout WithMultiplier (float multiplier)
-		{
-			this.Multiplier = multiplier;
+			Constant += constant;
 			return this;
+		}
+
+		public FluentLayout Minus(nfloat constant)
+		{
+			Constant -= constant;
+			return this;
+		}
+
+		public FluentLayout WithMultiplier(nfloat multiplier)
+		{
+			Multiplier = multiplier;
+			return this;
+		}
+
+		public FluentLayout SetPriority(float priority)
+		{
+			Priority = priority;
+			return this;
+		}
+
+		public FluentLayout SetPriority(NSLayoutPriority priority)
+		{
+			Priority = (float) priority;
+			return this;
+		}
+
+		public FluentLayout LeftOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.Left);
+		}
+
+		public FluentLayout RightOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.Right);
+		}
+
+		public FluentLayout TopOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.Top);
+		}
+
+		public FluentLayout BottomOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.Bottom);
+		}
+
+		public FluentLayout BaselineOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.Baseline);
+		}
+
+		public FluentLayout TrailingOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.Trailing);
+		}
+
+		public FluentLayout LeadingOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.Leading);
+		}
+
+		public FluentLayout CenterXOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.CenterX);
+		}
+
+		public FluentLayout CenterYOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.CenterY);
+		}
+
+		public FluentLayout HeightOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.Height);
+		}
+
+		public FluentLayout WidthOf(NSObject view2)
+		{
+			return SetSecondItem(view2, NSLayoutAttribute.Width);
+		}
+
+		private FluentLayout SetSecondItem(NSObject view2, NSLayoutAttribute attribute2)
+		{
+			ThrowIfSecondItemAlreadySet();
+			SecondAttribute = attribute2;
+			SecondItem = view2;
+			return this;
+		}
+
+		private void ThrowIfSecondItemAlreadySet()
+		{
+			if (SecondItem != null)
+				throw new Exception("You cannot set the second item in a layout relation more than once");
+		}
+
+		public IEnumerable<NSLayoutConstraint> ToLayoutConstraints()
+		{
+			if (_nativeLayoutConstraint == null)
+				_nativeLayoutConstraint = NSLayoutConstraint.Create (
+					View,
+					Attribute,
+					Relation,
+					SecondItem,
+					SecondAttribute,
+					Multiplier,
+					Constant);
+			else
+				_nativeLayoutConstraint.Constant = Constant;
+
+			_nativeLayoutConstraint.Priority = Priority;
+
+			yield return _nativeLayoutConstraint;
+		}
+
+		public void Dispose ()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing){
+			if (disposing) {
+				if (_nativeLayoutConstraint != null)
+					_nativeLayoutConstraint.Dispose ();
+			}
 		}
 	}
 }
