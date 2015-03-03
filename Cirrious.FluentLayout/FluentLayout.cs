@@ -9,11 +9,14 @@ using System;
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
+using System.Linq;
 
 namespace Cirrious.FluentLayouts.Touch
 {
-    public class FluentLayout
+	public class FluentLayout : IDisposable
     {
+		NSLayoutConstraint _nativeLayoutConstraint;
+
         public FluentLayout(
             UIView view,
             NSLayoutAttribute attribute,
@@ -28,6 +31,7 @@ namespace Cirrious.FluentLayouts.Touch
             SecondAttribute = secondAttribute;
             Multiplier = 1f;
             Priority = (float) UILayoutPriority.Required;
+			Active = true;
         }
 
         public FluentLayout(UIView view,
@@ -49,8 +53,49 @@ namespace Cirrious.FluentLayouts.Touch
         public NSObject SecondItem { get; private set; }
         public NSLayoutAttribute SecondAttribute { get; private set; }
         public nfloat Multiplier { get; private set; }
-        public nfloat Constant { get; private set; }
-        public float Priority { get; private set; }
+
+		bool _active = true;
+		public bool Active {
+			get { return _active; }
+			set {
+				_active = value;
+
+				if (_nativeLayoutConstraint != null)
+					_nativeLayoutConstraint.Active = value;
+			}
+		}
+
+		nfloat _constant;
+        public nfloat Constant {
+			get {
+				return _constant;
+			}
+			set {
+				_constant = value;
+
+				if (_nativeLayoutConstraint != null)
+					_nativeLayoutConstraint.Constant = value;
+			}
+		}
+
+		float _priority;
+        public float Priority {
+			get {
+				return _priority;
+			}
+			set {
+				_priority = value;
+
+				if (_nativeLayoutConstraint != null)
+					_nativeLayoutConstraint.Priority = value;
+			}
+		}
+
+		public NSLayoutConstraint NativeConstraint {
+			get{ 
+				return _nativeLayoutConstraint ?? this.ToLayoutConstraints ().FirstOrDefault ();
+			}
+		}
 
         public FluentLayout Plus(nfloat constant)
         {
@@ -153,17 +198,35 @@ namespace Cirrious.FluentLayouts.Touch
 
         public IEnumerable<NSLayoutConstraint> ToLayoutConstraints()
         {
-            var constraint = NSLayoutConstraint.Create(
-                View,
-                Attribute,
-                Relation,
-                SecondItem,
-                SecondAttribute,
-                Multiplier,
-                Constant);
-            constraint.Priority = Priority;
+			if (_nativeLayoutConstraint == null)
+				_nativeLayoutConstraint = NSLayoutConstraint.Create (
+					View,
+					Attribute,
+					Relation,
+					SecondItem,
+					SecondAttribute,
+					Multiplier,
+					Constant);
+			else
+				_nativeLayoutConstraint.Constant = Constant;
 
-            yield return constraint;
+			_nativeLayoutConstraint.Priority = Priority;
+			_nativeLayoutConstraint.Active = Active;
+
+			yield return _nativeLayoutConstraint;
         }
+			
+		public void Dispose ()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing){
+			if (disposing) {
+				if (_nativeLayoutConstraint != null)
+					_nativeLayoutConstraint.Dispose ();
+			}
+		}
     }
 }

@@ -5,7 +5,7 @@
 // 
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
-namespace Cirrious.FluentLayouts.Touch
+namespace Cirrious.FluentLayouts
 {
     public class Margins
     {

@@ -81,6 +81,11 @@ namespace Cirrious.FluentLayouts.Touch
             return new UIViewAndLayoutAttribute(view, attribute);
         }
 
+		public static void AddConstraint(this UIView view, FluentLayout fluentLayout)
+		{
+			view.AddConstraint(fluentLayout.NativeConstraint);
+		}
+
         public static void AddConstraints(this UIView view, params FluentLayout[] fluentLayouts)
         {
             view.AddConstraints(fluentLayouts

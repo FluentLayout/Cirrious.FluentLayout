@@ -1,15 +1,16 @@
 using System;
 using UIKit;
 using CoreGraphics;
+using Cirrious.FluentLayouts.Touch;
 
 namespace QuickLayout.Touch
 {
     public class MyViewController : UIViewController
     {
-        UIButton button;
-        int numClicks = 0;
-        float buttonWidth = 200;
-        float buttonHeight = 50;
+        UIButton expandButton, contractButton;
+        float controlHeight = 44f;
+		UIView box;
+		FluentLayout boxHeightConstraint;
 
         public MyViewController()
         {
@@ -23,25 +24,55 @@ namespace QuickLayout.Touch
             View.BackgroundColor = UIColor.White;
             View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
 
-            button = UIButton.FromType(UIButtonType.RoundedRect);
+			expandButton = UIButton.FromType(UIButtonType.RoundedRect);
 
-            button.Frame = new CGRect(
-                View.Frame.Width / 2 - buttonWidth / 2,
-                View.Frame.Height / 2 - buttonHeight / 2,
-                buttonWidth,
-                buttonHeight);
+			expandButton.SetTitle("Expand", UIControlState.Normal);
 
-            button.SetTitle("Click me", UIControlState.Normal);
+			expandButton.TouchUpInside += (object sender, EventArgs e) => {
 
-            button.TouchUpInside += (object sender, EventArgs e) =>
-            {
-                button.SetTitle(String.Format("clicked {0} times", numClicks++), UIControlState.Normal);
-            };
+				boxHeightConstraint.Constant += 10f;
 
-            button.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin |
-                UIViewAutoresizing.FlexibleBottomMargin;
+				UIView.Animate(.4d, () => box.LayoutIfNeeded());
+			};
 
-            View.AddSubview(button);
+            View.AddSubview(expandButton);
+
+			contractButton = UIButton.FromType(UIButtonType.RoundedRect);
+
+			contractButton.SetTitle("Contract", UIControlState.Normal);
+
+			contractButton.TouchUpInside += (object sender, EventArgs e) => {
+
+				if(boxHeightConstraint != null){
+					boxHeightConstraint.Minus (10);
+
+					UIView.Animate(.4d, () => box.LayoutIfNeeded());
+				}
+			};
+
+			View.AddSubview(contractButton);
+
+			box = new UIView (){ BackgroundColor = UIColor.Blue };
+			View.Add (box);
+
+			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints ();
+
+			View.AddConstraints (
+				expandButton.AtTopOf(View, 20f),
+				expandButton.AtLeftOf(View),
+				expandButton.AtRightOf(View),
+				expandButton.Height().EqualTo(controlHeight),
+
+				contractButton.Below(expandButton, 8f),
+				contractButton.AtLeftOf(View),
+				contractButton.AtRightOf(View),
+				contractButton.Height().EqualTo(controlHeight),
+
+				box.Below(contractButton, 8f),
+				box.AtLeftOf(View),
+				box.AtRightOf(View),
+				(boxHeightConstraint = box.Height().EqualTo(controlHeight))
+			);
         }
 
     }
