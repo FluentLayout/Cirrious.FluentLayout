@@ -4,9 +4,12 @@
 // Contributions and inspirations noted in readme.md and license.txt
 // 
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
+//
+//Softlion: VerticalStackPanelConstraints auto height panel view (ie: parent view) in all cases !
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UIKit;
 
 namespace Cirrious.FluentLayouts.Touch
@@ -56,14 +59,14 @@ namespace Cirrious.FluentLayouts.Touch
             return view.Top().EqualTo().TopOf(previous);
         }
 
-        public static FluentLayout WithSameCenterX(this UIView view, UIView previous)
+        public static FluentLayout WithSameCenterX(this UIView view, UIView previous, nfloat? margin = null)
         {
-            return view.CenterX().EqualTo().CenterXOf(previous);
+            return view.CenterX().EqualTo().CenterXOf(previous).Plus(margin.GetValueOrDefault(DefaultMargin));
         }
 
-        public static FluentLayout WithSameCenterY(this UIView view, UIView previous)
+        public static FluentLayout WithSameCenterY(this UIView view, UIView previous, nfloat? margin = null)
         {
-            return view.CenterY().EqualTo().CenterYOf(previous);
+            return view.CenterY().EqualTo().CenterYOf(previous).Plus(margin.GetValueOrDefault(DefaultMargin));
         }
 
         public static FluentLayout WithSameRight(this UIView view, UIView previous)
@@ -89,6 +92,11 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout WithSameHeight(this UIView view, UIView previous)
         {
             return view.Height().EqualTo().HeightOf(previous);
+        }
+
+        public static FluentLayout WidthEqualHeight(this UIView view, UIView previous, nfloat? margin=null, nfloat? scale = null)
+        {
+            return view.Width().EqualTo().HeightOf(previous).Minus(2*margin.GetValueOrDefault(DefaultMargin)).WithMultiplier(scale.GetValueOrDefault(DefaultScale));
         }
 
         public static FluentLayout WithRelativeHeight(this UIView view, UIView previous, nfloat? scale = null)
@@ -120,6 +128,22 @@ namespace Cirrious.FluentLayouts.Touch
 			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue);
         }
 
+        public static IEnumerable<FluentLayout> WithSameRectOf(this UIView view, UIView parent, nfloat? margin = null)
+        {
+            return
+                view.FullWidthOf(parent, margin)
+                .Concat(view.FullHeightOf(parent, margin))
+                .Concat(view.AtTopLeftOf(parent, margin));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parentView"></param>
+        /// <param name="margins"></param>
+        /// <param name="views"></param>
+        /// <returns></returns>
+        /// <remarks>The last view is attached to the bottom of its parent only if the parent is based on UIScrollView</remarks>
         public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins,
                                                                               params UIView[] views)
         {
@@ -128,16 +152,53 @@ namespace Cirrious.FluentLayouts.Touch
             UIView previous = null;
             foreach (var view in views)
             {
-                yield return view.Left().EqualTo().LeftOf(parentView).Plus(margins.Left);
-                yield return view.Width().EqualTo().WidthOf(parentView).Minus(margins.Right + margins.Left);
+                yield return view.AtLeftOf(parentView, margins.Left);
+                yield return view.AtRightOf(parentView, margins.Right);
                 if (previous != null)
-                    yield return view.Top().EqualTo().BottomOf(previous).Plus(margins.VSpacing);
+                    yield return view.Below(previous,margins.VSpacing);
                 else
-                    yield return view.Top().EqualTo().TopOf(parentView).Plus(margins.Top);
+                    yield return view.AtTopOf(parentView, margins.Top);
                 previous = view;
             }
+
             if (parentView is UIScrollView)
                 yield return previous.Bottom().EqualTo().BottomOf(parentView).Minus(margins.Bottom);
+        }
+
+        public static IEnumerable<FluentLayout> AtTopLeftOf(this UIView view, UIView parentView, nfloat? margin = null)
+        {
+            yield return view.Top().EqualTo().TopOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+            yield return view.Left().EqualTo().LeftOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+        }
+
+        public static FluentLayout AtLeastRightOf(this UIView view, UIView parentView, nfloat? margin = null)
+        {
+            return view.Right().GreaterThanOrEqualTo().RightOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+        }
+
+        public static FluentLayout AtMostRightOf(this UIView view, UIView previous, nfloat? margin = null)
+        {
+            return view.Right().LessThanOrEqualTo().RightOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
+        }
+
+        public static FluentLayout AtMostLeftOf(this UIView view, UIView previous, nfloat? margin = null)
+        {
+            return view.Right().LessThanOrEqualTo().LeftOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
+        }
+
+        public static FluentLayout AtLeastLeftOf(this UIView view, UIView previous, nfloat? margin = null)
+        {
+            return view.Left().GreaterThanOrEqualTo().LeftOf(previous).Plus(margin.GetValueOrDefault(DefaultMargin));
+        }
+
+        public static FluentLayout AtLeastBottomOf(this UIView view, UIView parentView, nfloat? margin = null)
+        {
+            return view.Bottom().GreaterThanOrEqualTo().BottomOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+        }
+
+        public static FluentLayout AtMostBottomOf(this UIView view, UIView parentView, nfloat? margin = null)
+        {
+            return view.Bottom().LessThanOrEqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
         }
     }
 }
