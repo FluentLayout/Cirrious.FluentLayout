@@ -2,7 +2,7 @@
 	<metadata>
         <version>2.0.1</version>
         <id>Cirrious.FluentLayout</id>
-        <title>SQLite.Net PCL - Win32 Platform</title>
+        <title>Cirrious.FluentLayout</title>
         <authors>slodge,softlion</authors>
         <owners>gshackles,slodge</owners>
         <licenseUrl>https://github.com/slodge/Cirrious.FluentLayout/blob/master/LICENSE</licenseUrl>
