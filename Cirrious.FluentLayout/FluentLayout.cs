@@ -87,9 +87,19 @@ namespace Cirrious.FluentLayouts.Touch
             return SetSecondItem(view2, NSLayoutAttribute.Left);
         }
 
+        public FluentLayout LeftMarginOf(NSObject view2)
+        {
+            return SetSecondItem(view2, NSLayoutAttribute.LeftMargin);
+        }
+
         public FluentLayout RightOf(NSObject view2)
         {
             return SetSecondItem(view2, NSLayoutAttribute.Right);
+        }
+
+        public FluentLayout RightMarginOf(NSObject view2)
+        {
+            return SetSecondItem(view2, NSLayoutAttribute.RightMargin);
         }
 
         public FluentLayout TopOf(NSObject view2)
@@ -97,9 +107,19 @@ namespace Cirrious.FluentLayouts.Touch
             return SetSecondItem(view2, NSLayoutAttribute.Top);
         }
 
+        public FluentLayout TopMarginOf(NSObject view2)
+        {
+            return SetSecondItem(view2, NSLayoutAttribute.TopMargin);
+        }
+
         public FluentLayout BottomOf(NSObject view2)
         {
             return SetSecondItem(view2, NSLayoutAttribute.Bottom);
+        }
+
+        public FluentLayout BottomMarginOf(NSObject view2)
+        {
+            return SetSecondItem(view2, NSLayoutAttribute.BottomMargin);
         }
 
         public FluentLayout BaselineOf(NSObject view2)
@@ -112,9 +132,19 @@ namespace Cirrious.FluentLayouts.Touch
             return SetSecondItem(view2, NSLayoutAttribute.Trailing);
         }
 
+        public FluentLayout TrailingMarginOf(NSObject view2)
+        {
+            return SetSecondItem(view2, NSLayoutAttribute.TrailingMargin);
+        }
+
         public FluentLayout LeadingOf(NSObject view2)
         {
             return SetSecondItem(view2, NSLayoutAttribute.Leading);
+        }
+
+        public FluentLayout LeadingMarginOf(NSObject view2)
+        {
+            return SetSecondItem(view2, NSLayoutAttribute.LeadingMargin);
         }
 
         public FluentLayout CenterXOf(NSObject view2)
@@ -122,9 +152,19 @@ namespace Cirrious.FluentLayouts.Touch
             return SetSecondItem(view2, NSLayoutAttribute.CenterX);
         }
 
+        public FluentLayout CenterXWithinMarginsOf(NSObject view2)
+        {
+            return SetSecondItem(view2, NSLayoutAttribute.CenterXWithinMargins);
+        }
+
         public FluentLayout CenterYOf(NSObject view2)
         {
             return SetSecondItem(view2, NSLayoutAttribute.CenterY);
+        }
+
+        public FluentLayout CenterYWithinMarginsOf(NSObject view2)
+        {
+            return SetSecondItem(view2, NSLayoutAttribute.CenterYWithinMargins);
         }
 
         public FluentLayout HeightOf(NSObject view2)
