@@ -43,6 +43,7 @@ namespace Cirrious.FluentLayouts.Touch
             Priority = (float) UILayoutPriority.Required;
         }
 
+	    public NSLayoutConstraint Constraint { get; set; }
         public UIView View { get; private set; }
         public NSLayoutAttribute Attribute { get; private set; }
         public NSLayoutRelation Relation { get; private set; }
@@ -153,7 +154,7 @@ namespace Cirrious.FluentLayouts.Touch
 
         public IEnumerable<NSLayoutConstraint> ToLayoutConstraints()
         {
-            var constraint = NSLayoutConstraint.Create(
+            Constraint = NSLayoutConstraint.Create(
                 View,
                 Attribute,
                 Relation,
@@ -161,9 +162,9 @@ namespace Cirrious.FluentLayouts.Touch
                 SecondAttribute,
                 Multiplier,
                 Constant);
-            constraint.Priority = Priority;
+			Constraint.Priority = Priority;
 
-            yield return constraint;
+            yield return Constraint;
         }
     }
 }
