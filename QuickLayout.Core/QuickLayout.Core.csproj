@@ -38,6 +38,7 @@
     <Compile Include="Services\CalculationService.cs" />
     <Compile Include="Services\ICalculationService.cs" />
     <Compile Include="ViewModels\BaseDetailsViewModel.cs" />
+    <Compile Include="ViewModels\DetailsMarginsViewModel.cs" />
     <Compile Include="ViewModels\DetailsViewModel.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\FormGridViewModel.cs" />
