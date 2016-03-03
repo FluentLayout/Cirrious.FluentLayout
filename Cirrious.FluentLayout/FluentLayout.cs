@@ -13,7 +13,7 @@ namespace Cirrious.FluentLayouts.Touch
 {
     public class FluentLayout
     {
-        public FluentLayout(
+	    public FluentLayout(
             UIView view,
             NSLayoutAttribute attribute,
             NSLayoutRelation relation,
@@ -42,8 +42,30 @@ namespace Cirrious.FluentLayouts.Touch
             Priority = (float) UILayoutPriority.Required;
         }
 
-	    public NSLayoutConstraint Constraint { get; set; }
-        public UIView View { get; private set; }
+		private NSLayoutConstraint _constraint;
+		public NSLayoutConstraint Constraint
+	    {
+			get
+			{
+				if (_constraint == null)
+				{
+					_constraint = NSLayoutConstraint.Create(
+						View,
+						Attribute,
+						Relation,
+						SecondItem,
+						SecondAttribute,
+						Multiplier,
+						Constant);
+
+					_constraint.Priority = Priority;
+				}
+
+				return _constraint;
+			}
+	    }
+
+	    public UIView View { get; private set; }
         public NSLayoutAttribute Attribute { get; private set; }
         public NSLayoutRelation Relation { get; private set; }
         public NSObject SecondItem { get; private set; }
@@ -149,25 +171,6 @@ namespace Cirrious.FluentLayouts.Touch
         {
             if (SecondItem != null)
                 throw new Exception("You cannot set the second item in a layout relation more than once");
-        }
-
-        public NSLayoutConstraint ToLayoutConstraint()
-        {
-	        if (Constraint == null)
-	        {
-				Constraint = NSLayoutConstraint.Create(
-					View,
-					Attribute,
-					Relation,
-					SecondItem,
-					SecondAttribute,
-					Multiplier,
-					Constant);
-
-				Constraint.Priority = Priority;
-			}
-            
-            return Constraint;
         }
     }
 }

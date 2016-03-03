@@ -85,7 +85,7 @@ namespace Cirrious.FluentLayouts.Touch
         {
             view.AddConstraints(fluentLayouts
                                     .Where(fluent => fluent != null)
-                                    .Select(fluent => fluent.ToLayoutConstraint())
+                                    .Select(fluent => fluent.Constraint)
                                     .ToArray());
         }
 
@@ -93,7 +93,7 @@ namespace Cirrious.FluentLayouts.Touch
 		{
 			view.AddConstraints(fluentLayouts
 									.Where(fluent => fluent != null)
-									.Select(fluent => fluent.ToLayoutConstraint())
+									.Select(fluent => fluent.Constraint)
 									.ToArray());
 		}
 	}
