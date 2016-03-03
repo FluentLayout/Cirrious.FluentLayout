@@ -10,7 +10,12 @@ namespace QuickLayout.Core.ViewModels
             ShowViewModel<DetailsViewModel>();
         }
 
-        public void GoForm()
+	    public void GoDetailsWithMargins()
+	    {
+		    ShowViewModel<DetailsMarginsViewModel>();
+	    }
+
+		public void GoForm()
         {
             ShowViewModel<FormViewModel>();
         }

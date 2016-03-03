@@ -90,6 +90,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Views\DetailsMarginsView.cs" />
     <Compile Include="Views\DetailsView.cs" />
     <Compile Include="Views\FirstView.cs" />
     <Compile Include="Views\FormGridView.cs" />
