@@ -123,25 +123,11 @@ namespace Cirrious.FluentLayouts.Touch
         public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins,
                                                                               params UIView[] views)
         {
-            margins = margins ?? new Margins();
-
-            UIView previous = null;
-            foreach (var view in views)
-            {
-                yield return view.Left().EqualTo().LeftOf(parentView).Plus(margins.Left);
-                yield return view.Width().EqualTo().WidthOf(parentView).Minus(margins.Right + margins.Left);
-                if (previous != null)
-                    yield return view.Top().EqualTo().BottomOf(previous).Plus(margins.VSpacing);
-                else
-                    yield return view.Top().EqualTo().TopOf(parentView).Plus(margins.Top);
-                previous = view;
-            }
-            if (parentView is UIScrollView)
-                yield return previous.Bottom().EqualTo().BottomOf(parentView).Minus(margins.Bottom);
+	        return AdvancedVerticalStackPanelConstraints(parentView, margins, views: views);
 		}
 
 		/// <summary>
-		/// Vertical stack panel constraints with support for children idependent left, right and top margins
+		/// Vertical stack panel constraints with support for children independent left, right and top margins
 		/// and a multiplier factor for all margins applied. The multiplier can be useful when dealing with ipad screens.
 		/// Example:
 		/// 
