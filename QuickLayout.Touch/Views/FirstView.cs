@@ -12,6 +12,8 @@ namespace QuickLayout.Touch.Views
     [Register("FirstView")]
     public class FirstView : MvxViewController
     {
+		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip;
+
         public override void ViewDidLoad()
         {
             View.BackgroundColor = UIColor.White;
@@ -21,34 +23,34 @@ namespace QuickLayout.Touch.Views
             if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
                 EdgesForExtendedLayout = UIRectEdge.None;
 
-            var buttonF = new UIButton(UIButtonType.RoundedRect);
-            buttonF.SetTitle("Form", UIControlState.Normal);
-            Add(buttonF);
+			_viewForm = new UIButton(UIButtonType.RoundedRect);
+			_viewForm.SetTitle("Form", UIControlState.Normal);
+			Add(_viewForm);
 
-            var buttonFG = new UIButton(UIButtonType.RoundedRect);
-            buttonFG.SetTitle("FormGrid", UIControlState.Normal);
-            Add(buttonFG);
+			_viewFormGrid = new UIButton(UIButtonType.RoundedRect);
+			_viewFormGrid.SetTitle("FormGrid", UIControlState.Normal);
+			Add(_viewFormGrid);
 
-            var buttonD = new UIButton(UIButtonType.RoundedRect);
-            buttonD.SetTitle("Details", UIControlState.Normal);
-            Add(buttonD);
+			_viewDetails = new UIButton(UIButtonType.RoundedRect);
+			_viewDetails.SetTitle("Details", UIControlState.Normal);
+			Add(_viewDetails);
 
-            var buttonS = new UIButton(UIButtonType.RoundedRect);
-            buttonS.SetTitle("Search", UIControlState.Normal);
-            Add(buttonS);
+		    _viewSearch = new UIButton(UIButtonType.RoundedRect);
+		    _viewSearch.SetTitle("Search", UIControlState.Normal);
+		    Add(_viewSearch);
 
-            var buttonT = new UIButton(UIButtonType.RoundedRect);
-            buttonT.SetTitle("Tip", UIControlState.Normal);
-            Add(buttonT);
+			_viewTip = new UIButton(UIButtonType.RoundedRect);
+			_viewTip.SetTitle("Tip", UIControlState.Normal);
+			Add(_viewTip);
 
             View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
             var set = this.CreateBindingSet<FirstView, FirstViewModel>();
-            set.Bind(buttonF).To("GoForm");
-            set.Bind(buttonFG).To("GoFormGrid");
-            set.Bind(buttonD).To("GoDetails");
-            set.Bind(buttonS).To("GoSearch");
-            set.Bind(buttonT).To("GoTip");
+			set.Bind(_viewForm).To("GoForm");
+			set.Bind(_viewFormGrid).To("GoFormGrid");
+		    set.Bind(_viewDetails).To("GoDetails");
+			set.Bind(_viewSearch).To("GoSearch");
+			set.Bind(_viewTip).To("GoTip");
             set.Apply();
 
             var constraints = View.VerticalStackPanelConstraints(
