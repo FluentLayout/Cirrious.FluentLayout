@@ -86,6 +86,19 @@ namespace Cirrious.FluentLayouts.Touch
 			}
 		}
 
+		private string _identifier;
+		public string Identifier
+		{
+			get { return _identifier; }
+			set
+			{
+				_identifier = value;
+
+				if (Constraint.IsValueCreated)
+					Constraint.Value.SetIdentifier(_identifier);
+			}
+		}
+
         public NSLayoutAttribute Attribute { get; private set; }
         public NSLayoutRelation Relation { get; private set; }
         public NSObject SecondItem { get; private set; }
@@ -104,6 +117,9 @@ namespace Cirrious.FluentLayouts.Touch
 				Multiplier,
 				Constant);
 			constraint.Priority = Priority;
+
+			if (!string.IsNullOrWhiteSpace(Identifier))
+				constraint.SetIdentifier(Identifier);
 
 			return constraint;
 		}
@@ -141,6 +157,12 @@ namespace Cirrious.FluentLayouts.Touch
 		public FluentLayout SetActive(bool active)
 		{
 			Active = active;
+			return this;
+		}
+
+		public FluentLayout WithIdentifier(string identifier)
+		{
+			Identifier = identifier;
 			return this;
 		}
 

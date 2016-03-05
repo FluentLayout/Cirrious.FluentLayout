@@ -35,7 +35,7 @@ namespace QuickLayout.Touch
 
 			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
-			var heightLayout = label.Height().EqualTo(ViewModel.Constant);
+			var heightLayout = label.Height().EqualTo(ViewModel.Constant).WithIdentifier("foo");
 
 			var margin = 10;
 			View.AddConstraints(
