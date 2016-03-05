@@ -16,5 +16,7 @@ namespace QuickLayout.Core.ViewModels
         public void GoTip() => ShowViewModel<TipViewModel>();
 
 		public void GoUpdateConstraints() => ShowViewModel<UpdateConstraintsViewModel>();
+
+		public void GoAdvancedVerticalStack() => ShowViewModel<AdvancedVerticalStackViewModel>();
     }
 }

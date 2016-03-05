@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using UIKit;
+using Cirrious.FluentLayouts.Touch.Extensions;
 
 namespace Cirrious.FluentLayouts.Touch
 {
@@ -76,33 +77,61 @@ namespace Cirrious.FluentLayouts.Touch
 			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue);
         }
 
-        public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins, params UIView[] views)
-        {
-			UIView previous = null;
+        public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins, params UIView[] views) =>
+			AdvancedVerticalStackPanelConstraints(parentView, margins, views: views);
+   
+		/// <summary>
+		/// Vertical stack panel constraints with support for children independent left, right and top margins
+		/// and a multiplier factor for all margins applied. The multiplier can be useful when dealing with iPad screens.
+		/// Example:
+		/// 
+		/// scrollView.AddConstraints(scrollView.AdvancedVerticalStackPanelConstraints(null,
+		///      childrenLeftMargins: new float[] { 15, 0, 15, 0, 0, 15 },
+		///      childrenTopMargins: new float[] { 15, 5, 15, 5, 8, 15, 22, 8, 8, 28, 28 },
+		///      marginMultiplier: 2f,
+		///      views: scrollView.Subviews)
+		/// );
+		/// </summary>
+		public static IEnumerable<FluentLayout> AdvancedVerticalStackPanelConstraints(this UIView parentView,
+		                                                                              Margins margins,
+		                                                                              float[] childrenLeftMargins = null,
+		                                                                              float[] childrenTopMargins = null,
+		                                                                              float[] childrenRightMargins = null,
+		                                                                              float marginMultiplier = 1,
+		                                                                              params UIView[] views)
+		{
 			string previousIdentifierPrefix = null;
-
 			margins = margins ?? new Margins();
 
-			for (var i = 0; i < views.Length; i++)
-            {
+			var count = views.Length;
+			for (var i = 0; i < count; i++)
+			{
 				var view = views[i];
-
 				var viewIdentifierPrefix = $"{parentView.AccessibilityIdentifier ?? "VerticalStackPanel"}-{view.AccessibilityIdentifier ?? i.ToString()}-";
 
-				yield return view.Left().EqualTo().LeftOf(parentView).Plus(margins.Left).WithIdentifier(viewIdentifierPrefix + "Left");
-				yield return view.Width().EqualTo().WidthOf(parentView).Minus(margins.Right + margins.Left).WithIdentifier(viewIdentifierPrefix + "Width");
+				float childLeftMargin;
+				childrenLeftMargins.TryGetElement(i, out childLeftMargin);
+				var marginLeft = Math.Max(margins.Left, childLeftMargin) * marginMultiplier;
+				yield return view.Left().EqualTo().LeftOf(parentView).Plus(marginLeft).WithIdentifier(viewIdentifierPrefix + "Left");
 
-                if (previous != null)
-					yield return view.Top().EqualTo().BottomOf(previous).Plus(margins.VSpacing).WithIdentifier(viewIdentifierPrefix + "Top");
-                else
-					yield return view.Top().EqualTo().TopOf(parentView).Plus(margins.Top).WithIdentifier(viewIdentifierPrefix + "Top");
-				
-                previous = view;
+				float childRightMargin;
+				childrenRightMargins.TryGetElement(i, out childRightMargin);
+				var marginRight = Math.Max(margins.Right, childRightMargin) * marginMultiplier;
+				yield return view.Width().EqualTo().WidthOf(parentView).Minus(marginRight + marginLeft).WithIdentifier(viewIdentifierPrefix + "Width");
+
+				float childTopMargin;
+				childrenTopMargins.TryGetElement(i, out childTopMargin);
+
+				if (i == 0)
+					yield return view.Top().EqualTo().TopOf(parentView).Plus(Math.Max(margins.Top, childTopMargin) * marginMultiplier).WithIdentifier(viewIdentifierPrefix + "Top");
+				else
+					yield return view.Top().EqualTo().BottomOf(views[i - 1]).Plus(Math.Max(margins.VSpacing, childTopMargin) * marginMultiplier).WithIdentifier(viewIdentifierPrefix + "Top");
+
 				previousIdentifierPrefix = viewIdentifierPrefix;
-            }
+			}
 
-            if (parentView is UIScrollView)
-				yield return previous.Bottom().EqualTo().BottomOf(parentView).Minus(margins.Bottom).WithIdentifier(previousIdentifierPrefix + "Bottom");
-        }
+			if (parentView is UIScrollView)
+				yield return views[views.Length - 1].Bottom().EqualTo().BottomOf(parentView).Minus(margins.Bottom * marginMultiplier).WithIdentifier(previousIdentifierPrefix + "Bottom");
+		}
     }
 }

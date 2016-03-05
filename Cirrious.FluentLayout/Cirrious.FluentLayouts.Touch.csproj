@@ -42,6 +42,7 @@
     <Compile Include="RowSet-WorkInProgress\RowSet.cs" />
     <Compile Include="UIViewAndLayoutAttribute.cs" />
     <Compile Include="NfloatExtensions.cs" />
+    <Compile Include="Extensions\ArrayExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
@@ -50,6 +51,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
