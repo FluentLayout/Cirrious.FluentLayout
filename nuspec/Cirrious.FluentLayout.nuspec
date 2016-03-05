@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Cirrious.FluentLayout</id>
-        <version>2.0.0</version>
+        <version>2.5.0</version>
         <authors>slodge</authors>
         <owners>gshackles,slodge</owners>
         <licenseUrl>https://github.com/slodge/Cirrious.FluentLayout/blob/master/LICENSE</licenseUrl>
@@ -10,7 +10,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Easy API for using AutoLayout in iOS</description>
         <releaseNotes>Unified API support</releaseNotes>
-        <copyright>Copyright 2015</copyright>
+        <copyright>Copyright 2016</copyright>
         <tags>iOS AutoLayout</tags>
     </metadata>
     <files>
