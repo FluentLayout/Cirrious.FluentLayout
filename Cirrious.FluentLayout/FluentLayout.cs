@@ -21,12 +21,12 @@ namespace Cirrious.FluentLayouts.Touch
             NSObject secondItem,
             NSLayoutAttribute secondAttribute)
         {
+			Constraint = new Lazy<NSLayoutConstraint>(CreateConstraint);
             View = view;
             Attribute = attribute;
             Relation = relation;
             SecondItem = secondItem;
             SecondAttribute = secondAttribute;
-            Multiplier = 1f;
             Priority = (float) UILayoutPriority.Required;
         }
 
@@ -35,24 +35,80 @@ namespace Cirrious.FluentLayouts.Touch
                             NSLayoutRelation relation,
 							nfloat constant = default(nfloat))
         {
+			Constraint = new Lazy<NSLayoutConstraint>(CreateConstraint);
             View = view;
             Attribute = attribute;
             Relation = relation;
-            Multiplier = 1f;
             Constant = constant;
             Priority = (float) UILayoutPriority.Required;
         }
 
-        public UIView View { get; private set; }
+        public UIView View { get; }
+
+		public nfloat Multiplier { get; private set; } = 1f;
+
+		private nfloat _constant;
+		public nfloat Constant 
+		{ 
+			get { return _constant; }
+			set
+			{
+				_constant = value;
+
+				if (Constraint.IsValueCreated)
+					Constraint.Value.Constant = _constant;
+			}
+		}
+
+		private float _priority;
+		public float Priority 
+		{ 
+			get { return _priority; }
+			set
+			{
+				_priority = value;
+
+				if (Constraint.IsValueCreated)
+					Constraint.Value.Priority = _priority;
+			}
+		}
+
+		private bool _active = true;
+		public bool Active
+		{
+			get { return _active; }
+			set
+			{
+				_active = value;
+
+				if (Constraint.IsValueCreated)
+					Constraint.Value.Active = _active;
+			}
+		}
+
         public NSLayoutAttribute Attribute { get; private set; }
         public NSLayoutRelation Relation { get; private set; }
         public NSObject SecondItem { get; private set; }
         public NSLayoutAttribute SecondAttribute { get; private set; }
-        public nfloat Multiplier { get; private set; }
-        public nfloat Constant { get; private set; }
-        public float Priority { get; private set; }
 
-        public FluentLayout Plus(nfloat constant)
+		internal Lazy<NSLayoutConstraint> Constraint { get; }
+
+		private NSLayoutConstraint CreateConstraint()
+		{
+			var constraint = NSLayoutConstraint.Create(
+				View,
+				Attribute,
+				Relation,
+				SecondItem,
+				SecondAttribute,
+				Multiplier,
+				Constant);
+			constraint.Priority = Priority;
+
+			return constraint;
+		}
+
+		public FluentLayout Plus(nfloat constant)
         {
             Constant += constant;
             return this;
@@ -81,6 +137,12 @@ namespace Cirrious.FluentLayouts.Touch
             Priority = (float) priority;
             return this;
         }
+
+		public FluentLayout SetActive(bool active)
+		{
+			Active = active;
+			return this;
+		}
 
         public FluentLayout LeftOf(NSObject view2)
         {
@@ -151,19 +213,10 @@ namespace Cirrious.FluentLayouts.Touch
                 throw new Exception("You cannot set the second item in a layout relation more than once");
         }
 
-        public IEnumerable<NSLayoutConstraint> ToLayoutConstraints()
-        {
-            var constraint = NSLayoutConstraint.Create(
-                View,
-                Attribute,
-                Relation,
-                SecondItem,
-                SecondAttribute,
-                Multiplier,
-                Constant);
-            constraint.Priority = Priority;
-
-            yield return constraint;
-        }
+		[Obsolete("This method will be removed in future versions, please let us know if you still need it!")]
+		public IEnumerable<NSLayoutConstraint> ToLayoutConstraints()
+		{
+			yield return Constraint.Value;
+		}
     }
 }

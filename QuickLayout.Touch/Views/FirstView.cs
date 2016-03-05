@@ -12,7 +12,7 @@ namespace QuickLayout.Touch.Views
     [Register("FirstView")]
     public class FirstView : MvxViewController
     {
-		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip;
+		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints;
 
         public override void ViewDidLoad()
         {
@@ -43,6 +43,10 @@ namespace QuickLayout.Touch.Views
 			_viewTip.SetTitle("Tip", UIControlState.Normal);
 			Add(_viewTip);
 
+			_viewUpdateConstaints = new UIButton(UIButtonType.RoundedRect);
+			_viewUpdateConstaints.SetTitle("Update Live Constraints", UIControlState.Normal);
+			Add(_viewUpdateConstaints);
+
             View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
             var set = this.CreateBindingSet<FirstView, FirstViewModel>();
@@ -51,6 +55,7 @@ namespace QuickLayout.Touch.Views
 		    set.Bind(_viewDetails).To("GoDetails");
 			set.Bind(_viewSearch).To("GoSearch");
 			set.Bind(_viewTip).To("GoTip");
+			set.Bind(_viewUpdateConstaints).To("GoUpdateConstraints");
             set.Apply();
 
             var constraints = View.VerticalStackPanelConstraints(

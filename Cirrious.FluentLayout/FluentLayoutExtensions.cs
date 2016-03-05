@@ -81,20 +81,20 @@ namespace Cirrious.FluentLayouts.Touch
             return new UIViewAndLayoutAttribute(view, attribute);
         }
 
-        public static void AddConstraints(this UIView view, params FluentLayout[] fluentLayouts)
-        {
-            view.AddConstraints(fluentLayouts
-                                    .Where(fluent => fluent != null)
-                                    .SelectMany(fluent => fluent.ToLayoutConstraints())
-                                    .ToArray());
-        }
+		public static void AddConstraints(this UIView view, params FluentLayout[] fluentLayouts) => view.AddConstraints(fluentLayouts.AsEnumerable());
 
-        public static void AddConstraints(this UIView view, IEnumerable<FluentLayout> fluentLayouts)
-        {
-            view.AddConstraints(fluentLayouts
-                                    .Where(fluent => fluent != null)
-                                    .SelectMany(fluent => fluent.ToLayoutConstraints())
-                                    .ToArray());
-        }
+        public static void AddConstraints(this UIView view, IEnumerable<FluentLayout> fluentLayouts) =>
+		    view.AddConstraints(fluentLayouts
+                .Where(fluent => fluent != null)
+            	.Select(fluent => fluent.Constraint.Value)
+                .ToArray());
+
+		public static void RemoveConstraints(this UIView view, params FluentLayout[] fluentLayouts) => view.RemoveConstraints(fluentLayouts.AsEnumerable());
+
+		public static void RemoveConstraints(this UIView view, IEnumerable<FluentLayout> fluentLayouts) =>
+			view.RemoveConstraints(fluentLayouts
+                .Where(fluent => fluent != null)
+                .Select(fluent => fluent.Constraint.Value)
+                .ToArray());
     }
 }

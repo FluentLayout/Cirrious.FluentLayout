@@ -29,5 +29,7 @@ namespace QuickLayout.Core.ViewModels
         {
             ShowViewModel<TipViewModel>();
         }
+
+		public void GoUpdateConstraints() => ShowViewModel<UpdateConstraintsViewModel>();
     }
 }
