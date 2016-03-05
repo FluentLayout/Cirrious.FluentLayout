@@ -84,7 +84,6 @@
     <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\MethodBindingPluginBootstrap.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
@@ -98,12 +97,11 @@
     <Compile Include="Views\TipView.cs" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="packages.config" />
     <Compile Include="Views\UpdateConstraintsView.cs" />
-    <Compile Include="Converters\NFloatValueConverter.cs" />
+    <None Include="packages.config" />
+    <Compile Include="Bootstrap\MethodBindingPluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyViewController.cs" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -113,29 +111,37 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Cirrious.CrossCore.Touch">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0-alpha2\lib\Xamarin.iOS10\Cirrious.CrossCore.Touch.dll</HintPath>
+    <Reference Include="MvvmCross.Platform.iOS">
+      <HintPath>..\packages\MvvmCross.Platform.4.0.0\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Cirrious.MvvmCross.Binding.Touch">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0-alpha2\lib\Xamarin.iOS10\Cirrious.MvvmCross.Binding.Touch.dll</HintPath>
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\packages\MvvmCross.Platform.4.0.0\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Cirrious.CrossCore">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0-alpha2\lib\Xamarin.iOS10\Cirrious.CrossCore.dll</HintPath>
+    <Reference Include="MvvmCross.iOS">
+      <HintPath>..\packages\MvvmCross.Core.4.0.0\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Cirrious.MvvmCross.Binding">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0-alpha2\lib\Xamarin.iOS10\Cirrious.MvvmCross.Binding.dll</HintPath>
+    <Reference Include="MvvmCross.Core">
+      <HintPath>..\packages\MvvmCross.Core.4.0.0\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Cirrious.MvvmCross.Localization">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0-alpha2\lib\Xamarin.iOS10\Cirrious.MvvmCross.Localization.dll</HintPath>
+    <Reference Include="MvvmCross.Binding.iOS">
+      <HintPath>..\packages\MvvmCross.Binding.4.0.0\lib\Xamarin.iOS10\MvvmCross.Binding.iOS.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Cirrious.MvvmCross.Touch">
-      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.5.0-alpha2\lib\Xamarin.iOS10\Cirrious.MvvmCross.Touch.dll</HintPath>
+    <Reference Include="MvvmCross.Binding">
+      <HintPath>..\packages\MvvmCross.Binding.4.0.0\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Cirrious.MvvmCross">
-      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.5.0-alpha2\lib\Xamarin.iOS10\Cirrious.MvvmCross.dll</HintPath>
+    <Reference Include="MvvmCross.Localization">
+      <HintPath>..\packages\MvvmCross.Binding.4.0.0\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.MethodBinding">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.MethodBinding.3.5.0-alpha2\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.MethodBinding.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.MethodBinding">
+      <HintPath>..\packages\MvvmCross.Plugin.MethodBinding.4.0.0\lib\Xamarin.iOS10\MvvmCross.Plugins.MethodBinding.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -147,9 +153,6 @@
       <Project>{849AFB57-994A-42D9-A786-EF34FC951CDE}</Project>
       <Name>QuickLayout.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -1,10 +1,10 @@
 ﻿using Cirrious.FluentLayouts.Touch;
-using Cirrious.MvvmCross.Binding.BindingContext;
-using Cirrious.MvvmCross.Touch.Views;
-using Foundation;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.iOS.Views;
 using UIKit;
 using ObjCRuntime;
 using QuickLayout.Core.ViewModels;
+using Foundation;
 
 namespace QuickLayout.Touch
 {
@@ -54,7 +54,7 @@ namespace QuickLayout.Touch
 
 			var set = this.CreateBindingSet<UpdateConstraintsView, UpdateConstraintsViewModel>();
 			set.Bind(heightLayout).For(layout => layout.Active).To(vm => vm.Active);
-			set.Bind(heightLayout).For(layout => layout.Constant).To(vm => vm.Constant).WithConversion("NFloat");
+			set.Bind(heightLayout).For(layout => layout.Constant).To(vm => vm.Constant);
 			set.Bind(toggleHeight).To(vm => vm.Active);
 			set.Bind(heightConstant).To(vm => vm.Constant);
 			set.Apply();
