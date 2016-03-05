@@ -12,14 +12,8 @@ namespace QuickLayout.Touch
 		{
 		}
 
-		protected override IMvxApplication CreateApp ()
-		{
-			return new Core.App();
-		}
+		protected override IMvxApplication CreateApp() => new Core.App();
 		
-        protected override IMvxTrace CreateDebugTrace()
-        {
-            return new DebugTrace();
-        }
+        protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
 	}
 }

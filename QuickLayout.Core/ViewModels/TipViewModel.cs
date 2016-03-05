@@ -27,14 +27,9 @@ namespace QuickLayout.Core.ViewModels
             }
         }
 
-        public void Zero()
-        {
-            Generosity = 0;
-        }
-        public void Full()
-        {
-            Generosity = 100;
-        }
+        public void Zero() => Generosity = 0;
+
+        public void Full() => Generosity = 100;
 
         public int Generosity
         {
@@ -74,9 +69,7 @@ namespace QuickLayout.Core.ViewModels
             return value;
         }
 
-        private void Recalcuate()
-        {
+        private void Recalcuate() =>
             Tip = _calculation.TipAmount(SubTotal, Generosity);
-        }
     }
 }
