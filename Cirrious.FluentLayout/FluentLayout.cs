@@ -13,7 +13,7 @@ using Foundation;
 namespace Cirrious.FluentLayouts.Touch
 {
     public class FluentLayout
-    {asdf
+    {
         public FluentLayout(
             UIView view,
             NSLayoutAttribute attribute,
