@@ -31,3 +31,4 @@ packages/
 *.userprefs
 *.nupkg
 .fake/
+dist/
