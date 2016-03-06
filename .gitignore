@@ -30,3 +30,4 @@ _ReSharper*/
 packages/
 *.userprefs
 *.nupkg
+.fake/
