@@ -42,6 +42,7 @@
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\FormGridViewModel.cs" />
     <Compile Include="ViewModels\FormViewModel.cs" />
+    <Compile Include="ViewModels\FullSizeViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\TipViewModel.cs" />
     <Compile Include="ViewModels\UpdateConstraintsViewModel.cs" />

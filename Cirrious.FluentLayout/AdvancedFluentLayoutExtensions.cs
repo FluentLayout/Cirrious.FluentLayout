@@ -77,7 +77,22 @@ namespace Cirrious.FluentLayouts.Touch
 			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue);
         }
 
-        public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins, params UIView[] views) =>
+		public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, nfloat? margin = null)
+		{
+			return FullSizeOf(view, parent, new Margins((float)margin.GetValueOrDefault(DefaultMargin)));
+		}
+
+		public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, Margins margins)
+		{
+			margins = margins ?? new Margins();
+
+			yield return view.Top().EqualTo().TopOf(parent).Plus(margins.Top);
+			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(margins.Bottom);
+			yield return view.Left().EqualTo().LeftOf(parent).Plus(margins.Left);
+			yield return view.Right().EqualTo().RightOf(parent).Minus(margins.Right);
+		}
+
+		public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins, params UIView[] views) =>
 			AdvancedVerticalStackPanelConstraints(parentView, margins, views: views);
    
 		/// <summary>

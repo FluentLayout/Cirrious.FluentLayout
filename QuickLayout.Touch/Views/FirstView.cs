@@ -1,4 +1,3 @@
-using Cirrious.FluentLayouts;
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
@@ -9,10 +8,10 @@ using QuickLayout.Core.ViewModels;
 
 namespace QuickLayout.Touch.Views
 {
-    [Register("FirstView")]
+	[Register("FirstView")]
     public class FirstView : MvxViewController
     {
-		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack;
+		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize;
 
         public override void ViewDidLoad()
         {
@@ -51,7 +50,11 @@ namespace QuickLayout.Touch.Views
 			_viewAdvancedVerticalStack.SetTitle("Advanced Vertical Stack Panel", UIControlState.Normal);
 			Add(_viewAdvancedVerticalStack);
 
-            View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
+			_fullSize = new UIButton(UIButtonType.RoundedRect);
+			_fullSize.SetTitle("Full Size", UIControlState.Normal);
+			Add(_fullSize);
+
+			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
             var set = this.CreateBindingSet<FirstView, FirstViewModel>();
 			set.Bind(_viewForm).To("GoForm");
@@ -61,6 +64,7 @@ namespace QuickLayout.Touch.Views
 			set.Bind(_viewTip).To("GoTip");
 			set.Bind(_viewUpdateConstaints).To("GoUpdateConstraints");
 			set.Bind(_viewAdvancedVerticalStack).To("GoAdvancedVerticalStack");
+	        set.Bind(_fullSize).To("GoFullSize");
             set.Apply();
 
             var constraints = View.VerticalStackPanelConstraints(
