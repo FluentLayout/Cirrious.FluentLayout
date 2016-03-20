@@ -51,7 +51,7 @@ namespace QuickLayout.Touch.Views
 			Add(_viewAdvancedVerticalStack);
 
 			_fullSize = new UIButton(UIButtonType.RoundedRect);
-			_fullSize.SetTitle("Full Size", UIControlState.Normal);
+			_fullSize.SetTitle("Full Size (animated)", UIControlState.Normal);
 			Add(_fullSize);
 
 			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
