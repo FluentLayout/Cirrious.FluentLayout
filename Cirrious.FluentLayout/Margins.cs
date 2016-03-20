@@ -40,7 +40,15 @@ namespace Cirrious.FluentLayouts.Touch
             HSpacing = allHorizontal;
         }
 
-        public Margins(float left, float top, float right, float bottom, float hspacing, float vspacing)
+		public Margins(float left, float top, float right, float bottom)
+		{
+			Top = top;
+			Bottom = bottom;
+			Right = right;
+			Left = left;
+		}
+
+		public Margins(float left, float top, float right, float bottom, float hspacing, float vspacing)
         {
             Top = top;
             Bottom = bottom;

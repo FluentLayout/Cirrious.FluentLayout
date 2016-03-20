@@ -30,7 +30,7 @@ namespace QuickLayout.Touch.Views
 			View.AddConstraints(box1.FullSizeOf(View, 20));
 			View.AddConstraints(box2.FullSizeOf(box1, new Margins(10, 30)));
 			View.AddConstraints(box3.FullSizeOf(box2, 5));
-			View.AddConstraints(box4.FullSizeOf(box3, new Margins(20, 40, 50, 10, 0, 0)));
+			View.AddConstraints(box4.FullSizeOf(box3, new Margins(20, 40, 50, 10)));
 			View.AddConstraints(box5.FullSizeOf(box4, 10));
 		}
 	}
