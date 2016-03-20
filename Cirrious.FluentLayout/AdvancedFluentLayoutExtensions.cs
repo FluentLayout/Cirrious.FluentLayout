@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UIKit;
 using Cirrious.FluentLayouts.Touch.Extensions;
 
@@ -66,15 +67,15 @@ namespace Cirrious.FluentLayouts.Touch
         public static IEnumerable<FluentLayout> FullWidthOf(this UIView view, UIView parent, nfloat? margin = null)
         {
 			var marginValue = margin.GetValueOrDefault(DefaultMargin);
-			yield return view.Left().EqualTo().LeftOf(parent).Plus(marginValue);
-			yield return view.Right().EqualTo().RightOf(parent).Minus(marginValue);
+			yield return view.Left().EqualTo().LeftOf(parent).Plus(marginValue).WithIdentifier("Left");
+			yield return view.Right().EqualTo().RightOf(parent).Minus(marginValue).WithIdentifier("Right");
         }
 
         public static IEnumerable<FluentLayout> FullHeightOf(this UIView view, UIView parent, nfloat? margin = null)
         {
 			var marginValue = margin.GetValueOrDefault(DefaultMargin);
-			yield return view.Top().EqualTo().TopOf(parent).Plus(marginValue);
-			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue);
+			yield return view.Top().EqualTo().TopOf(parent).Plus(marginValue).WithIdentifier("Top");
+			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue).WithIdentifier("Bottom");
         }
 
 		public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, nfloat? margin = null)
@@ -86,11 +87,19 @@ namespace Cirrious.FluentLayouts.Touch
 		{
 			margins = margins ?? new Margins();
 
-			yield return view.Top().EqualTo().TopOf(parent).Plus(margins.Top);
-			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(margins.Bottom);
-			yield return view.Left().EqualTo().LeftOf(parent).Plus(margins.Left);
-			yield return view.Right().EqualTo().RightOf(parent).Minus(margins.Right);
+			return new List<FluentLayout>
+			{
+				view.Top().EqualTo().TopOf(parent).Plus(margins.Top).WithIdentifier("Top"),
+				view.Bottom().EqualTo().BottomOf(parent).Minus(margins.Bottom).WithIdentifier("Bottom"),
+				view.Left().EqualTo().LeftOf(parent).Plus(margins.Left).WithIdentifier("Left"),
+				view.Right().EqualTo().RightOf(parent).Minus(margins.Right).WithIdentifier("Right")
+			};
 		}
+
+	    public static FluentLayout GetLayoutById(this IEnumerable<FluentLayout> layouts, string identifier)
+	    {
+		    return layouts.FirstOrDefault(x => x.Identifier.Equals(identifier));
+	    }
 
 		public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins, params UIView[] views) =>
 			AdvancedVerticalStackPanelConstraints(parentView, margins, views: views);
