@@ -86,30 +86,26 @@ namespace Cirrious.FluentLayouts.Touch
 			};
         }
 
-		public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, nfloat? margin = null)
-		{
-			return FullSizeOf(view, parent, new Margins((float)margin.GetValueOrDefault(DefaultMargin)));
-		}
+		public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, nfloat? margin = null) => 
+			FullSizeOf(view, parent, new Margins((float)margin.GetValueOrDefault(DefaultMargin)));
 
-		public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, Margins margins)
+	    public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, Margins margins)
 		{
 			margins = margins ?? new Margins();
 
 			return new List<FluentLayout>
 			{
-				view.Top().EqualTo().TopOf(parent).Plus(margins.Top).WithIdentifier("Top"),
-				view.Bottom().EqualTo().BottomOf(parent).Minus(margins.Bottom).WithIdentifier("Bottom"),
-				view.Left().EqualTo().LeftOf(parent).Plus(margins.Left).WithIdentifier("Left"),
-				view.Right().EqualTo().RightOf(parent).Minus(margins.Right).WithIdentifier("Right")
+				view.AtTopOf(parent, margins.Top).WithIdentifier("Top"),
+				view.AtBottomOf(parent, margins.Bottom).WithIdentifier("Bottom"),
+				view.AtLeftOf(parent, margins.Left).WithIdentifier("Left"),
+				view.AtRightOf(parent, margins.Right).WithIdentifier("Right")
 			};
 		}
 
-	    public static FluentLayout GetLayoutById(this IEnumerable<FluentLayout> layouts, string identifier)
-	    {
-		    return layouts.FirstOrDefault(x => x.Identifier.Equals(identifier));
-	    }
+	    public static FluentLayout GetLayoutById(this IEnumerable<FluentLayout> layouts, string identifier) => 
+			layouts.FirstOrDefault(x => x.Identifier.Equals(identifier));
 
-		public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins, params UIView[] views) =>
+	    public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins, params UIView[] views) =>
 			AdvancedVerticalStackPanelConstraints(parentView, margins, views: views);
    
 		/// <summary>
