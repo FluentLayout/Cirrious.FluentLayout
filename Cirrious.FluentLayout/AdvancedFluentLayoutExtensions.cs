@@ -70,8 +70,8 @@ namespace Cirrious.FluentLayouts.Touch
 
 	        return new List<FluentLayout>
 	        {
-		        view.Left().EqualTo().LeftOf(parent).Plus(marginValue).WithIdentifier("Left"),
-		        view.Right().EqualTo().RightOf(parent).Minus(marginValue).WithIdentifier("Right")
+				view.AtLeftOf(parent, marginValue).WithIdentifier("Left"),
+		        view.AtRightOf(parent, marginValue).WithIdentifier("Right")
 	        };
         }
 
@@ -81,8 +81,8 @@ namespace Cirrious.FluentLayouts.Touch
 
 			return new List<FluentLayout>
 			{
-				view.Top().EqualTo().TopOf(parent).Plus(marginValue).WithIdentifier("Top"),
-				view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue).WithIdentifier("Bottom")
+				view.AtTopOf(parent, marginValue).WithIdentifier("Top"),
+				view.AtBottomOf(parent, marginValue).WithIdentifier("Bottom")
 			};
         }
 
