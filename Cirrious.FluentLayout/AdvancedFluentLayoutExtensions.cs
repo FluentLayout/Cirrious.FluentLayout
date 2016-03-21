@@ -67,15 +67,23 @@ namespace Cirrious.FluentLayouts.Touch
         public static IEnumerable<FluentLayout> FullWidthOf(this UIView view, UIView parent, nfloat? margin = null)
         {
 			var marginValue = margin.GetValueOrDefault(DefaultMargin);
-			yield return view.Left().EqualTo().LeftOf(parent).Plus(marginValue).WithIdentifier("Left");
-			yield return view.Right().EqualTo().RightOf(parent).Minus(marginValue).WithIdentifier("Right");
+
+	        return new List<FluentLayout>
+	        {
+		        view.Left().EqualTo().LeftOf(parent).Plus(marginValue).WithIdentifier("Left"),
+		        view.Right().EqualTo().RightOf(parent).Minus(marginValue).WithIdentifier("Right")
+	        };
         }
 
         public static IEnumerable<FluentLayout> FullHeightOf(this UIView view, UIView parent, nfloat? margin = null)
         {
 			var marginValue = margin.GetValueOrDefault(DefaultMargin);
-			yield return view.Top().EqualTo().TopOf(parent).Plus(marginValue).WithIdentifier("Top");
-			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue).WithIdentifier("Bottom");
+
+			return new List<FluentLayout>
+			{
+				view.Top().EqualTo().TopOf(parent).Plus(marginValue).WithIdentifier("Top"),
+				view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue).WithIdentifier("Bottom")
+			};
         }
 
 		public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, nfloat? margin = null)
@@ -126,6 +134,7 @@ namespace Cirrious.FluentLayouts.Touch
 		{
 			string previousIdentifierPrefix = null;
 			margins = margins ?? new Margins();
+			var layouts = new List<FluentLayout>();
 
 			var count = views.Length;
 			for (var i = 0; i < count; i++)
@@ -136,26 +145,47 @@ namespace Cirrious.FluentLayouts.Touch
 				float childLeftMargin;
 				childrenLeftMargins.TryGetElement(i, out childLeftMargin);
 				var marginLeft = Math.Max(margins.Left, childLeftMargin) * marginMultiplier;
-				yield return view.Left().EqualTo().LeftOf(parentView).Plus(marginLeft).WithIdentifier(viewIdentifierPrefix + "Left");
+				layouts.Add(view.Left()
+					.EqualTo()
+					.LeftOf(parentView)
+					.Plus(marginLeft)
+					.WithIdentifier(viewIdentifierPrefix + "Left"));
 
 				float childRightMargin;
 				childrenRightMargins.TryGetElement(i, out childRightMargin);
 				var marginRight = Math.Max(margins.Right, childRightMargin) * marginMultiplier;
-				yield return view.Width().EqualTo().WidthOf(parentView).Minus(marginRight + marginLeft).WithIdentifier(viewIdentifierPrefix + "Width");
+				layouts.Add(view.Width()
+					.EqualTo()
+					.WidthOf(parentView)
+					.Minus(marginRight + marginLeft)
+					.WithIdentifier(viewIdentifierPrefix + "Width"));
 
 				float childTopMargin;
 				childrenTopMargins.TryGetElement(i, out childTopMargin);
 
-				if (i == 0)
-					yield return view.Top().EqualTo().TopOf(parentView).Plus(Math.Max(margins.Top, childTopMargin) * marginMultiplier).WithIdentifier(viewIdentifierPrefix + "Top");
-				else
-					yield return view.Top().EqualTo().BottomOf(views[i - 1]).Plus(Math.Max(margins.VSpacing, childTopMargin) * marginMultiplier).WithIdentifier(viewIdentifierPrefix + "Top");
+				layouts.Add(i == 0
+					? view.Top()
+						.EqualTo()
+						.TopOf(parentView)
+						.Plus(Math.Max(margins.Top, childTopMargin)*marginMultiplier)
+						.WithIdentifier(viewIdentifierPrefix + "Top")
+					: view.Top()
+						.EqualTo()
+						.BottomOf(views[i - 1])
+						.Plus(Math.Max(margins.VSpacing, childTopMargin)*marginMultiplier)
+						.WithIdentifier(viewIdentifierPrefix + "Top"));
 
 				previousIdentifierPrefix = viewIdentifierPrefix;
 			}
 
 			if (parentView is UIScrollView)
-				yield return views[views.Length - 1].Bottom().EqualTo().BottomOf(parentView).Minus(margins.Bottom * marginMultiplier).WithIdentifier(previousIdentifierPrefix + "Bottom");
+				layouts.Add(views[views.Length - 1].Bottom()
+					.EqualTo()
+					.BottomOf(parentView)
+					.Minus(margins.Bottom * marginMultiplier)
+					.WithIdentifier(previousIdentifierPrefix + "Bottom"));
+
+			return layouts;
 		}
     }
 }
