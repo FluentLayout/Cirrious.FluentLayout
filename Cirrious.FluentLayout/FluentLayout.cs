@@ -188,6 +188,14 @@ namespace Cirrious.FluentLayouts.Touch
 
         public FluentLayout WidthOf(NSObject view2) => SetSecondItem(view2, NSLayoutAttribute.Width);
 
+		public FluentLayout TrailingMarginOf(NSObject view2) => SetSecondItem(view2, NSLayoutAttribute.TrailingMargin);
+
+		public FluentLayout LeadingMarginOf(NSObject view2) => SetSecondItem(view2, NSLayoutAttribute.LeadingMargin);
+
+		public FluentLayout TopMarginOf(NSObject view2) => SetSecondItem(view2, NSLayoutAttribute.TopMargin);
+
+		public FluentLayout BottomMarginOf(NSObject view2) => SetSecondItem(view2, NSLayoutAttribute.BottomMargin);
+
         private FluentLayout SetSecondItem(NSObject view2, NSLayoutAttribute attribute2)
         {
             ThrowIfSecondItemAlreadySet();

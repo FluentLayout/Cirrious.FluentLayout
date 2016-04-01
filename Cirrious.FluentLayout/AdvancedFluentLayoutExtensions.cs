@@ -64,6 +64,18 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout ToLeftOf(this UIView view, UIView previous, nfloat? margin = null) =>
 			view.Right().EqualTo().LeftOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
 
+		public static FluentLayout ToLeftMargin(this UIView view, UIView previous) =>
+			view.Leading().EqualTo().LeadingMarginOf(previous);
+
+		public static FluentLayout ToRightMargin(this UIView view, UIView previous) =>
+			view.Trailing().EqualTo().TrailingMarginOf(previous);
+
+		public static FluentLayout ToTopMargin(this UIView view, UIView previous) =>
+			view.Top().EqualTo().TopMarginOf(previous);
+
+		public static FluentLayout ToBottomMargin(this UIView view, UIView previous) =>
+			view.Bottom().EqualTo().BottomMarginOf(previous);			
+
         public static IEnumerable<FluentLayout> FullWidthOf(this UIView view, UIView parent, nfloat? margin = null)
         {
 			var marginValue = margin.GetValueOrDefault(DefaultMargin);
