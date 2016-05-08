@@ -18,5 +18,7 @@ namespace QuickLayout.Core.ViewModels
 		public void GoUpdateConstraints() => ShowViewModel<UpdateConstraintsViewModel>();
 
 		public void GoAdvancedVerticalStack() => ShowViewModel<AdvancedVerticalStackViewModel>();
+
+	    public void GoFullSize() => ShowViewModel<FullSizeViewModel>();
     }
 }

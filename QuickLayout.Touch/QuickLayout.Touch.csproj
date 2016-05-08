@@ -93,6 +93,7 @@
     <Compile Include="Views\FirstView.cs" />
     <Compile Include="Views\FormGridView.cs" />
     <Compile Include="Views\FormView.cs" />
+    <Compile Include="Views\FullSizeView.cs" />
     <Compile Include="Views\SearchView.cs" />
     <Compile Include="Views\TipView.cs" />
     <None Include="Info.plist" />

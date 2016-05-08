@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UIKit;
 using Cirrious.FluentLayouts.Touch.Extensions;
 
@@ -66,18 +67,45 @@ namespace Cirrious.FluentLayouts.Touch
         public static IEnumerable<FluentLayout> FullWidthOf(this UIView view, UIView parent, nfloat? margin = null)
         {
 			var marginValue = margin.GetValueOrDefault(DefaultMargin);
-			yield return view.Left().EqualTo().LeftOf(parent).Plus(marginValue);
-			yield return view.Right().EqualTo().RightOf(parent).Minus(marginValue);
+
+	        return new List<FluentLayout>
+	        {
+				view.AtLeftOf(parent, marginValue).WithIdentifier("Left"),
+		        view.AtRightOf(parent, marginValue).WithIdentifier("Right")
+	        };
         }
 
         public static IEnumerable<FluentLayout> FullHeightOf(this UIView view, UIView parent, nfloat? margin = null)
         {
 			var marginValue = margin.GetValueOrDefault(DefaultMargin);
-			yield return view.Top().EqualTo().TopOf(parent).Plus(marginValue);
-			yield return view.Bottom().EqualTo().BottomOf(parent).Minus(marginValue);
+
+			return new List<FluentLayout>
+			{
+				view.AtTopOf(parent, marginValue).WithIdentifier("Top"),
+				view.AtBottomOf(parent, marginValue).WithIdentifier("Bottom")
+			};
         }
 
-        public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins, params UIView[] views) =>
+		public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, nfloat? margin = null) => 
+			FullSizeOf(view, parent, new Margins((float)margin.GetValueOrDefault(DefaultMargin)));
+
+	    public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, Margins margins)
+		{
+			margins = margins ?? new Margins();
+
+			return new List<FluentLayout>
+			{
+				view.AtTopOf(parent, margins.Top).WithIdentifier("Top"),
+				view.AtBottomOf(parent, margins.Bottom).WithIdentifier("Bottom"),
+				view.AtLeftOf(parent, margins.Left).WithIdentifier("Left"),
+				view.AtRightOf(parent, margins.Right).WithIdentifier("Right")
+			};
+		}
+
+	    public static FluentLayout GetLayoutById(this IEnumerable<FluentLayout> layouts, string identifier) => 
+			layouts.FirstOrDefault(x => x.Identifier.Equals(identifier));
+
+	    public static IEnumerable<FluentLayout> VerticalStackPanelConstraints(this UIView parentView, Margins margins, params UIView[] views) =>
 			AdvancedVerticalStackPanelConstraints(parentView, margins, views: views);
    
 		/// <summary>
@@ -102,6 +130,7 @@ namespace Cirrious.FluentLayouts.Touch
 		{
 			string previousIdentifierPrefix = null;
 			margins = margins ?? new Margins();
+			var layouts = new List<FluentLayout>();
 
 			var count = views.Length;
 			for (var i = 0; i < count; i++)
@@ -112,26 +141,47 @@ namespace Cirrious.FluentLayouts.Touch
 				float childLeftMargin;
 				childrenLeftMargins.TryGetElement(i, out childLeftMargin);
 				var marginLeft = Math.Max(margins.Left, childLeftMargin) * marginMultiplier;
-				yield return view.Left().EqualTo().LeftOf(parentView).Plus(marginLeft).WithIdentifier(viewIdentifierPrefix + "Left");
+				layouts.Add(view.Left()
+					.EqualTo()
+					.LeftOf(parentView)
+					.Plus(marginLeft)
+					.WithIdentifier(viewIdentifierPrefix + "Left"));
 
 				float childRightMargin;
 				childrenRightMargins.TryGetElement(i, out childRightMargin);
 				var marginRight = Math.Max(margins.Right, childRightMargin) * marginMultiplier;
-				yield return view.Width().EqualTo().WidthOf(parentView).Minus(marginRight + marginLeft).WithIdentifier(viewIdentifierPrefix + "Width");
+				layouts.Add(view.Width()
+					.EqualTo()
+					.WidthOf(parentView)
+					.Minus(marginRight + marginLeft)
+					.WithIdentifier(viewIdentifierPrefix + "Width"));
 
 				float childTopMargin;
 				childrenTopMargins.TryGetElement(i, out childTopMargin);
 
-				if (i == 0)
-					yield return view.Top().EqualTo().TopOf(parentView).Plus(Math.Max(margins.Top, childTopMargin) * marginMultiplier).WithIdentifier(viewIdentifierPrefix + "Top");
-				else
-					yield return view.Top().EqualTo().BottomOf(views[i - 1]).Plus(Math.Max(margins.VSpacing, childTopMargin) * marginMultiplier).WithIdentifier(viewIdentifierPrefix + "Top");
+				layouts.Add(i == 0
+					? view.Top()
+						.EqualTo()
+						.TopOf(parentView)
+						.Plus(Math.Max(margins.Top, childTopMargin)*marginMultiplier)
+						.WithIdentifier(viewIdentifierPrefix + "Top")
+					: view.Top()
+						.EqualTo()
+						.BottomOf(views[i - 1])
+						.Plus(Math.Max(margins.VSpacing, childTopMargin)*marginMultiplier)
+						.WithIdentifier(viewIdentifierPrefix + "Top"));
 
 				previousIdentifierPrefix = viewIdentifierPrefix;
 			}
 
 			if (parentView is UIScrollView)
-				yield return views[views.Length - 1].Bottom().EqualTo().BottomOf(parentView).Minus(margins.Bottom * marginMultiplier).WithIdentifier(previousIdentifierPrefix + "Bottom");
+				layouts.Add(views[views.Length - 1].Bottom()
+					.EqualTo()
+					.BottomOf(parentView)
+					.Minus(margins.Bottom * marginMultiplier)
+					.WithIdentifier(previousIdentifierPrefix + "Bottom"));
+
+			return layouts;
 		}
     }
 }
