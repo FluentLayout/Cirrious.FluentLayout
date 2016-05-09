@@ -100,8 +100,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\UpdateConstraintsView.cs" />
     <None Include="packages.config" />
-    <Compile Include="Bootstrap\MethodBindingPluginBootstrap.cs" />
     <Compile Include="Views\AdvancedVerticalStackView.cs" />
+    <Compile Include="Bootstrap\MethodBindingPluginBootstrap.cs" />
+    <Compile Include="Views\DirectionFormView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />

@@ -20,5 +20,7 @@ namespace QuickLayout.Core.ViewModels
 		public void GoAdvancedVerticalStack() => ShowViewModel<AdvancedVerticalStackViewModel>();
 
 	    public void GoFullSize() => ShowViewModel<FullSizeViewModel>();
+	    
+	    public void GoDirectionForm() => ShowViewModel<DirectionFormViewModel>();
     }
 }

@@ -11,7 +11,7 @@ namespace QuickLayout.Touch.Views
 	[Register("FirstView")]
     public class FirstView : MvxViewController
     {
-		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize;
+		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView;
 
         public override void ViewDidLoad()
         {
@@ -54,6 +54,10 @@ namespace QuickLayout.Touch.Views
 			_fullSize.SetTitle("Full Size (animated)", UIControlState.Normal);
 			Add(_fullSize);
 
+			_directionFormView = new UIButton(UIButtonType.RoundedRect);
+			_directionFormView.SetTitle("Directions", UIControlState.Normal);
+			Add(_directionFormView);			
+
 			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
             var set = this.CreateBindingSet<FirstView, FirstViewModel>();
@@ -65,6 +69,7 @@ namespace QuickLayout.Touch.Views
 			set.Bind(_viewUpdateConstaints).To("GoUpdateConstraints");
 			set.Bind(_viewAdvancedVerticalStack).To("GoAdvancedVerticalStack");
 	        set.Bind(_fullSize).To("GoFullSize");
+			set.Bind(_directionFormView).To("GoDirectionForm");
             set.Apply();
 
             var constraints = View.VerticalStackPanelConstraints(

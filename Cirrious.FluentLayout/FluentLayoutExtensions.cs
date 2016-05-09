@@ -45,6 +45,14 @@ namespace Cirrious.FluentLayouts.Touch
 
         public static UIViewAndLayoutAttribute WithLayoutAttribute(this UIView view, NSLayoutAttribute attribute) => new UIViewAndLayoutAttribute(view, attribute);
 
+		public static UIViewAndLayoutAttribute LeadingMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.LeadingMargin);
+
+		public static UIViewAndLayoutAttribute TrailingMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.TrailingMargin);
+
+		public static UIViewAndLayoutAttribute TopMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.TopMargin);
+
+		public static UIViewAndLayoutAttribute BottomMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.BottomMargin);
+
 		public static void AddConstraints(this UIView view, params FluentLayout[] fluentLayouts) => view.AddConstraints(fluentLayouts.AsEnumerable());
 
         public static void AddConstraints(this UIView view, IEnumerable<FluentLayout> fluentLayouts) =>
