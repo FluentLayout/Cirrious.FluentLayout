@@ -18,7 +18,7 @@ namespace Cirrious.FluentLayouts.Touch
 		const float DefaultScale = 1;
 
         /// <summary>
-        /// Used to create a LayoutConstraint that offsets the View's top most edge from the top most edge of the parent view a.k.a. as the secondItem or relatedItem. 
+        /// Used to create a constraint that offsets the View's top most edge from the top most edge of the parent view a.k.a. as the secondItem or relatedItem. 
         /// Implies a Container and child layout relationship
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -30,7 +30,7 @@ namespace Cirrious.FluentLayouts.Touch
 			view.Top().EqualTo().TopOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
 
         /// <summary>
-        /// Used to create a LayoutConstraint that offsets the View's left most edge from the left most edge of the parent view a.k.a. as the secondItem or relatedItem. 
+        /// Used to create a constraint that offsets the View's left most edge from the left most edge of the parent view a.k.a. as the secondItem or relatedItem. 
         /// Implies a Container and child layout relationship
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -42,7 +42,7 @@ namespace Cirrious.FluentLayouts.Touch
 			view.Left().EqualTo().LeftOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
 
         /// <summary>
-        /// Used to create a LayoutConstraint that offsets the View's right most edge from the rightmost edge of the parent view a.k.a. as the secondItem or relatedItem. 
+        /// Used to create a constraint that offsets the View's right most edge from the rightmost edge of the parent view a.k.a. as the secondItem or relatedItem. 
         /// Implies a Container and child layout relationship
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -54,7 +54,7 @@ namespace Cirrious.FluentLayouts.Touch
 			view.Right().EqualTo().RightOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
 
         /// <summary>
-        /// Used to create a LayoutConstraint that offsets the View's bottom most edge from the bottom most edge of the parent view a.k.a. as the secondItem or relatedItem. 
+        /// Used to create a constraint that offsets the View's bottom most edge from the bottom most edge of the parent view a.k.a. as the secondItem or relatedItem. 
         /// Implies a Container and child layout relationship
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -66,7 +66,7 @@ namespace Cirrious.FluentLayouts.Touch
 			view.Bottom().EqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
 
         /// <summary>
-        /// Used to create a LayoutConstraint that offsets the View's top most edge from the 
+        /// Used to create a constraint that offsets the View's top most edge from the 
         /// bottom edge of <paramref name="previous"/> a.k.a. the secondItem. 
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -78,7 +78,7 @@ namespace Cirrious.FluentLayouts.Touch
 			view.Top().EqualTo().BottomOf(previous).Plus(margin.GetValueOrDefault(DefaultMargin));
 
         /// <summary>
-        /// Used to create a LayoutConstraint that offsets the View's bottom most edge from the 
+        /// Used to create a constraint that offsets the View's bottom most edge from the 
         /// top edge of <paramref name="following"/> a.k.a. the secondItem. 
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -90,7 +90,7 @@ namespace Cirrious.FluentLayouts.Touch
 			view.Bottom().EqualTo().TopOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
 
         /// <summary>
-        /// Used to create a LayoutConstraint that makes the View's left most edge the 
+        /// Used to create a constraint that makes the View's left most edge the 
         /// same as the left edge of <paramref name="related"/> a.k.a. the secondItem. 
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -100,7 +100,7 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout WithSameLeft(this UIView view, UIView related) => view.Left().EqualTo().LeftOf(related);
 
         /// <summary>
-        /// Used to create a LayoutConstraint that makes the View's top most edge the 
+        /// Used to create a constraint that makes the View's top most edge the 
         /// same as the top edge of <paramref name="related"/> a.k.a. the secondItem. 
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -114,7 +114,7 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout WithSameCenterY(this UIView view, UIView previous) => view.CenterY().EqualTo().CenterYOf(previous);
 
         /// <summary>
-        /// Used to create a LayoutConstraint that makes the View's right most edge the 
+        /// Used to create a constraint that makes the View's right most edge the 
         /// same as the left edge of <paramref name="related"/> a.k.a. the secondItem. 
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -124,7 +124,7 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout WithSameRight(this UIView view, UIView related) => view.Right().EqualTo().RightOf(related);
 
         /// <summary>
-        /// Used to create a LayoutConstraint that makes the View's Width the 
+        /// Used to create a constraint that makes the View's Width the 
         /// same as <paramref name="related"/> a.k.a. the secondItem. 
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -134,7 +134,7 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout WithSameWidth(this UIView view, UIView related) => view.Width().EqualTo().WidthOf(related);
 
         /// <summary>
-        /// Used to create a LayoutConstraint that makes the View's bottom most edge the 
+        /// Used to create a constraint that makes the View's bottom most edge the 
         /// same as the bottom edge of <paramref name="previous"/> a.k.a. the secondItem. 
         /// </summary>
         /// <param name="view">The view to be laid out</param>
@@ -152,7 +152,7 @@ namespace Cirrious.FluentLayouts.Touch
 			view.Height().EqualTo().HeightOf(previous).WithMultiplier(scale.GetValueOrDefault(DefaultScale));
 
         /// <summary>
-        /// Used to create a LayoutConstraint that makes the View's left most edge the
+        /// Used to create a constraint that makes the View's left most edge the
         /// same as the right edge of <paramref name="related" /> a.k.a. the secondItem.
         /// </summary>
         /// <param name="view">The view to be laid out</param>
