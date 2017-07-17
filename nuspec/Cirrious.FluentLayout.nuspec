@@ -15,5 +15,6 @@
     </metadata>
     <files>
         <file src="../Cirrious.FluentLayout/bin/iPhoneSimulator/Release/Cirrious.FluentLayouts.Touch.dll" target="lib/Xamarin.iOS10/Cirrious.FluentLayouts.Touch.dll" /> 
+        <file src="../Cirrious.FluentLayouts.TV/bin/Release/Cirrious.FluentLayouts.TV.dll" target="lib/Xamarin.TVOS/Cirrious.FluentLayouts.TV.dll" /> 
     </files>
 </package>
