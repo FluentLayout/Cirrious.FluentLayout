@@ -17,46 +17,50 @@ namespace QuickLayout.Touch
 
 			View.BackgroundColor = UIColor.White;
 
-			if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
-				EdgesForExtendedLayout = UIRectEdge.None;
+		    if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
+		    {
+		        EdgesForExtendedLayout = UIRectEdge.None;
+		    }
 
-			var label = new UILabel 
+		    var label = new UILabel 
 			{ 
-				Text = "Update this label's height constraint height constant and active settings",
+				Text = "This label has a Height constraint applied to it. \r\nThe toggle switch is bound to the Contraint's Active boolean and the slider to the Constraint's Constant value.",
 				BackgroundColor = UIColor.LightGray,
 				TextColor = UIColor.Black,
 				LineBreakMode = UILineBreakMode.WordWrap,
 				Lines = 0
 			};
-			var toggleHeight = new UISwitch();
-			var heightConstant = new UISlider { MinValue = 0, MaxValue = 400 };
 
-			View.AddSubviews(label, toggleHeight, heightConstant);
+			var heightToggle = new UISwitch();
+			var labelHeightSlider = new UISlider { MinValue = 0, MaxValue = 400 };
+            
+			View.AddSubviews(label, heightToggle, labelHeightSlider);
 
 			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
-			var heightLayout = label.Height().EqualTo(ViewModel.Constant).WithIdentifier("foo");
+			var heightLayoutConstraint = label.Height().EqualTo(ViewModel.Constant).WithIdentifier("labelHeight_Constraint_Id");
 
 			var margin = 10;
-			View.AddConstraints(
-				heightConstant.AtTopOf(View, margin),
-				heightConstant.AtLeftOf(View, margin),
-				heightConstant.AtRightOf(View, margin),
 
-				toggleHeight.Below(heightConstant, margin),
-				toggleHeight.WithSameLeft(heightConstant),
+			View.AddConstraints(
+                labelHeightSlider.AtTopOf(View, margin),
+                labelHeightSlider.AtLeftOf(View, margin),
+                labelHeightSlider.AtRightOf(View, margin),
+
+				heightToggle.Below(labelHeightSlider, margin),
+				heightToggle.WithSameLeft(labelHeightSlider),
 
 				label.AtLeftOf(View, margin),
-				label.Below(toggleHeight, margin),
+				label.Below(heightToggle, margin),
 				label.AtRightOf(View, margin),
-				heightLayout
-			);
+                heightLayoutConstraint
+            );
 
 			var set = this.CreateBindingSet<UpdateConstraintsView, UpdateConstraintsViewModel>();
-			set.Bind(heightLayout).For(layout => layout.Active).To(vm => vm.Active);
-			set.Bind(heightLayout).For(layout => layout.Constant).To(vm => vm.Constant);
-			set.Bind(toggleHeight).To(vm => vm.Active);
-			set.Bind(heightConstant).To(vm => vm.Constant);
+			set.Bind(heightLayoutConstraint).For(constraint => constraint.Active).To(vm => vm.Active);
+			set.Bind(heightLayoutConstraint).For(constraint => constraint.Constant).To(vm => vm.Constant);
+			set.Bind(heightToggle).To(vm => vm.Active);
+			set.Bind(labelHeightSlider).To(vm => vm.Constant);
 			set.Apply();
 		}
 	}
