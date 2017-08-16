@@ -195,5 +195,13 @@ namespace Cirrious.FluentLayouts.Touch
 
 			return layouts;
 		}
+        /// <summary>
+        /// the AspecRatio of view
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="scale">width/height</param>
+        /// <returns></returns>
+        public static FluentLayout AspecRatio(this UIView view, nfloat? scale = null)
+            => view.Width().EqualTo().HeightOf(view).WithMultiplier(scale.GetValueOrDefault(DefaultScale));
     }
 }
