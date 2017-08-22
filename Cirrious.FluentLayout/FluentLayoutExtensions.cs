@@ -18,8 +18,8 @@ namespace Cirrious.FluentLayouts.Touch
             foreach (var subview in view.Subviews)
             {
                 subview.TranslatesAutoresizingMaskIntoConstraints = false;
-		
-	        if (subview.Subviews != null && subview.Subviews.Count() > 0)
+
+                if ((subview as UIControl) == null && subview.Subviews != null && subview.Subviews.Count() > 0)
                     SubviewsDoNotTranslateAutoresizingMaskIntoConstraints(subview);
             }
         }
@@ -28,7 +28,7 @@ namespace Cirrious.FluentLayouts.Touch
 
         public static UIViewAndLayoutAttribute Right(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.Right);
 
-		public static UIViewAndLayoutAttribute Top(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.Top);
+        public static UIViewAndLayoutAttribute Top(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.Top);
 
         public static UIViewAndLayoutAttribute Bottom(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.Bottom);
 
@@ -48,26 +48,26 @@ namespace Cirrious.FluentLayouts.Touch
 
         public static UIViewAndLayoutAttribute WithLayoutAttribute(this UIView view, NSLayoutAttribute attribute) => new UIViewAndLayoutAttribute(view, attribute);
 
-		public static UIViewAndLayoutAttribute LeadingMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.LeadingMargin);
+        public static UIViewAndLayoutAttribute LeadingMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.LeadingMargin);
 
-		public static UIViewAndLayoutAttribute TrailingMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.TrailingMargin);
+        public static UIViewAndLayoutAttribute TrailingMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.TrailingMargin);
 
-		public static UIViewAndLayoutAttribute TopMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.TopMargin);
+        public static UIViewAndLayoutAttribute TopMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.TopMargin);
 
-		public static UIViewAndLayoutAttribute BottomMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.BottomMargin);
+        public static UIViewAndLayoutAttribute BottomMargin(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.BottomMargin);
 
-		public static void AddConstraints(this UIView view, params FluentLayout[] fluentLayouts) => view.AddConstraints(fluentLayouts.AsEnumerable());
+        public static void AddConstraints(this UIView view, params FluentLayout[] fluentLayouts) => view.AddConstraints(fluentLayouts.AsEnumerable());
 
         public static void AddConstraints(this UIView view, IEnumerable<FluentLayout> fluentLayouts) =>
-		    view.AddConstraints(fluentLayouts
+            view.AddConstraints(fluentLayouts
                 .Where(fluent => fluent != null)
-            	.Select(fluent => fluent.Constraint.Value)
+                .Select(fluent => fluent.Constraint.Value)
                 .ToArray());
 
-		public static void RemoveConstraints(this UIView view, params FluentLayout[] fluentLayouts) => view.RemoveConstraints(fluentLayouts.AsEnumerable());
+        public static void RemoveConstraints(this UIView view, params FluentLayout[] fluentLayouts) => view.RemoveConstraints(fluentLayouts.AsEnumerable());
 
-		public static void RemoveConstraints(this UIView view, IEnumerable<FluentLayout> fluentLayouts) =>
-			view.RemoveConstraints(fluentLayouts
+        public static void RemoveConstraints(this UIView view, IEnumerable<FluentLayout> fluentLayouts) =>
+            view.RemoveConstraints(fluentLayouts
                 .Where(fluent => fluent != null)
                 .Select(fluent => fluent.Constraint.Value)
                 .ToArray());
