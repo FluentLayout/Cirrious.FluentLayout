@@ -18,6 +18,9 @@ namespace Cirrious.FluentLayouts.Touch
             foreach (var subview in view.Subviews)
             {
                 subview.TranslatesAutoresizingMaskIntoConstraints = false;
+		
+	        if (subview.Subviews != null && subview.Subviews.Count() > 0)
+                    SubviewsDoNotTranslateAutoresizingMaskIntoConstraints(subview);
             }
         }
 
