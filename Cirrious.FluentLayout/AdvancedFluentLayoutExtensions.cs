@@ -30,6 +30,12 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout AtBottomOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Bottom().EqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
 
+        public static FluentLayout AtLeadingOf(this UIView view, UIView parentView, nfloat? margin = null) =>
+        view.Leading().EqualTo().LeadingOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+
+        public static FluentLayout AtTrailingOf(this UIView view, UIView parentView, nfloat? margin = null) =>
+        view.Trailing().EqualTo().TrailingOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
+
         public static FluentLayout Below(this UIView view, UIView previous, nfloat? margin = null) =>
 			view.Top().EqualTo().BottomOf(previous).Plus(margin.GetValueOrDefault(DefaultMargin));
 
@@ -63,6 +69,12 @@ namespace Cirrious.FluentLayouts.Touch
 
         public static FluentLayout ToLeftOf(this UIView view, UIView previous, nfloat? margin = null) =>
 			view.Right().EqualTo().LeftOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
+
+        public static FluentLayout ToTrailingOf(this UIView view, UIView previous, nfloat? margin = null) =>
+            view.Leading().EqualTo().TrailingOf(previous).Plus(margin.GetValueOrDefault(DefaultMargin));
+
+        public static FluentLayout ToLeadingOf(this UIView view, UIView previous, nfloat? margin = null) =>
+        view.Trailing().EqualTo().LeadingOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
 
 		public static FluentLayout ToLeftMargin(this UIView view, UIView previous) =>
 			view.Leading().EqualTo().LeadingMarginOf(previous);
