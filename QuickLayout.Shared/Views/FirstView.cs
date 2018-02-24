@@ -5,23 +5,21 @@ using MvvmCross.iOS.Views;
 #elif __TVOS__
 using MvvmCross.tvOS.Views;
 #endif
-using Foundation;
 using UIKit;
-using ObjCRuntime;
 using QuickLayout.Core.ViewModels;
-using System.Diagnostics;
+using MvvmCross.tvOS.Views.Presenters.Attributes;
 
 namespace QuickLayout.Touch.Views
 {
-	[Register("FirstView")]
+    [MvxRootPresentation]
     public class FirstView : MvxViewController<FirstViewModel>
     {
 		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView;
 
         public override void ViewDidLoad()
         {
-            //View.BackgroundColor = UIColor.White;
             base.ViewDidLoad();
+            View.BackgroundColor = UIColor.White;
 
             // ios7 layout
             //if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
