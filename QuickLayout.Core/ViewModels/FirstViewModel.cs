@@ -2,25 +2,24 @@ using MvvmCross.Core.ViewModels;
 
 namespace QuickLayout.Core.ViewModels
 {
-    public class FirstViewModel
-        : MvxViewModel
+    public class FirstViewModel: MvxViewModel
     {
-        public void GoDetails() => ShowViewModel<DetailsViewModel>();
+        public IMvxCommand GoDetailsCommand => new MvxCommand(() => ShowViewModel<DetailsViewModel>());
 
-        public void GoForm() => ShowViewModel<FormViewModel>();
+        public IMvxCommand GoFormCommand => new MvxCommand(() => ShowViewModel<FormViewModel>());
 
-        public void GoFormGrid() => ShowViewModel<FormGridViewModel>();
+        public IMvxCommand GoFormGridCommand => new MvxCommand(() => ShowViewModel<FormGridViewModel>());
 
-        public void GoSearch() => ShowViewModel<SearchViewModel>();
+        public IMvxCommand GoSearchCommand => new MvxCommand(() => ShowViewModel<SearchViewModel>());
 
-        public void GoTip() => ShowViewModel<TipViewModel>();
+        public IMvxCommand GoTipCommand => new MvxCommand(() => ShowViewModel<TipViewModel>());
 
-		public void GoUpdateConstraints() => ShowViewModel<UpdateConstraintsViewModel>();
+        public IMvxCommand GoUpdateConstraintsCommand => new MvxCommand(() => ShowViewModel<UpdateConstraintsViewModel>());
 
-		public void GoAdvancedVerticalStack() => ShowViewModel<AdvancedVerticalStackViewModel>();
+        public IMvxCommand GoAdvancedVerticalStackCommand => new MvxCommand(() => ShowViewModel<AdvancedVerticalStackViewModel>());
 
-	    public void GoFullSize() => ShowViewModel<FullSizeViewModel>();
+        public IMvxCommand GoFullSizeCommand => new MvxCommand(() => ShowViewModel<FullSizeViewModel>());
 	    
-	    public void GoDirectionForm() => ShowViewModel<DirectionFormViewModel>();
+        public IMvxCommand GoDirectionFormCommand => new MvxCommand(() => ShowViewModel<DirectionFormViewModel>());
     }
 }

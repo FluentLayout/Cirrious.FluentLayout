@@ -3,6 +3,7 @@ using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
 using MvvmCross.tvOS.Platform;
+using QuickLayout.TvApp.Bindings;
 using UIKit;
 
 namespace QuickLayout.TvApp
@@ -17,5 +18,13 @@ namespace QuickLayout.TvApp
         protected override IMvxApplication CreateApp() => new Core.App();
 
         protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
+
+        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        {
+            base.FillTargetFactories(registry);
+
+            registry.RegisterFactory(new MvxCustomBindingFactory<UIButton>("PrimaryActionTriggered", button => new TvOSButtonBinding(button)));
+
+        }
     }
 }
