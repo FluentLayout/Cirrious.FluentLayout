@@ -17,8 +17,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\FormView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\FullSizeView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SearchView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\TipView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UpdateConstraintsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />

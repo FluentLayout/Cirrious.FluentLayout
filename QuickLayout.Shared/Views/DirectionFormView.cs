@@ -1,7 +1,11 @@
 using Cirrious.FluentLayouts;
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
+#if __IOS__
 using MvvmCross.iOS.Views;
+#elif __TVOS__
+using MvvmCross.tvOS.Views;
+#endif
 using Foundation;
 using ObjCRuntime;
 using UIKit;

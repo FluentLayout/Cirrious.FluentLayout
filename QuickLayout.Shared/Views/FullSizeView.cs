@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using Cirrious.FluentLayouts.Touch;
 using Foundation;
+#if __IOS__
 using MvvmCross.iOS.Views;
+#elif __TVOS__
+using MvvmCross.tvOS.Views;
+#endif
 using MvvmCross.Platform;
 using ObjCRuntime;
 using UIKit;

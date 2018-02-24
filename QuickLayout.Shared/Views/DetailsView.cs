@@ -1,7 +1,11 @@
 using System.Reflection;
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
+#if __IOS__
 using MvvmCross.iOS.Views;
+#elif __TVOS__
+using MvvmCross.tvOS.Views;
+#endif
 using UIKit;
 using Foundation;
 using QuickLayout.Core.ViewModels;

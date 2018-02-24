@@ -94,6 +94,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
     <Compile Include="Bootstrap\MethodBindingPluginBootstrap.cs" />
+    <Compile Include="Views\UpdateConstraintsView.cs" />
+    <Compile Include="Views\TipView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />
@@ -147,6 +149,9 @@
       <Project>{849AFB57-994A-42D9-A786-EF34FC951CDE}</Project>
       <Name>QuickLayout.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="..\QuickLayout.Shared\QuickLayout.Shared.projitems" Label="Shared" Condition="Exists('..\QuickLayout.Shared\QuickLayout.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

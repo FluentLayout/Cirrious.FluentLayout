@@ -5,7 +5,11 @@ using UIKit;
 using Foundation;
 using QuickLayout.Core.ViewModels;
 using ObjCRuntime;
+#if __IOS__
 using MvvmCross.iOS.Views;
+#elif __TVOS__
+using MvvmCross.tvOS.Views;
+#endif
 using MvvmCross.Binding.BindingContext;
 
 namespace QuickLayout.Touch
