@@ -162,5 +162,6 @@
       <Name>QuickLayout.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\QuickLayout.Shared\QuickLayout.Shared.projitems" Label="Shared" Condition="Exists('..\QuickLayout.Shared\QuickLayout.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\TVOS\Xamarin.TVOS.CSharp.targets" />
 </Project>

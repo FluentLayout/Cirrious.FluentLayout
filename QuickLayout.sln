@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.FluentLayouts.tvOS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickLayout.TvApp", "QuickLayout.TvApp\QuickLayout.TvApp.csproj", "{DE0F8825-ED18-4AEB-B16D-62E077E0C4D2}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "QuickLayout.Shared", "QuickLayout.Shared\QuickLayout.Shared.shproj", "{A73B34AF-C9EE-4082-A636-EEDA8AB11929}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
