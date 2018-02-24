@@ -1,25 +1,33 @@
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Core.Navigation;
 
 namespace QuickLayout.Core.ViewModels
 {
     public class FirstViewModel: MvxViewModel
     {
-        public IMvxCommand GoDetailsCommand => new MvxCommand(() => ShowViewModel<DetailsViewModel>());
+        private readonly IMvxNavigationService _mvxNavigationService;
 
-        public IMvxCommand GoFormCommand => new MvxCommand(() => ShowViewModel<FormViewModel>());
+        public FirstViewModel(IMvxNavigationService mvxNavigationService)
+        {
+            _mvxNavigationService = mvxNavigationService;
+        }
 
-        public IMvxCommand GoFormGridCommand => new MvxCommand(() => ShowViewModel<FormGridViewModel>());
+        public IMvxCommand GoDetailsCommand => new MvxCommand(() => _mvxNavigationService.Navigate<DetailsViewModel>());
 
-        public IMvxCommand GoSearchCommand => new MvxCommand(() => ShowViewModel<SearchViewModel>());
+        public IMvxCommand GoFormCommand => new MvxCommand(() => _mvxNavigationService.Navigate<FormViewModel>());
 
-        public IMvxCommand GoTipCommand => new MvxCommand(() => ShowViewModel<TipViewModel>());
+        public IMvxCommand GoFormGridCommand => new MvxCommand(() => _mvxNavigationService.Navigate<FormGridViewModel>());
 
-        public IMvxCommand GoUpdateConstraintsCommand => new MvxCommand(() => ShowViewModel<UpdateConstraintsViewModel>());
+        public IMvxCommand GoSearchCommand => new MvxCommand(() => _mvxNavigationService.Navigate<SearchViewModel>());
 
-        public IMvxCommand GoAdvancedVerticalStackCommand => new MvxCommand(() => ShowViewModel<AdvancedVerticalStackViewModel>());
+        public IMvxCommand GoTipCommand => new MvxCommand(() => _mvxNavigationService.Navigate<TipViewModel>());
 
-        public IMvxCommand GoFullSizeCommand => new MvxCommand(() => ShowViewModel<FullSizeViewModel>());
+        public IMvxCommand GoUpdateConstraintsCommand => new MvxCommand(() => _mvxNavigationService.Navigate<UpdateConstraintsViewModel>());
+
+        public IMvxCommand GoAdvancedVerticalStackCommand => new MvxCommand(() => _mvxNavigationService.Navigate<AdvancedVerticalStackViewModel>());
+
+        public IMvxCommand GoFullSizeCommand => new MvxCommand(() => _mvxNavigationService.Navigate<FullSizeViewModel>());
 	    
-        public IMvxCommand GoDirectionFormCommand => new MvxCommand(() => ShowViewModel<DirectionFormViewModel>());
+        public IMvxCommand GoDirectionFormCommand => new MvxCommand(() => _mvxNavigationService.Navigate<DirectionFormViewModel>());
     }
 }

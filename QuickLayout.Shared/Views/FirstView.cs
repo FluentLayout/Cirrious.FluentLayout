@@ -67,17 +67,17 @@ namespace QuickLayout.Touch.Views
 			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
             var set = this.CreateBindingSet<FirstView, FirstViewModel>();
-            set.Bind(_viewForm).For("PrimaryActionTriggered").To(vm => vm.GoFormCommand);
-            set.Bind(_viewFormGrid).For("PrimaryActionTriggered").To(vm => vm.GoFormGridCommand);
-            set.Bind(_viewDetails).For("PrimaryActionTriggered").To(vm => vm.GoDetailsCommand);
-            set.Bind(_viewSearch).For("PrimaryActionTriggered").To(vm => vm.GoSearchCommand);
+            set.Bind(_viewForm).To(vm => vm.GoFormCommand);
+            set.Bind(_viewFormGrid).To(vm => vm.GoFormGridCommand);
+            set.Bind(_viewDetails).To(vm => vm.GoDetailsCommand);
+            set.Bind(_viewSearch).To(vm => vm.GoSearchCommand);
 #if __IOS__
-            set.Bind(_viewTip).For("PrimaryActionTriggered").To(vm => vm.GoTipCommand);
-            set.Bind(_viewUpdateConstaints).For("PrimaryActionTriggered").To(vm => vm.GoUpdateConstraintsCommand);
-            set.Bind(_fullSize).For("PrimaryActionTriggered").To(vm => vm.GoFullSizeCommand);
+            set.Bind(_viewTip).To(vm => vm.GoTipCommand);
+            set.Bind(_viewUpdateConstaints).To(vm => vm.GoUpdateConstraintsCommand);
+            set.Bind(_fullSize).To(vm => vm.GoFullSizeCommand);
 #endif
-            set.Bind(_viewAdvancedVerticalStack).For("PrimaryActionTriggered").To(vm => vm.GoAdvancedVerticalStackCommand);
-            set.Bind(_directionFormView).For("PrimaryActionTriggered").To(vm => vm.GoDirectionFormCommand);
+            set.Bind(_viewAdvancedVerticalStack).To(vm => vm.GoAdvancedVerticalStackCommand);
+            set.Bind(_directionFormView).To(vm => vm.GoDirectionFormCommand);
             set.Apply();
 
             var constraints = View.VerticalStackPanelConstraints(
