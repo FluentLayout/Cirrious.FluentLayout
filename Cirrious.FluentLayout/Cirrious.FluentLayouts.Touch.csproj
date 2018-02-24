@@ -55,5 +55,6 @@
   <ItemGroup>
     <Folder Include="Extensions\" />
   </ItemGroup>
+  <Import Project="..\Cirrious.FlluentLayouts.Shared\Cirrious.FlluentLayouts.Shared.projitems" Label="Shared" Condition="Exists('..\Cirrious.FlluentLayouts.Shared\Cirrious.FlluentLayouts.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
