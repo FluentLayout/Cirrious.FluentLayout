@@ -8,4 +8,18 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Cirrious.FlluentLayouts.Shared</Import_RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedFluentLayoutExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FluentLayout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FluentLayoutExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Margins.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NfloatExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIViewAndLayoutAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ArrayExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RowSet-WorkInProgress\RowSet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
+    <Folder Include="$(MSBuildThisFileDirectory)RowSet-WorkInProgress\" />
+  </ItemGroup>
 </Project>
