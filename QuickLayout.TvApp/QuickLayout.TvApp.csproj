@@ -89,25 +89,25 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.TVOS" />
     <Reference Include="MvvmCross.Platform">
-      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\Xamarin.tvOS\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.5.6.3\lib\Xamarin.tvOS\MvvmCross.Platform.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Platform.tvOS">
-      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\Xamarin.tvOS\MvvmCross.Platform.tvOS.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.5.6.3\lib\Xamarin.tvOS\MvvmCross.Platform.tvOS.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Core">
-      <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\Xamarin.tvOS\MvvmCross.Core.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.5.6.3\lib\Xamarin.tvOS\MvvmCross.Core.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.tvOS">
-      <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\Xamarin.tvOS\MvvmCross.tvOS.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.5.6.3\lib\Xamarin.tvOS\MvvmCross.tvOS.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Binding">
-      <HintPath>..\packages\MvvmCross.Binding.4.4.0\lib\Xamarin.tvOS\MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.5.6.3\lib\Xamarin.tvOS\MvvmCross.Binding.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Binding.tvOS">
-      <HintPath>..\packages\MvvmCross.Binding.4.4.0\lib\Xamarin.tvOS\MvvmCross.Binding.tvOS.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.5.6.3\lib\Xamarin.tvOS\MvvmCross.Binding.tvOS.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Localization">
-      <HintPath>..\packages\MvvmCross.Binding.4.4.0\lib\Xamarin.tvOS\MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.5.6.3\lib\Xamarin.tvOS\MvvmCross.Localization.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
