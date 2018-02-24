@@ -90,18 +90,8 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="Views\DetailsView.cs" />
-    <Compile Include="Views\FirstView.cs" />
-    <Compile Include="Views\FormGridView.cs" />
-    <Compile Include="Views\FormView.cs" />
-    <Compile Include="Views\FullSizeView.cs" />
-    <Compile Include="Views\SearchView.cs" />
-    <Compile Include="Views\TipView.cs" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\UpdateConstraintsView.cs" />
-    <Compile Include="Views\AdvancedVerticalStackView.cs" />
-    <Compile Include="Views\DirectionFormView.cs" />
     <None Include="packages.config" />
     <Compile Include="Bootstrap\MethodBindingPluginBootstrap.cs" />
   </ItemGroup>
