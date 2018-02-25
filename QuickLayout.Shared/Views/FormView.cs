@@ -1,4 +1,3 @@
-using Cirrious.FluentLayouts;
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
 #if __IOS__
@@ -8,7 +7,6 @@ using MvvmCross.iOS.Views.Presenters.Attributes;
 using MvvmCross.tvOS.Views;
 using MvvmCross.tvOS.Views.Presenters.Attributes;
 #endif
-using Foundation;
 using ObjCRuntime;
 using UIKit;
 

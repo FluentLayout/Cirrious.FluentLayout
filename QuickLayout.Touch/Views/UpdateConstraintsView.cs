@@ -9,7 +9,7 @@ using Foundation;
 
 namespace QuickLayout.Touch
 {
-    [Register("UpdateConstraintsView")]
+    [MvxChildPresentation]
 	public class UpdateConstraintsView : MvxViewController<UpdateConstraintsViewModel>
 	{
 		public override void ViewDidLoad()

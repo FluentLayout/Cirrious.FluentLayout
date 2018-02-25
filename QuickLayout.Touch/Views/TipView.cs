@@ -1,16 +1,14 @@
-using System.Drawing;
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
 using MvvmCross.iOS.Views.Presenters.Attributes;
-using Foundation;
 using UIKit;
 using ObjCRuntime;
 using QuickLayout.Core.ViewModels;
 
 namespace QuickLayout.Touch.Views
 {
-    [Register("TipView")]
+    [MvxChildPresentation]
     public class TipView : MvxViewController
     {
         public override void ViewDidLoad()
