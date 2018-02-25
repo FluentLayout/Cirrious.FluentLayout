@@ -68,6 +68,7 @@ Task("BuildSolution")
 });
 
 Task("NugetPackage")
+    .IsDependentOn("BuildSolution")
     .Does(() => {
     
     if (string.IsNullOrWhiteSpace(packageVersion))
@@ -86,7 +87,7 @@ Task("NugetPackage")
 });
 
 Task("Default")
-  .IsDependentOn("BuildSolution")
+  .IsDependentOn("NugetPackage")
   .Does(() =>
 {
 });  
