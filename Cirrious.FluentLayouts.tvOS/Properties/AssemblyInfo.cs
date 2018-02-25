@@ -4,12 +4,12 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("Cirrious.FluentLayouts.tvOS")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Cirrious.FluentLayout")]
+[assembly: AssemblyDescription("Easy API for using AutoLayout in tvOS")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("${AuthorCopyright}")]
+[assembly: AssemblyProduct("Cirrious.FluentLayout")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

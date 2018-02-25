@@ -25,9 +25,10 @@
 #addin "nuget:?package=NuGet.Core"
 
 var target = Argument("target", "Default");
-var packageVersion = Argument("packageVersion", "");
-//var nugetSource = "https://nexus.eng.absa.co.za/nexus/service/local/nuget/xamarin";
+var packageVersion = Argument("packageVersion", "2.7.0");
+//var nugetSource = "https://nuget.org";
 var solutionFile = "QuickLayout.sln";
+
 
 Task("NugetPackageRestore")
     .Does(() =>
@@ -35,8 +36,28 @@ Task("NugetPackageRestore")
     NuGetRestore(solutionFile);
 });
 
+void SetAssemblyVersion(string file, string os, string version)
+{
+    CreateAssemblyInfo(file, new AssemblyInfoSettings {
+        Title = "Cirrious.FluentLayout",
+        Product = "Cirrious.FluentLayout",
+        Description = "Easy API for using AutoLayout in " + os,
+        Version = version,
+        FileVersion = version,
+        Copyright = string.Format("Copyright (c) 2013 - {0}", DateTime.Now.Year)
+    });
+}
+
+Task("SetAssemblyVersion")
+    .Does(() =>
+{
+   SetAssemblyVersion("./Cirrious.FluentLayout/Properties/AssemblyInfo.cs", "iOS", packageVersion);
+   SetAssemblyVersion("./Cirrious.FluentLayouts.tvOS/Properties/AssemblyInfo.cs", "iOS", packageVersion);
+});
+
 Task("BuildSolution")
      .IsDependentOn("NugetPackageRestore")
+     .IsDependentOn("SetAssemblyVersion")
      .Does(() => 
 {
     MSBuild(solutionFile, settings => settings
@@ -65,6 +86,7 @@ Task("NugetPackage")
 });
 
 Task("Default")
+  .IsDependentOn("BuildSolution")
   .Does(() =>
 {
 });  
