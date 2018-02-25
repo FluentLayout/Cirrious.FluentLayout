@@ -7,14 +7,16 @@ using QuickLayout.Core.ViewModels;
 using ObjCRuntime;
 #if __IOS__
 using MvvmCross.iOS.Views;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 #elif __TVOS__
 using MvvmCross.tvOS.Views;
+using MvvmCross.tvOS.Views.Presenters.Attributes;
 #endif
 using MvvmCross.Binding.BindingContext;
 
 namespace QuickLayout.Touch
 {
-	[Register("AdvancedVerticalStackView")]
+    [MvxChildPresentation]
 	public class AdvancedVerticalStackView : MvxViewController
 	{
 		public override void ViewDidLoad()

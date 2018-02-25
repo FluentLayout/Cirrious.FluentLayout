@@ -3,8 +3,10 @@ using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
 #if __IOS__
 using MvvmCross.iOS.Views;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 #elif __TVOS__
 using MvvmCross.tvOS.Views;
+using MvvmCross.tvOS.Views.Presenters.Attributes;
 #endif
 using Foundation;
 using ObjCRuntime;
@@ -14,7 +16,7 @@ using QuickLayout.Core.ViewModels;
 
 namespace QuickLayout.Touch.Views
 {
-	[Register("DirectionFormView")]
+    [MvxChildPresentation]
 	public class DirectionFormView : MvxViewController
     {
         public override void ViewDidLoad()

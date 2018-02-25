@@ -4,16 +4,17 @@ using Cirrious.FluentLayouts.Touch;
 using Foundation;
 #if __IOS__
 using MvvmCross.iOS.Views;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 #elif __TVOS__
 using MvvmCross.tvOS.Views;
+using MvvmCross.tvOS.Views.Presenters.Attributes;
 #endif
-using MvvmCross.Platform;
 using ObjCRuntime;
 using UIKit;
 
 namespace QuickLayout.Touch.Views
 {
-	[Register("FullSizeView")]
+    [MvxChildPresentation]
 	public class FullSizeView : MvxViewController
 	{
 		private IEnumerable<FluentLayout> _cyanLayouts;

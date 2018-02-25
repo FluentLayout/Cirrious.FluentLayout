@@ -3,18 +3,18 @@ using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
 #if __IOS__
 using MvvmCross.iOS.Views;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 #elif __TVOS__
 using MvvmCross.tvOS.Views;
+using MvvmCross.tvOS.Views.Presenters.Attributes;
 #endif
 using UIKit;
-using Foundation;
 using QuickLayout.Core.ViewModels;
 using ObjCRuntime;
-using Cirrious.FluentLayouts;
 
 namespace QuickLayout.Touch.Views
 {
-    [Register("DetailsView")]
+    [MvxChildPresentation]
     public class DetailsView : MvxViewController
     {
         public override void ViewDidLoad()

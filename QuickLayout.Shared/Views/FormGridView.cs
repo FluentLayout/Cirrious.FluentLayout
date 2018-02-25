@@ -1,20 +1,20 @@
-using System.Drawing;
 using Cirrious.FluentLayouts.Touch;
 using Cirrious.FluentLayouts.Touch.RowSet;
 using MvvmCross.Binding.BindingContext;
 #if __IOS__
 using MvvmCross.iOS.Views;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 #elif __TVOS__
 using MvvmCross.tvOS.Views;
+using MvvmCross.tvOS.Views.Presenters.Attributes;
 #endif
-using Foundation;
 using UIKit;
 using ObjCRuntime;
 using QuickLayout.Core.ViewModels;
 
 namespace QuickLayout.Touch.Views
 {
-    [Register("FormGridView")]
+    [MvxChildPresentation]
     public class FormGridView : MvxViewController
     {
         private UILabel _debugLabel;

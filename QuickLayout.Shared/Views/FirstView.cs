@@ -12,7 +12,6 @@ using QuickLayout.Core.ViewModels;
 
 namespace QuickLayout.Touch.Views
 {
-    [MvxRootPresentation]
     public class FirstView : MvxViewController<FirstViewModel>
     {
 		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView;
