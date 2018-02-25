@@ -54,6 +54,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\Cirrious.FlluentLayouts.Shared\Cirrious.FlluentLayouts.Shared.projitems" Label="Shared" Condition="Exists('..\Cirrious.FlluentLayouts.Shared\Cirrious.FlluentLayouts.Shared.projitems')" />
+  <Import Project="..\Cirrious.FlluentLayout.Shared\Cirrious.FlluentLayouts.Shared.projitems" Label="Shared" Condition="Exists('..\Cirrious.FlluentLayout.Shared\Cirrious.FlluentLayouts.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\TVOS\Xamarin.TVOS.CSharp.targets" />
 </Project>

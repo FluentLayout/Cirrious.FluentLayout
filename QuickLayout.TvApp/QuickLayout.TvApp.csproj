@@ -146,13 +146,13 @@
     <Compile Include="DebugTrace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cirrious.FluentLayouts.tvOS\Cirrious.FluentLayouts.tvOS.csproj">
-      <Project>{6E25929D-756A-46E6-AE75-8CA1D185D94F}</Project>
-      <Name>Cirrious.FluentLayouts.tvOS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\QuickLayout.Core\QuickLayout.Core.csproj">
       <Project>{849AFB57-994A-42D9-A786-EF34FC951CDE}</Project>
       <Name>QuickLayout.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cirrious.FluentLayout.tvOS\Cirrious.FluentLayouts.tvOS.csproj">
+      <Project>{6E25929D-756A-46E6-AE75-8CA1D185D94F}</Project>
+      <Name>Cirrious.FluentLayouts.tvOS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\QuickLayout.Shared\QuickLayout.Shared.projitems" Label="Shared" Condition="Exists('..\QuickLayout.Shared\QuickLayout.Shared.projitems')" />

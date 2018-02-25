@@ -2,12 +2,13 @@ using MvvmCross.Binding.BindingContext;
 using Cirrious.FluentLayouts.Touch;
 #if __IOS__
 using MvvmCross.iOS.Views;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 #elif __TVOS__
 using MvvmCross.tvOS.Views;
+using MvvmCross.tvOS.Views.Presenters.Attributes;
 #endif
 using UIKit;
 using QuickLayout.Core.ViewModels;
-using MvvmCross.tvOS.Views.Presenters.Attributes;
 
 namespace QuickLayout.Touch.Views
 {

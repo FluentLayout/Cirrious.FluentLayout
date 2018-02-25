@@ -52,7 +52,7 @@ Task("SetAssemblyVersion")
     .Does(() =>
 {
    SetAssemblyVersion("./Cirrious.FluentLayout/Properties/AssemblyInfo.cs", "iOS", packageVersion);
-   SetAssemblyVersion("./Cirrious.FluentLayouts.tvOS/Properties/AssemblyInfo.cs", "iOS", packageVersion);
+   SetAssemblyVersion("./Cirrious.FluentLayout.tvOS/Properties/AssemblyInfo.cs", "iOS", packageVersion);
 });
 
 Task("BuildSolution")

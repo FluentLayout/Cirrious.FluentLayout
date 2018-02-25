@@ -44,6 +44,6 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <Import Project="..\Cirrious.FlluentLayouts.Shared\Cirrious.FlluentLayouts.Shared.projitems" Label="Shared" Condition="Exists('..\Cirrious.FlluentLayouts.Shared\Cirrious.FlluentLayouts.Shared.projitems')" />
+  <Import Project="..\Cirrious.FlluentLayout.Shared\Cirrious.FlluentLayouts.Shared.projitems" Label="Shared" Condition="Exists('..\Cirrious.FlluentLayout.Shared\Cirrious.FlluentLayouts.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
