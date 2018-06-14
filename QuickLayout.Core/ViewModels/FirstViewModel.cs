@@ -22,5 +22,7 @@ namespace QuickLayout.Core.ViewModels
 	    public void GoFullSize() => ShowViewModel<FullSizeViewModel>();
 	    
 	    public void GoDirectionForm() => ShowViewModel<DirectionFormViewModel>();
+
+        public void GoRightToLeft() => ShowViewModel<RightToLeftViewModel>();
     }
 }

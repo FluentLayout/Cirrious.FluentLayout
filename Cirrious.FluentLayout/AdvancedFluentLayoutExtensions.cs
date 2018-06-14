@@ -56,6 +56,10 @@ namespace Cirrious.FluentLayouts.Touch
 
         public static FluentLayout WithSameBottom(this UIView view, UIView previous) => view.Bottom().EqualTo().BottomOf(previous);
 
+        public static FluentLayout WithSameLeading(this UIView view, UIView previous) => view.Leading().EqualTo().LeadingOf(previous);
+
+        public static FluentLayout WithSameTrailing(this UIView view, UIView previous) => view.Trailing().EqualTo().TrailingOf(previous);
+
         public static FluentLayout WithRelativeWidth(this UIView view, UIView previous, nfloat? scale = null) =>
 			view.Width().EqualTo().WidthOf(previous).WithMultiplier(scale.GetValueOrDefault(DefaultScale));
 
