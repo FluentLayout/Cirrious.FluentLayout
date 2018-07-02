@@ -104,6 +104,7 @@
     <Compile Include="Views\DirectionFormView.cs" />
     <None Include="packages.config" />
     <Compile Include="Bootstrap\MethodBindingPluginBootstrap.cs" />
+    <Compile Include="Views\RightToLeftView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />
