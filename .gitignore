@@ -32,3 +32,4 @@ packages/
 *.nupkg
 .fake/
 dist/
+.vs/
