@@ -29,7 +29,7 @@ Target "nuget-package" (fun () ->
 Target "nuget-push" (fun () ->
   let nupkgPath = Directory.EnumerateFiles("dist", "*.nupkg").First()
 
-  exec "tools/nuget.exe" ("push " + nupkgPath)
+  exec "tools/nuget.exe" (sprintf "push %s -Source https://api.nuget.org/v3/index.json" nupkgPath)
 )
 
 "restore" 
