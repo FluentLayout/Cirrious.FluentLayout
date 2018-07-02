@@ -1,5 +1,5 @@
-#r @"packages/FAKE.4.21.0/tools/NuGet.Core.dll"
-#r @"packages/FAKE.4.21.0/tools/FakeLib.dll"
+#r @"packages/FAKE.4.64.13/tools/NuGet.Core.dll"
+#r @"packages/FAKE.4.64.13/tools/FakeLib.dll"
 
 open System.IO
 open System.Linq

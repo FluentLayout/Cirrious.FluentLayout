@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FAKE_VERSION="4.21.0"
+FAKE_VERSION="4.64.13"
 
 function restore {
 	# assume if the directory is there then the package is fine
