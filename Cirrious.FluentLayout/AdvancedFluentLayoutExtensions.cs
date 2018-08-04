@@ -15,20 +15,40 @@ namespace Cirrious.FluentLayouts.Touch
 {
     public static class AdvancedFluentLayoutExtensions
     {
-		const float DefaultMargin = 0;
-		const float DefaultScale = 1;
+        const float DefaultMargin = 0;
+        const float DefaultScale = 1;
 
         public static FluentLayout AtTopOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-			view.Top().EqualTo().TopOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+            view.Top().EqualTo().TopOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+
+        public static FluentLayout AtTopOfWithSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
+            UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
+                    ? view.Top().EqualTo().TopOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
+                    : view.AtTopOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));        
 
         public static FluentLayout AtLeftOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Left().EqualTo().LeftOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
 
+        public static FluentLayout AtLeftOfWithSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
+            UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
+                    ? view.Left().EqualTo().LeftOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
+                    : view.AtLeftOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+
         public static FluentLayout AtRightOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Right().EqualTo().RightOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
 
+        public static FluentLayout AtRightOfWithSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
+            UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
+                    ? view.Right().EqualTo().RightOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
+                    : view.AtRightOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+
         public static FluentLayout AtBottomOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Bottom().EqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
+
+        public static FluentLayout AtBottomOfWithSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
+            UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
+                    ? view.Bottom().EqualTo().BottomOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
+                    : view.AtBottomOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
 
         public static FluentLayout AtLeadingOf(this UIView view, UIView parentView, nfloat? margin = null) =>
         view.Leading().EqualTo().LeadingOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
