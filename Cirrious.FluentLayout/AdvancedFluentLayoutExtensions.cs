@@ -24,7 +24,7 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout AtTopOfWithSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
             UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
                     ? view.Top().EqualTo().TopOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
-                    : view.AtTopOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));        
+                    : view.AtTopOf(parentView, margin);        
 
         public static FluentLayout AtLeftOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Left().EqualTo().LeftOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
@@ -32,7 +32,7 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout AtLeftOfWithSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
             UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
                     ? view.Left().EqualTo().LeftOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
-                    : view.AtLeftOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+                    : view.AtLeftOf(parentView, margin);
 
         public static FluentLayout AtRightOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Right().EqualTo().RightOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
@@ -40,7 +40,7 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout AtRightOfWithSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
             UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
                     ? view.Right().EqualTo().RightOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
-                    : view.AtRightOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+                    : view.AtRightOf(parentView, margin);
 
         public static FluentLayout AtBottomOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Bottom().EqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
@@ -48,7 +48,7 @@ namespace Cirrious.FluentLayouts.Touch
         public static FluentLayout AtBottomOfWithSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
             UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
                     ? view.Bottom().EqualTo().BottomOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
-                    : view.AtBottomOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+                    : view.AtBottomOf(parentView, margin);
 
         public static FluentLayout AtLeadingOf(this UIView view, UIView parentView, nfloat? margin = null) =>
         view.Leading().EqualTo().LeadingOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
