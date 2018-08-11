@@ -105,6 +105,7 @@
     <None Include="packages.config" />
     <Compile Include="Bootstrap\MethodBindingPluginBootstrap.cs" />
     <Compile Include="Views\RightToLeftView.cs" />
+    <Compile Include="Views\ViewWithSafeAreaView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

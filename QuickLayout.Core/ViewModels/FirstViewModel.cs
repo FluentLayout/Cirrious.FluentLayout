@@ -24,5 +24,7 @@ namespace QuickLayout.Core.ViewModels
 	    public void GoDirectionForm() => ShowViewModel<DirectionFormViewModel>();
 
         public void GoRightToLeft() => ShowViewModel<RightToLeftViewModel>();
+
+        public void GoViewWithSafeArea() => ShowViewModel<ViewWithSafeAreaViewModel>();
     }
 }
