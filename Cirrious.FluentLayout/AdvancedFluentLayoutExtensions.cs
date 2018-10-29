@@ -39,7 +39,7 @@ namespace Cirrious.FluentLayouts.Touch
 
         public static FluentLayout AtRightOfWithSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
             UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
-                    ? view.Right().EqualTo().RightOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
+                    ? view.Right().EqualTo().RightOf(parentView.SafeAreaLayoutGuide).Minus(margin.GetValueOrDefault(DefaultMargin))
                     : view.AtRightOf(parentView, margin);
 
         public static FluentLayout AtBottomOf(this UIView view, UIView parentView, nfloat? margin = null) =>
