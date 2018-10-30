@@ -43,12 +43,12 @@ namespace QuickLayout.Touch.Views
 
             viewContainer.AddConstraints(
                 sampleText.AtTopOf(viewContainer),
-                // sampleText.AtTopOfWithSafeArea(viewContainer), -> use this when UINavigationBar not present to avoid content overlap under iPhone X notch
-                sampleText.AtLeftOfWithSafeArea(viewContainer),
+                // sampleText.AtTopOfSafeArea(viewContainer), -> use this when UINavigationBar not present to avoid content overlap under iPhone X notch
+                sampleText.AtLeftOfSafeArea(viewContainer),
                 //sampleText.AtLeftOf(viewContainer), -> if this is used, content overlaps under notch on landscape
-                sampleText.AtRightOfWithSafeArea(viewContainer),
+                sampleText.AtRightOfSafeArea(viewContainer),
                 //sampleText.AtRightOf(viewContainer), -> if this is used, content overlaps under notch on landscape
-                sampleText.AtBottomOfWithSafeArea(viewContainer)
+                sampleText.AtBottomOfSafeArea(viewContainer)
                 //sampleText.AtBottomOf(viewContainer) -> if this is used, content overlaps under notch on landscape
             );
         }
