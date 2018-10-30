@@ -11,7 +11,7 @@ namespace QuickLayout.Touch.Views
 	[Register("FirstView")]
     public class FirstView : MvxViewController
     {
-		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView, _rightToLeft;
+		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView, _rightToLeft, _viewSafeArea;
 
         public override void ViewDidLoad()
         {
@@ -62,6 +62,10 @@ namespace QuickLayout.Touch.Views
             _rightToLeft.SetTitle("Right-To-Left Support", UIControlState.Normal);
             Add(_rightToLeft);
 
+            _viewSafeArea = new UIButton(UIButtonType.RoundedRect);
+            _viewSafeArea.SetTitle("View with Safe Area", UIControlState.Normal);
+            Add(_viewSafeArea);
+
 			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
             var set = this.CreateBindingSet<FirstView, FirstViewModel>();
@@ -75,6 +79,7 @@ namespace QuickLayout.Touch.Views
 	        set.Bind(_fullSize).To("GoFullSize");
 			set.Bind(_directionFormView).To("GoDirectionForm");
             set.Bind(_rightToLeft).To("GoRightToLeft");
+            set.Bind(_viewSafeArea).To("GoViewWithSafeArea");
             set.Apply();
 
             var constraints = View.VerticalStackPanelConstraints(

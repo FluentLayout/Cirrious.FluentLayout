@@ -105,11 +105,7 @@
     <None Include="packages.config" />
     <Compile Include="Bootstrap\MethodBindingPluginBootstrap.cs" />
     <Compile Include="Views\RightToLeftView.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <Compile Include="Views\ViewWithSafeAreaView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -158,6 +154,16 @@
       <Project>{849AFB57-994A-42D9-A786-EF34FC951CDE}</Project>
       <Name>QuickLayout.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default%402x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
