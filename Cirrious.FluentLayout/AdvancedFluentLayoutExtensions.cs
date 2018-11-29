@@ -116,13 +116,13 @@ namespace Cirrious.FluentLayouts.Touch
 		view.Right().EqualTo().CenterXOf(previous).Minus(margin.GetValueOrDefault(0));
 	    
 	public static FluentLayout ToRightOfCenterOf(this UIView view, UIView previous, nfloat? margin = null) =>
-		view.Left().EqualTo().CenterXOf(previous).Minus(margin.GetValueOrDefault(0));
+		view.Left().EqualTo().CenterXOf(previous).Plus(margin.GetValueOrDefault(0));
 	    
 	public static FluentLayout AboveCenterOf(this UIView view, UIView previous, nfloat? margin = null) =>
 		view.Bottom().EqualTo().CenterYOf(previous).Minus(margin.GetValueOrDefault(0));
 	    
 	public static FluentLayout BelowCenterOf(this UIView view, UIView previous, nfloat? margin = null) =>
-		view.Top().EqualTo().CenterYOf(previous).Minus(margin.GetValueOrDefault(0));
+		view.Top().EqualTo().CenterYOf(previous).Plus(margin.GetValueOrDefault(0));
 
         public static IEnumerable<FluentLayout> FullWidthOf(this UIView view, UIView parent, nfloat? margin = null)
         {
