@@ -11,6 +11,7 @@ namespace QuickLayout.Touch.Views
     {
         public override void ViewDidLoad()
         {
+            View.BackgroundColor = UIColor.Black;
 
             UIView firstContainer = new UIView
             {
