@@ -45,6 +45,7 @@
     <Compile Include="ViewModels\FullSizeViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\TipViewModel.cs" />
+    <Compile Include="ViewModels\ToCenterConstraintsViewModel.cs" />
     <Compile Include="ViewModels\UpdateConstraintsViewModel.cs" />
     <Compile Include="ViewModels\AdvancedVerticalStackViewModel.cs" />
     <Compile Include="ViewModels\DirectionFormViewModel.cs" />

@@ -26,5 +26,7 @@ namespace QuickLayout.Core.ViewModels
         public void GoRightToLeft() => ShowViewModel<RightToLeftViewModel>();
 
         public void GoViewWithSafeArea() => ShowViewModel<ViewWithSafeAreaViewModel>();
+
+        public void GoCenterConstraints() => ShowViewModel<ToCenterConstraintsViewModel>();
     }
 }
