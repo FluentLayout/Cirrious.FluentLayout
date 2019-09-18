@@ -1,8 +1,8 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.ViewModels;
 
 namespace QuickLayout.Core.ViewModels
 {
-	public class UpdateConstraintsViewModel : MvxViewModel
+    public class UpdateConstraintsViewModel : MvxViewModel
 	{
 		private bool _active = true;
 		public bool Active

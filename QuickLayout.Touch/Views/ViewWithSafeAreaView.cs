@@ -1,7 +1,7 @@
 ﻿using System;
 using Cirrious.FluentLayouts.Touch;
 using Foundation;
-using MvvmCross.iOS.Views;
+using MvvmCross.Platforms.Ios.Views;
 using UIKit;
 
 namespace QuickLayout.Touch.Views

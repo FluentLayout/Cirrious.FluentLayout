@@ -1,8 +1,9 @@
-using MvvmCross.Platform.IoC;
+using MvvmCross.IoC;
+using MvvmCross.ViewModels;
 
 namespace QuickLayout.Core
 {
-    public class App : MvvmCross.Core.ViewModels.MvxApplication
+    public class App : MvxApplication
     {
         public override void Initialize()
         {
