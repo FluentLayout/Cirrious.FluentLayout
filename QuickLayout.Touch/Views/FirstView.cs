@@ -1,14 +1,16 @@
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.iOS.Views;
+using MvvmCross.Platforms.Ios.Views;
 using Foundation;
 using UIKit;
 using ObjCRuntime;
 using QuickLayout.Core.ViewModels;
+using MvvmCross.Platforms.Ios.Presenters.Attributes;
 
 namespace QuickLayout.Touch.Views
 {
 	[Register("FirstView")]
+    [MvxRootPresentation(WrapInNavigationController = true)]
     public class FirstView : MvxViewController
     {
 		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView, _rightToLeft, _viewSafeArea, _viewCenterConstraints;

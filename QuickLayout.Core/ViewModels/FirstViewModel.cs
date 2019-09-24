@@ -1,32 +1,39 @@
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 
 namespace QuickLayout.Core.ViewModels
 {
     public class FirstViewModel
-        : MvxViewModel
+        : MvxNavigationViewModel
     {
-        public void GoDetails() => ShowViewModel<DetailsViewModel>();
+        public FirstViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base(logProvider, navigationService)
+        {
+        }
 
-        public void GoForm() => ShowViewModel<FormViewModel>();
+        public void GoDetails() => NavigationService.Navigate<DetailsViewModel>();
 
-        public void GoFormGrid() => ShowViewModel<FormGridViewModel>();
+        public void GoForm() => NavigationService.Navigate<FormViewModel>();
 
-        public void GoSearch() => ShowViewModel<SearchViewModel>();
+        public void GoFormGrid() => NavigationService.Navigate<FormGridViewModel>();
 
-        public void GoTip() => ShowViewModel<TipViewModel>();
+        public void GoSearch() => NavigationService.Navigate<SearchViewModel>();
 
-		public void GoUpdateConstraints() => ShowViewModel<UpdateConstraintsViewModel>();
+        public void GoTip() => NavigationService.Navigate<TipViewModel>();
 
-		public void GoAdvancedVerticalStack() => ShowViewModel<AdvancedVerticalStackViewModel>();
+		public void GoUpdateConstraints() => NavigationService.Navigate<UpdateConstraintsViewModel>();
 
-	    public void GoFullSize() => ShowViewModel<FullSizeViewModel>();
+		public void GoAdvancedVerticalStack() => NavigationService.Navigate<AdvancedVerticalStackViewModel>();
+
+	    public void GoFullSize() => NavigationService.Navigate<FullSizeViewModel>();
 	    
-	    public void GoDirectionForm() => ShowViewModel<DirectionFormViewModel>();
+	    public void GoDirectionForm() => NavigationService.Navigate<DirectionFormViewModel>();
 
-        public void GoRightToLeft() => ShowViewModel<RightToLeftViewModel>();
+        public void GoRightToLeft() => NavigationService.Navigate<RightToLeftViewModel>();
 
-        public void GoViewWithSafeArea() => ShowViewModel<ViewWithSafeAreaViewModel>();
+        public void GoViewWithSafeArea() => NavigationService.Navigate<ViewWithSafeAreaViewModel>();
 
-        public void GoCenterConstraints() => ShowViewModel<ToCenterConstraintsViewModel>();
+        public void GoCenterConstraints() => NavigationService.Navigate<ToCenterConstraintsViewModel>();
     }
 }

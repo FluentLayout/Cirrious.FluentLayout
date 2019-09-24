@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using Cirrious.FluentLayouts.Touch;
 using Foundation;
-using MvvmCross.iOS.Views;
-using MvvmCross.Platform;
+using MvvmCross.Platforms.Ios.Views;
 using ObjCRuntime;
 using UIKit;
 
 namespace QuickLayout.Touch.Views
 {
-	[Register("FullSizeView")]
+    [Register("FullSizeView")]
 	public class FullSizeView : MvxViewController
 	{
 		private IEnumerable<FluentLayout> _cyanLayouts;

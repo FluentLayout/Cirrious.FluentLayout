@@ -5,12 +5,12 @@ using UIKit;
 using Foundation;
 using QuickLayout.Core.ViewModels;
 using ObjCRuntime;
-using MvvmCross.iOS.Views;
+using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.Binding.BindingContext;
 
 namespace QuickLayout.Touch
 {
-	[Register("AdvancedVerticalStackView")]
+    [Register("AdvancedVerticalStackView")]
 	public class AdvancedVerticalStackView : MvxViewController
 	{
 		public override void ViewDidLoad()

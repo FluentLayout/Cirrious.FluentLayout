@@ -1,7 +1,7 @@
 using Cirrious.FluentLayouts;
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.iOS.Views;
+using MvvmCross.Platforms.Ios.Views;
 using Foundation;
 using ObjCRuntime;
 using UIKit;

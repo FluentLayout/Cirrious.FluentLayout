@@ -1,6 +1,6 @@
 using Cirrious.FluentLayouts.Touch;
 using Foundation;
-using MvvmCross.iOS.Views;
+using MvvmCross.Platforms.Ios.Views;
 using QuickLayout.Core.ViewModels;
 using UIKit;
 
