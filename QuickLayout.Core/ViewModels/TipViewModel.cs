@@ -38,7 +38,6 @@ namespace QuickLayout.Core.ViewModels
             {
                 _generosity = Limit(value);
                 InvokeOnMainThreadAsync(() => RaisePropertyChanged(() => Generosity));
-				//MvxAsyncDispatcher.BeginAsync();
                 Recalcuate();
             }
         }
