@@ -5,7 +5,7 @@
         <version>2.9.0</version>
         <authors>slodge</authors>
         <owners>gshackles,slodge</owners>
-        <licenseUrl>https://github.com/slodge/Cirrious.FluentLayout/blob/master/LICENSE</licenseUrl>
+        <licenseUrl>https://github.com/FluentLayout/Cirrious.FluentLayout/blob/main/LICENSE</licenseUrl>
         <projectUrl>https://github.com/slodge/Cirrious.FluentLayout</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Easy API for using AutoLayout in iOS</description>
