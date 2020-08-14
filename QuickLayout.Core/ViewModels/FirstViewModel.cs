@@ -35,5 +35,9 @@ namespace QuickLayout.Core.ViewModels
         public void GoViewWithSafeArea() => NavigationService.Navigate<ViewWithSafeAreaViewModel>();
 
         public void GoCenterConstraints() => NavigationService.Navigate<ToCenterConstraintsViewModel>();
+        
+        public void GoViewWithReadableContentGuide() => NavigationService.Navigate<ViewWithReadableContentGuideViewModel>();
+        
+        public void GoViewWithMarginsGuide() => NavigationService.Navigate<ViewWithMarginsGuideViewModel>();
     }
 }

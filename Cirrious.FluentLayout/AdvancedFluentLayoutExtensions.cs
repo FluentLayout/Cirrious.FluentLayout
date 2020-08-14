@@ -20,35 +20,87 @@ namespace Cirrious.FluentLayouts.Touch
 
         public static FluentLayout AtTopOf(this UIView view, UIView parentView, nfloat? margin = null) =>
             view.Top().EqualTo().TopOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+        
+        public static FluentLayout AtTopOfLayoutGuide(this UIView view, UILayoutGuide layoutGuide, nfloat? margin = null) =>
+	        view.Top().EqualTo().TopOf(layoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin));
 
         public static FluentLayout AtTopOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
             UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
-                    ? view.Top().EqualTo().TopOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
-                    : view.AtTopOf(parentView, margin);        
+                    ? view.AtTopOfLayoutGuide(parentView.SafeAreaLayoutGuide, margin)
+                    : view.AtTopOf(parentView, margin); 
+        
+        public static FluentLayout AtTopOfMargins(this UIView view, UIView parentView, nfloat? margin = null) =>
+	        UIDevice.CurrentDevice.CheckSystemVersion(9, 0)
+		        ? view.AtTopOfLayoutGuide(parentView.LayoutMarginsGuide, margin)
+		        : view.AtTopOf(parentView, margin); 
+        
+        public static FluentLayout AtTopOfReadableContent(this UIView view, UIView parentView, nfloat? margin = null) =>
+	        UIDevice.CurrentDevice.CheckSystemVersion(9, 0)
+		        ? view.AtTopOfLayoutGuide(parentView.ReadableContentGuide, margin)
+		        : view.AtTopOf(parentView, margin); 
 
         public static FluentLayout AtLeftOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Left().EqualTo().LeftOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));
+        
+        public static FluentLayout AtLeftOfLayoutGuide(this UIView view, UILayoutGuide layoutGuide, nfloat? margin = null) =>
+	        view.Left().EqualTo().LeftOf(layoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin));
 
         public static FluentLayout AtLeftOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
             UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
-                    ? view.Left().EqualTo().LeftOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault(DefaultMargin))
+                    ? view.AtLeftOfLayoutGuide(parentView.SafeAreaLayoutGuide, margin)
                     : view.AtLeftOf(parentView, margin);
+        
+        public static FluentLayout AtLeftOfMargins(this UIView view, UIView parentView, nfloat? margin = null) =>
+	        UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
+		        ? AtLeftOfLayoutGuide(view, parentView.LayoutMarginsGuide, margin)
+		        : view.AtLeftOf(parentView, margin);
+        
+        public static FluentLayout AtLeftOfReadableContent(this UIView view, UIView parentView, nfloat? margin = null) =>
+	        UIDevice.CurrentDevice.CheckSystemVersion(9, 0)
+		        ? view.AtLeftOfLayoutGuide(parentView.ReadableContentGuide, margin)
+		        : view.AtLeftOf(parentView, margin);
 
         public static FluentLayout AtRightOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Right().EqualTo().RightOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
+        
+        public static FluentLayout AtRightOfLayoutGuide(this UIView view, UILayoutGuide layoutGuide, nfloat? margin = null) =>
+	        view.Right().EqualTo().RightOf(layoutGuide).Minus(margin.GetValueOrDefault(DefaultMargin));
 
         public static FluentLayout AtRightOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
             UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
-                    ? view.Right().EqualTo().RightOf(parentView.SafeAreaLayoutGuide).Minus(margin.GetValueOrDefault(DefaultMargin))
+                    ? view.AtRightOfLayoutGuide(parentView.SafeAreaLayoutGuide, margin)
                     : view.AtRightOf(parentView, margin);
+        
+        public static FluentLayout AtRightOfMargins(this UIView view, UIView parentView, nfloat? margin = null) =>
+	        UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
+		        ? view.AtRightOfLayoutGuide(parentView.LayoutMarginsGuide, margin)
+		        : view.AtRightOf(parentView, margin);
+        
+        public static FluentLayout AtRightOfReadableContent(this UIView view, UIView parentView, nfloat? margin = null) =>
+	        UIDevice.CurrentDevice.CheckSystemVersion(9, 0)
+		        ? view.AtRightOfLayoutGuide(parentView.ReadableContentGuide, margin)
+		        : view.AtRightOf(parentView, margin);
 
         public static FluentLayout AtBottomOf(this UIView view, UIView parentView, nfloat? margin = null) =>
 			view.Bottom().EqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault(DefaultMargin));
+        
+        public static FluentLayout AtBottomOfLayoutGuide(this UIView view, UILayoutGuide layoutGuide, nfloat? margin = null) =>
+	        view.Bottom().EqualTo().BottomOf(layoutGuide).Minus(margin.GetValueOrDefault(DefaultMargin));
 
         public static FluentLayout AtBottomOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
             UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
-                    ? view.Bottom().EqualTo().BottomOf(parentView.SafeAreaLayoutGuide).Minus(margin.GetValueOrDefault(DefaultMargin))
+                    ? view.AtBottomOfLayoutGuide(parentView.SafeAreaLayoutGuide, margin)
                     : view.AtBottomOf(parentView, margin);
+        
+        public static FluentLayout AtBottomOfMargins(this UIView view, UIView parentView, nfloat? margin = null) =>
+	        UIDevice.CurrentDevice.CheckSystemVersion(11, 0)
+		        ? view.AtBottomOfLayoutGuide(parentView.LayoutMarginsGuide, margin)
+		        : view.AtBottomOf(parentView, margin);
+        
+        public static FluentLayout AtBottomOfReadableContent(this UIView view, UIView parentView, nfloat? margin = null) =>
+	        UIDevice.CurrentDevice.CheckSystemVersion(9, 0)
+		        ? view.AtBottomOfLayoutGuide(parentView.ReadableContentGuide, margin)
+		        : view.AtBottomOf(parentView, margin);
 
         public static FluentLayout AtLeadingOf(this UIView view, UIView parentView, nfloat? margin = null) =>
         view.Leading().EqualTo().LeadingOf(parentView).Plus(margin.GetValueOrDefault(DefaultMargin));

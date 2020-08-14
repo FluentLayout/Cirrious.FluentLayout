@@ -102,6 +102,8 @@
     <Compile Include="Views\AdvancedVerticalStackView.cs" />
     <Compile Include="Views\DirectionFormView.cs" />
     <Compile Include="Views\RightToLeftView.cs" />
+    <Compile Include="Views\ViewWithMarginsGuideView.cs" />
+    <Compile Include="Views\ViewWithReadableContentGuideView.cs" />
     <Compile Include="Views\ViewWithSafeAreaView.cs" />
   </ItemGroup>
   <ItemGroup>
