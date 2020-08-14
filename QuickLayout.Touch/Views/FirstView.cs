@@ -13,7 +13,7 @@ namespace QuickLayout.Touch.Views
     [MvxRootPresentation(WrapInNavigationController = true)]
     public class FirstView : MvxViewController
     {
-		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView, _rightToLeft, _viewSafeArea, _viewCenterConstraints;
+		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView, _rightToLeft, _viewSafeArea, _viewCenterConstraints, _viewReadableContentGuide, _viewMarginsGuide;
 
         public override void ViewDidLoad()
         {
@@ -71,6 +71,14 @@ namespace QuickLayout.Touch.Views
             _viewCenterConstraints = new UIButton(UIButtonType.RoundedRect);
             _viewCenterConstraints.SetTitle("View Contraining to centers", UIControlState.Normal);
             Add(_viewCenterConstraints);
+            
+            _viewReadableContentGuide = new UIButton(UIButtonType.RoundedRect);
+            _viewReadableContentGuide.SetTitle("View with Readable Content Guide", UIControlState.Normal);
+            Add(_viewReadableContentGuide);
+            
+            _viewMarginsGuide = new UIButton(UIButtonType.RoundedRect);
+            _viewMarginsGuide.SetTitle("View with Margins Guide", UIControlState.Normal);
+            Add(_viewMarginsGuide);
 
 			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
@@ -87,6 +95,8 @@ namespace QuickLayout.Touch.Views
             set.Bind(_rightToLeft).To("GoRightToLeft");
             set.Bind(_viewSafeArea).To("GoViewWithSafeArea");
             set.Bind(_viewCenterConstraints).To("GoCenterConstraints");
+            set.Bind(_viewReadableContentGuide).To("GoViewWithReadableContentGuide");
+            set.Bind(_viewMarginsGuide).To("GoViewWithMarginsGuide");
             set.Apply();
 
             var constraints = View.VerticalStackPanelConstraints(
