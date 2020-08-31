@@ -63,7 +63,7 @@ namespace Cirrious.FluentLayouts.Touch
 			view.Bottom().EqualTo().TopOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
 	    
 	public static FluentLayout WithAspectRatio(this UIView view, nfloat ratio) =>
-            		view.Height().EqualTo().WidthOf(view).WithMultiplier(ratio);
+            		view.Width().EqualTo().HeightOf(view).WithMultiplier(ratio);
 
         public static FluentLayout WithSameLeft(this UIView view, UIView previous) => view.Left().EqualTo().LeftOf(previous);
 

@@ -35,5 +35,7 @@ namespace QuickLayout.Core.ViewModels
         public void GoViewWithSafeArea() => NavigationService.Navigate<ViewWithSafeAreaViewModel>();
 
         public void GoCenterConstraints() => NavigationService.Navigate<ToCenterConstraintsViewModel>();
+        
+        public void GoViewAspectRatio() => NavigationService.Navigate<AspectRatioViewModel>();
     }
 }
