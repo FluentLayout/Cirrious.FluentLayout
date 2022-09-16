@@ -1,3 +1,6 @@
+using Foundation;
+using MvvmCross.Platforms.Ios.Core;
+
 namespace QuickLayout.Touch
 {
     [Register("AppDelegate")]

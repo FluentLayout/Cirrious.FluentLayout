@@ -1,7 +1,7 @@
 ﻿namespace QuickLayout.Core.ViewModels
 {
-    public class DirectionFormViewModel
-        : BaseDetailsViewModel
-    {
-    }
+	public class DirectionFormViewModel
+		: BaseDetailsViewModel
+	{
+	}
 }

@@ -1,6 +1,10 @@
+using Cirrious.FluentLayouts;
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Platforms.Ios.Views;
+using Foundation;
 using ObjCRuntime;
+using UIKit;
 
 using QuickLayout.Core.ViewModels;
 
@@ -18,22 +22,22 @@ namespace QuickLayout.Touch.Views
             if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
                 EdgesForExtendedLayout = UIRectEdge.None;
 
-            var fNameLabel = new UILabel { Text = "First" };
+            var fNameLabel = new UILabel {Text = "First"};
             Add(fNameLabel);
 
-            var sNameLabel = new UILabel { Text = "Last" };
+            var sNameLabel = new UILabel {Text = "Last"};
             Add(sNameLabel);
 
-            var numberLabel = new UILabel { Text = "#" };
+            var numberLabel = new UILabel {Text = "#"};
             Add(numberLabel);
 
-            var streetLabel = new UILabel { Text = "Street" };
+            var streetLabel = new UILabel {Text = "Street"};
             Add(streetLabel);
 
-            var townLabel = new UILabel { Text = "Town" };
+            var townLabel = new UILabel {Text = "Town"};
             Add(townLabel);
 
-            var zipLabel = new UILabel { Text = "Zip" };
+            var zipLabel = new UILabel {Text = "Zip"};
             Add(zipLabel);
 
             var fNameField = new UITextField() { BackgroundColor = UIColor.LightGray, BorderStyle = UITextBorderStyle.RoundedRect };

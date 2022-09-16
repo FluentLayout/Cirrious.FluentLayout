@@ -1,5 +1,9 @@
+using System.Drawing;
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Platforms.Ios.Views;
+using Foundation;
+using UIKit;
 using ObjCRuntime;
 using QuickLayout.Core.ViewModels;
 
@@ -22,10 +26,10 @@ namespace QuickLayout.Touch.Views
             Add(subTotal);
 
             var seek = new UISlider()
-            {
-                MinValue = 0,
-                MaxValue = 100,
-            };
+                {
+                    MinValue = 0,
+                    MaxValue = 100,
+                };
             Add(seek);
 
             var seekLabel = new UILabel();

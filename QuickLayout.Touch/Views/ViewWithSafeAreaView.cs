@@ -1,4 +1,8 @@
-﻿using Cirrious.FluentLayouts.Touch;
+﻿using System;
+using Cirrious.FluentLayouts.Touch;
+using Foundation;
+using MvvmCross.Platforms.Ios.Views;
+using UIKit;
 
 namespace QuickLayout.Touch.Views
 {
@@ -12,7 +16,7 @@ namespace QuickLayout.Touch.Views
             View.BackgroundColor = UIColor.FromRGB(248, 191, 120);
 
             var viewContainer = new UIView { BackgroundColor = UIColor.Clear };
-
+             
             var sampleText = new UITextView
             {
                 Editable = false,
@@ -45,7 +49,7 @@ namespace QuickLayout.Touch.Views
                 sampleText.AtRightOfSafeArea(viewContainer),
                 //sampleText.AtRightOf(viewContainer), -> if this is used, content overlaps under notch on landscape
                 sampleText.AtBottomOfSafeArea(viewContainer)
-            //sampleText.AtBottomOf(viewContainer) -> if this is used, content overlaps under notch on landscape
+                //sampleText.AtBottomOf(viewContainer) -> if this is used, content overlaps under notch on landscape
             );
         }
     }

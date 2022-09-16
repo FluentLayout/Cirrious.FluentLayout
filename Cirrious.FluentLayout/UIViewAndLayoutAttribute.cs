@@ -5,6 +5,9 @@
 // 
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
+using UIKit;
+using System;
+
 namespace Cirrious.FluentLayouts.Touch
 {
     public class UIViewAndLayoutAttribute
@@ -18,13 +21,13 @@ namespace Cirrious.FluentLayouts.Touch
         public UIView View { get; }
         public NSLayoutAttribute Attribute { get; }
 
-        public FluentLayout EqualTo(nfloat constant = default(nfloat)) =>
+		public FluentLayout EqualTo(nfloat constant = default(nfloat)) =>
             new FluentLayout(View, Attribute, NSLayoutRelation.Equal, constant);
 
-        public FluentLayout GreaterThanOrEqualTo(nfloat constant = default(nfloat)) =>
+		public FluentLayout GreaterThanOrEqualTo(nfloat constant = default(nfloat)) =>
             new FluentLayout(View, Attribute, NSLayoutRelation.GreaterThanOrEqual, constant);
 
-        public FluentLayout LessThanOrEqualTo(nfloat constant = default(nfloat)) =>
+		public FluentLayout LessThanOrEqualTo(nfloat constant = default(nfloat)) =>
             new FluentLayout(View, Attribute, NSLayoutRelation.LessThanOrEqual, constant);
     }
 }
