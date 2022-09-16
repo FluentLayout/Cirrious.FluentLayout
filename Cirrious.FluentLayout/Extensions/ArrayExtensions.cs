@@ -1,26 +1,26 @@
 ﻿namespace Cirrious.FluentLayouts.Touch.Extensions
 {
-	internal static class ArrayExtensions
-	{
-		public static bool TryGetElement<T>(this T[] array, int index, out T element)
-		{
-			if (array == null)
-			{
-				element = default(T);
+    internal static class ArrayExtensions
+    {
+        public static bool TryGetElement<T>(this T[] array, int index, out T element)
+        {
+            if (array == null)
+            {
+                element = default(T);
 
-				return false;
-			}
+                return false;
+            }
 
-			if (index < array.Length)
-			{
-				element = array[index];
+            if (index < array.Length)
+            {
+                element = array[index];
 
-				return true;
-			}
+                return true;
+            }
 
-			element = default(T);
+            element = default(T);
 
-			return false;
-		}
-	}
+            return false;
+        }
+    }
 }

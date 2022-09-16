@@ -1,12 +1,8 @@
-using System.Reflection;
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Ios.Views;
-using UIKit;
-using Foundation;
-using QuickLayout.Core.ViewModels;
 using ObjCRuntime;
-using Cirrious.FluentLayouts;
+using QuickLayout.Core.ViewModels;
+using System.Reflection;
 
 namespace QuickLayout.Touch.Views
 {
@@ -16,11 +12,11 @@ namespace QuickLayout.Touch.Views
         public override void ViewDidLoad()
         {
             var scrollView = new UIScrollView()
-                {
-                    BackgroundColor = UIColor.White,
-                    ShowsHorizontalScrollIndicator = false, 
-                    AutoresizingMask = UIViewAutoresizing.FlexibleHeight,
-                };
+            {
+                BackgroundColor = UIColor.White,
+                ShowsHorizontalScrollIndicator = false,
+                AutoresizingMask = UIViewAutoresizing.FlexibleHeight,
+            };
             View = scrollView;
             scrollView.TranslatesAutoresizingMaskIntoConstraints = true;
             base.ViewDidLoad();
@@ -33,7 +29,7 @@ namespace QuickLayout.Touch.Views
 
             foreach (var propertyInfo in typeof(DetailsViewModel).GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
-                if (propertyInfo.PropertyType != typeof (string))
+                if (propertyInfo.PropertyType != typeof(string))
                     continue;
 
                 var introLabel = new UILabel
@@ -43,11 +39,11 @@ namespace QuickLayout.Touch.Views
                 };
                 Add(introLabel);
                 var textField = new UITextField
-                    {
-                        BorderStyle = UITextBorderStyle.RoundedRect,
-                        TranslatesAutoresizingMaskIntoConstraints = false,
-                        BackgroundColor = UIColor.LightGray
-                    };
+                {
+                    BorderStyle = UITextBorderStyle.RoundedRect,
+                    TranslatesAutoresizingMaskIntoConstraints = false,
+                    BackgroundColor = UIColor.LightGray
+                };
                 Add(textField);
                 var label = new UILabel
                 {

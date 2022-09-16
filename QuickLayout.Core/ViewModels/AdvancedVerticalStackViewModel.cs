@@ -1,6 +1,6 @@
 namespace QuickLayout.Core.ViewModels
 {
-	public class AdvancedVerticalStackViewModel : BaseDetailsViewModel
-	{
-	}
+    public class AdvancedVerticalStackViewModel : BaseDetailsViewModel
+    {
+    }
 }

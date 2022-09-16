@@ -2,8 +2,8 @@
 
 namespace QuickLayout.Core.ViewModels
 {
-    public class FullSizeViewModel 
-		: MvxViewModel
-	{
-	}
+    public class FullSizeViewModel
+        : MvxViewModel
+    {
+    }
 }

@@ -1,8 +1,5 @@
 using Cirrious.FluentLayouts.Touch;
-using Foundation;
-using MvvmCross.Platforms.Ios.Views;
 using QuickLayout.Core.ViewModels;
-using UIKit;
 
 namespace QuickLayout.Touch.Views
 {
@@ -24,7 +21,7 @@ namespace QuickLayout.Touch.Views
                 TranslatesAutoresizingMaskIntoConstraints = false,
                 BackgroundColor = UIColor.Red
             },
-            
+
             thirdContainer = new UIView
             {
                 TranslatesAutoresizingMaskIntoConstraints = false,

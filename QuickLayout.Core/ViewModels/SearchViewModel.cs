@@ -6,8 +6,8 @@ namespace QuickLayout.Core.ViewModels
         : MvxViewModel
     {
         private string _searchText = "Here";
-        public string SearchText 
-        {   
+        public string SearchText
+        {
             get { return _searchText; }
             set { _searchText = value; RaisePropertyChanged(() => SearchText); }
         }

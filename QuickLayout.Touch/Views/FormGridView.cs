@@ -1,10 +1,6 @@
-using System.Drawing;
 using Cirrious.FluentLayouts.Touch;
 using Cirrious.FluentLayouts.Touch.RowSet;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Ios.Views;
-using Foundation;
-using UIKit;
 using ObjCRuntime;
 using QuickLayout.Core.ViewModels;
 
@@ -32,7 +28,7 @@ namespace QuickLayout.Touch.Views
             if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
                 EdgesForExtendedLayout = UIRectEdge.None;
 
-            var _forceTheWidthView = new UIView() {BackgroundColor = UIColor.Clear};
+            var _forceTheWidthView = new UIView() { BackgroundColor = UIColor.Clear };
             Add(_forceTheWidthView);
 
             var fNameLabel = new UILabel { Text = "First" };
@@ -87,23 +83,23 @@ namespace QuickLayout.Touch.Views
             View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
             var rowSet = new RowSetTemplate()
-                {
-                    TopMargin = 10f,
-                    BottomMargin = 20f,
-                    VInterspacing = 10f
-                };
+            {
+                TopMargin = 10f,
+                BottomMargin = 20f,
+                VInterspacing = 10f
+            };
             var equalWeightRowTemplate = new RowTemplate()
-                {
-                    HInterspacing = 12f,
-                    LeftMargin = 6f,
-                    RightMargin = 24f
-                };
+            {
+                HInterspacing = 12f,
+                LeftMargin = 6f,
+                RightMargin = 24f
+            };
             var addressRowTemplate = new RowTemplate()
-                {
-                    HInterspacing = 12f,
-                    LeftMargin = 6f,
-                    RightMargin = 24f
-                };
+            {
+                HInterspacing = 12f,
+                LeftMargin = 6f,
+                RightMargin = 24f
+            };
             addressRowTemplate.ColumnWeight(0, 0.3f);
             var townAndZipRowTemplate = new RowTemplate()
             {

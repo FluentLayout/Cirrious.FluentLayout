@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Specialized;
-using System.Windows.Input;
-using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Navigation;
-using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.ViewModels;
-using UIKit;
+using System.Collections.Specialized;
+using System.Windows.Input;
 
 namespace QuickLayout.Touch
 {
