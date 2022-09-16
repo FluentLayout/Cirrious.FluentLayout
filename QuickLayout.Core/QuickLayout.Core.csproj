@@ -1,8 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="6.4.0" />
-  </ItemGroup>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>7.1</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="MvvmCross" Version="6.4.0" />
+	</ItemGroup>
 </Project>
