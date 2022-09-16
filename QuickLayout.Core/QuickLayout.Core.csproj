@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 
-                      <PropertyGroup>
+  <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
@@ -9,10 +9,3 @@
     <PackageReference Include="MvvmCross" Version="6.4.0" />
   </ItemGroup>
 </Project>
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<LangVersion>7.1</LangVersion>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="MvvmCross" Version="6.4.0" />
-	
