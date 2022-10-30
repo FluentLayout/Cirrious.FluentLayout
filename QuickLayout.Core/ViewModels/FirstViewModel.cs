@@ -1,4 +1,4 @@
-using MvvmCross.Logging;
+using Microsoft.Extensions.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
@@ -7,8 +7,8 @@ namespace QuickLayout.Core.ViewModels
     public class FirstViewModel
         : MvxNavigationViewModel
     {
-        public FirstViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public FirstViewModel(ILoggerFactory loggerFactory, IMvxNavigationService navigationService)
+            : base(loggerFactory, navigationService)
         {
         }
 
