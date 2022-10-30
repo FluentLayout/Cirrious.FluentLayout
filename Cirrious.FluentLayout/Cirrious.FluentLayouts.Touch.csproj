@@ -1,13 +1,11 @@
-﻿<Project Sdk="Xamarin.Legacy.Sdk">
+﻿<Project Sdk="Xamarin.Legacy.Sdk/0.2.0-alpha2">
   <PropertyGroup>
     <TargetFrameworks>xamarin.ios10;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
 
     <RootNamespace>Cirrious.FluentLayouts.Touch</RootNamespace>
-    <AssemblyName>Cirrious.FluentLayouts.Touch</AssemblyName>
-
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">10.0</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">10.0</SupportedOSPlatformVersion>
+    <AssemblyName>Cirrious.FluentLayout.Touch</AssemblyName>
+    <PackageId>Cirrious.FluentLayout</PackageId>
   </PropertyGroup>
 </Project>

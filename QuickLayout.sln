@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickLayout.Touch", "QuickL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.FluentLayouts.Touch", "Cirrious.FluentLayout\Cirrious.FluentLayouts.Touch.csproj", "{75D2DA9D-DFD4-49A1-98FB-FE0F0677EF0F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{EB499142-3F05-4B62-AF4A-16A6CFF92694}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{41493C47-62E0-4E84-B0F7-C9588119C1B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -116,5 +120,9 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = QuickLayout.Touch\QuickLayout.Touch.csproj
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{849AFB57-994A-42D9-A786-EF34FC951CDE} = {EB499142-3F05-4B62-AF4A-16A6CFF92694}
+		{5739EE87-45C0-496A-8388-A09CDB906501} = {EB499142-3F05-4B62-AF4A-16A6CFF92694}
 	EndGlobalSection
 EndGlobal
