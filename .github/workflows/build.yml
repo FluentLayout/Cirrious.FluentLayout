@@ -15,7 +15,10 @@ jobs:
     runs-on: macOS-12
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -24,6 +27,11 @@ jobs:
 
     - name: Install .NET Workloads
       run: dotnet workload install ios maccatalyst
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: '5.x'
 
     - name: Determine Version
       id: gitversion
@@ -35,7 +43,7 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build Cirrious.FluentLayout/Cirrious.FluentLayouts.Touch.csproj --no-restore /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
+      run: dotnet build Cirrious.FluentLayout/Cirrious.FluentLayouts.Touch.csproj --no-restore /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.1
