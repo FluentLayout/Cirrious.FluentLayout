@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Specialized;
 using System.Windows.Input;
-using Foundation;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.ViewModels;
-using UIKit;
+using MvvmCross.Views;
 
 namespace QuickLayout.Touch
 {
@@ -119,16 +118,15 @@ namespace QuickLayout.Touch
             changed.PropertyChanged += (sender, e) => { var test = e.PropertyName; };
         }
 
-        public void Include(MvxNavigationService service, IMvxViewModelLoader loader)
+        public void Include(MvxNavigationService service, IMvxViewDispatcher dispatcher, IMvxViewModelLoader loader, IMvxIoCProvider iocProvider)
         {
-            service = new MvxNavigationService(null, loader);
+            service = new MvxNavigationService(loader, dispatcher, iocProvider);
         }
 
         public void Include(UIImagePickerController uIImagePickerController)
         {
             var x = uIImagePickerController.SourceType;
             uIImagePickerController.FinishedPickingMedia += (s, e) => { };
-            uIImagePickerController.FinishedPickingImage += (s, e) => { };
             uIImagePickerController.Canceled += (s, e) => { };
         }
 
@@ -143,11 +141,6 @@ namespace QuickLayout.Touch
             Console.ForegroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkGray;
-        }
-
-        public void Include(MvvmCross.Plugin.MethodBinding.Plugin p)
-        {
-            var _ = p;
         }
     }
 }
