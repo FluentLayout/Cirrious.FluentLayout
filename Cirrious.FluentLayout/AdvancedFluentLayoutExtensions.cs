@@ -57,7 +57,10 @@ public static class AdvancedFluentLayoutExtensions
         view.Bottom().EqualTo().TopOf(previous).Minus(margin.GetValueOrDefault(DefaultMargin));
 
     public static FluentLayout WithSameLeft(this UIView view, UIView previous) => view.Left().EqualTo().LeftOf(previous);
-
+	    
+	  public static FluentLayout WithAspectRatio(this UIView view, nfloat ratio) =>
+        view.Width().EqualTo().HeightOf(view).WithMultiplier(ratio);
+                
     public static FluentLayout WithSameTop(this UIView view, UIView previous) => view.Top().EqualTo().TopOf(previous);
 
     public static FluentLayout WithSameCenterX(this UIView view, UIView previous) => view.CenterX().EqualTo().CenterXOf(previous);

@@ -13,7 +13,7 @@ namespace QuickLayout.Touch.Views
     [MvxRootPresentation(WrapInNavigationController = true)]
     public class FirstView : MvxViewController
     {
-		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView, _rightToLeft, _viewSafeArea, _viewCenterConstraints;
+		private UIButton _viewForm, _viewFormGrid, _viewDetails, _viewSearch, _viewTip, _viewUpdateConstaints, _viewAdvancedVerticalStack, _fullSize, _directionFormView, _rightToLeft, _viewSafeArea, _viewCenterConstraints, _viewAspectRatio;
 
         public override void ViewDidLoad()
         {
@@ -71,6 +71,10 @@ namespace QuickLayout.Touch.Views
             _viewCenterConstraints = new UIButton(UIButtonType.RoundedRect);
             _viewCenterConstraints.SetTitle("View Contraining to centers", UIControlState.Normal);
             Add(_viewCenterConstraints);
+            
+            _viewAspectRatio = new UIButton(UIButtonType.RoundedRect);
+            _viewAspectRatio.SetTitle("Aspect Ratio", UIControlState.Normal);
+            Add(_viewAspectRatio);
 
 			View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
@@ -87,6 +91,7 @@ namespace QuickLayout.Touch.Views
             set.Bind(_rightToLeft).To("GoRightToLeft");
             set.Bind(_viewSafeArea).To("GoViewWithSafeArea");
             set.Bind(_viewCenterConstraints).To("GoCenterConstraints");
+            set.Bind(_viewAspectRatio).To("GoViewAspectRatio");
             set.Apply();
 
             var constraints = View.VerticalStackPanelConstraints(

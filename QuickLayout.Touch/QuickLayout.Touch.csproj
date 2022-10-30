@@ -88,6 +88,7 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\AspectRatioView.cs" />
     <Compile Include="Views\ToCenterConstraintsView.cs" />
     <Compile Include="Views\DetailsView.cs" />
     <Compile Include="Views\FirstView.cs" />
