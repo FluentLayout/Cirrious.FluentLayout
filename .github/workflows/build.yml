@@ -25,11 +25,17 @@ jobs:
     - name: Install .NET Workloads
       run: dotnet workload install ios maccatalyst
 
+    - name: Determine Version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0.9.7
+      with:
+        useConfigFile: true
+
     - name: Restore dependencies
       run: dotnet restore
 
     - name: Build
-      run: dotnet build Cirrious.FluentLayout/Cirrious.FluentLayouts.Touch.csproj --no-restore
+      run: dotnet build Cirrious.FluentLayout/Cirrious.FluentLayouts.Touch.csproj --no-restore /p:Version=${{ steps.gitversion.outputs.semVer }} /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }} /p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.1
