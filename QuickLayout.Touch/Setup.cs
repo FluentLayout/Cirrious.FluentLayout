@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using MvvmCross.Platforms.Ios.Core;
+using MvvmCross.Plugin;
 using QuickLayout.Core;
 using Serilog;
 using Serilog.Extensions.Logging;
@@ -22,5 +23,12 @@ public class Setup : MvxIosSetup<App>
             .CreateLogger();
 
         return new SerilogLoggerFactory();
+    }
+
+    public override void LoadPlugins(IMvxPluginManager pluginManager)
+    {
+        base.LoadPlugins(pluginManager);
+        
+        pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.MethodBinding.Plugin>();
     }
 }
