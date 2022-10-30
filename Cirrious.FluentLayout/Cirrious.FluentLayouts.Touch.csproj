@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Xamarin.Legacy.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-ios</TargetFramework>
+    <TargetFrameworks>xamarin.ios10;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
 
