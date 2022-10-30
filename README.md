@@ -2,8 +2,6 @@
 
 FluentLayout provides an easy, fluent API for creating constraint-based layouts in Xamarin.iOS.
 
-[![Build Status](https://app.bitrise.io/app/3584ad3a37e4084c/status.svg?token=nxuhVtDms232YxvcvYIW0w&branch=main)](https://app.bitrise.io/app/3584ad3a37e4084c)
-
 ## How To Use
 
 The best way to see FluentLayout in action is to check out the `QuickLayout.Touch` sample project, which contains many examples of creating a variety of layouts.
